@@ -459,7 +459,7 @@ app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', 'RaModel', '
 		a.patientDetails.imagesloading = false;
 		a.patientDetails.images = {};
 		a.patientDetails.images.data = [];
-		
+		//a.patientDetails.imagesloading
 		$scope.a = a;
 		$this.patientsQuery();
 	};
@@ -533,7 +533,7 @@ app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', 'RaModel', '
 				} else {
 					//alert("****"+result.data.length);
 					if (result.data.length > 0) {
-						var dimgs = [];
+						/*var dimgs = [];
 						var fileIds = a.patients.current.uploadDocIds;
 						var singleResult = result.data[0];
 						if(typeof fileIds !== 'undefined' && typeof singleResult.imgs === 'undefined') {
@@ -542,7 +542,7 @@ app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', 'RaModel', '
 						}					
 						if(dimgs.length > 0) {
 							singleResult.imgs = dimgs;
-						}
+						}*/
 						a.patientDetails.data.push.apply(a.patientDetails.data, result.data);
 						if (result.data.length < _limit) {
 							a.patientDetails.hasMore = false;
@@ -558,6 +558,10 @@ app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', 'RaModel', '
 			}
 		);
 
+		//loading images
+
+		var imagedata = $this.downloadFile(a.patients.current.uploadDocIds,pid);
+		a.patientDetails.images.data.push.apply(pid, imagedata);
 	}
 
 	this.patientDetailsQuery = function(pid){

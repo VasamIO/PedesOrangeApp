@@ -1,6 +1,6 @@
 <div id="patientPage" class="page">
 	<header class="bar-title">
-		<a ng-hide="a.selection==='AddressDetails' || a.selection==='OrderDetails'" class="button" ng-click="back()"  stop-event="click">
+		<a ng-hide=" a.selection==='PatientDetails'" class="button" ng-click="back()"  stop-event="click">
 			<i class="icon-arrow-left icon-large"></i>
 		</a>
 		<h1 class="title" ng-swipe-right="back()">
@@ -117,7 +117,12 @@
 									<i class="icon-caret-right"></i>Ulcer
 								</div>
 						</li>
+					</div>
+					</div>
+					<div ng-repeat="r in a.patientDetails.data">
+					<div  ng-if="r.patientId == a.patients.current.patientId">		
 					
+					<ul class="list inset form right" >	
 						<li class="list-divider">Documents</li>
 					<li class="border-box" style="display:block;height:100px;">
 						<div id="doc-canvas" class="doc" style="position:absolute;left:0;top:0;right:0;bottom:0;display:block;">
