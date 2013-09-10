@@ -1,0 +1,95 @@
+<div class="page">
+<header class="bar-title">
+	<a class="button" ng-click="back()">
+		<i class="icon-arrow-left icon-large"></i> Back
+	</a>
+	<h1 class="title" ng-swipe-right="back()"> Referral Form</h1>
+</header>
+<div class="content">
+<form novalidate class="css-form" name="form">
+ <space></space>
+ <space></space>	
+	<div class="input-group inset">
+
+		<div class="input-row">
+			<label>Facility</label>
+			
+		</div>
+		<div class="input-row">
+			<select ng-model="facility"> <option value="nrb">New Report Beach</option><option value="cr">Carolina</option></select>
+		</div>
+
+		<div class="input-row">
+			<label nowrap>Patient <font color="red">*</font></label>
+			<input type = "text"  placeholder="Patient Name" ng-model="pname" required>
+      </div>
+		<div class="input-row">
+			<label>Phone</label>
+			<input type="text" placeholder="Phone Number" ng-model="phone">
+		</div>
+	</div>
+ <ul class="list inset">
+<li class="list-divider">select any one of the following options</li>
+  <li><input type="checkbox" name ="h" value="Y" ng-model="art"/> Arterial</li>
+  <li><input type="checkbox" name ="h" value="Y" ng-model="venous"/> Venous</li>
+</ul>
+<ul class="list inset">
+  <li><input type="checkbox" name ="h" value="Y" ng-model="bil"/> Bilterial</li>
+  <li><input type="checkbox" name ="h" value="Y" ng-model="left"/> Left</li>
+  <li><input type="checkbox" name ="h" value="Y" ng-model="right"/> Right</li>
+</ul>
+<ul class="list inset">
+<li class="list-divider">select any one of the following options</li>
+
+  <li><input type="checkbox" name ="h" value="Y" ng-model="uc"/> Ultrasound & Consulation</li>
+  <li><input type="checkbox" name ="h" value="Y" ng-model="ai"/> Angiogram with possible intervention</li>
+  <li><input type="checkbox" name ="h" value="Y" ng-model="veno"/> Venogram with possible intervention</li>
+  <li><input type="checkbox" name ="h" value="Y" ng-model="ot"/> Other</li>
+</ul>
+<div style="align:center"><a class="button button-negative " ng-click="createAlarm()"> Stat</a></div>
+
+<ul class="list inset">
+  <li class="list-divider">select any one of the following options</li>
+  <li><input type="checkbox"  value="Y" ng-model="cl"/> Claudication</li>
+  <li><input type="checkbox"  value="Y" ng-model="dap"/> Decreased/Absent Pulses</li>
+  <li><input type="checkbox"  value="Y" ng-model="dvt"/> DVT</li>
+  <li><input type="checkbox"  value="Y" ng-model="pain"/> Pain</li>
+  <li><input type="checkbox"  value="Y" ng-model="piv"/> Post Intervention Evaluation</li>
+  <li><input type="checkbox"  value="Y" ng-model="pvd"/> PVD</li>
+  <li><input type="checkbox"  value="Y" ng-model="se"/> Swelling/Edema</li>
+  <li><input type="checkbox"  value="Y" ng-model="nhw"/> Ulcer/Non-Healing Wound</li>
+  <li><input type="checkbox"  value="Y" ng-model="vv"/> Varicose Veins</li>
+<li><input type="checkbox"  value="Y" ng-model="iot"/> Others</li>
+</ul>
+<div class="input-group inset">
+		<div class="input-row">
+			<label> Physician</label>
+			<input type = "text"  value="{{userName}}">
+		</div>
+		<div class="input-row">
+			<label>Date</label>
+			<input type="date" placeholder="Date format MM/DD/YYYY" ng-model="date">
+		</div>
+	</div>
+
+<ul class="list inset">
+ <li class="list-divider">Documents</li>
+  <!-- <li ng-repeat="imgurl in upimages">
+    <img src="{{ imgurl }}" height="100" width="100"/>
+</li> -->
+<li>
+    <span style="margin-left:10px" ng-repeat="imgurl in upimages">
+      <img src="{{ imgurl }}" height="100" width="100" border="1"/></span>
+    </span>
+</li>
+
+</ul>  
+  <input type="hidden" ng-model="fileIds" value="282,233">
+<a class="button button-block" ng-click="openCamera('fileIds','upImgbar')"><i class="icon-camera icon-large"></i> Upload Images
+	<a class="button-main button-block" ng-click="order()"><i class="icon-hospital icon-large"></i> Order</a>
+</a><!-- 
+<a class="button button-block" ng-click="uploadFile('/home/devuser/Pictures/one.png')"><i class="icon-camera icon-large"></i> Upload Photo From Desk</a> -->
+</div>
+</form>
+</div>
+</div>

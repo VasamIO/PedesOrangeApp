@@ -1,0 +1,139 @@
+<div id="patientPage" class="page">
+	<header class="bar-title">
+		<a ng-hide="a.selection==='AddressDetails' || a.selection==='OrderDetails'" class="button" ng-click="back()"  stop-event="click">
+			<i class="icon-arrow-left icon-large"></i>
+		</a>
+		<h1 class="title" ng-swipe-right="back()">
+
+		<i ng-show="a.loading || a.patients.loading || a.patientDetails.loading " class="icon-spinner icon-spin icon-large" style="display: none;"></i>{{a.pageTitle}}</h1>
+		
+		<a ng-if="a.selection==='PatientDetails'" class="button" ng-click="a.selection='Patients'" stop-event="click">
+			<i class="icon-remove icon-large"></i>
+		</a>
+	</header>
+	
+	<div class="content slide" ng-switch on="a.selection">
+			
+			<div class="tab" ng-switch-when="Patients" infinite-scroll="getMorePatients()" infinite-scroll-distance="50">
+				<ul class="list inset">
+
+					<li ng-repeat="r in a.patients.data">
+						<a stop-event="click" ng-click="a.patients.current = r; a.selection='PatientDetails';" ng-swipe-right="a.patients.current = r; a.selection='PatientDetails';">
+							<div>#{{$index + 1}} </div>
+							<div><label class="field-text"><strong>Patient Name:</strong></label>{{r.patientName}}</div>
+							<div><label class="field-text"><strong>Physican Name:</strong></label>{{r.physicianName}} 
+							</div>
+							<div><label class="field-text"><strong>Facility:</strong></label>{{r.facility}} </div>
+					<div><label class="field-text"><strong>Date:</strong></label>{{r.creationDate}} {{r.uploadDocIds}} </div>
+							<span class="chevron"></span>
+							
+						</a>
+					</li>
+					<li ng-show="a.patients.loading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
+				</ul>
+				<!--a ng-show="a.patients.hasMore" class="button-main button-block" ng-click="getMorepatients()">More</a-->
+			</div>	
+
+
+				<div class="tab" ng-switch-when="PatientDetails">
+				<ul class="list inset form right" >
+
+					<div ng-repeat="r in a.patientDetails.data">
+					<div  ng-if="r.patientId == a.patients.current.patientId">		
+						<li>
+							<label class="field-text"><strong>Patient Name</strong></label>{{r.patientName}}
+						</li>
+						<li>
+							<label class="field-text"><strong>Phone</strong></label>{{r.phone}}
+						</li>
+						<li>
+							<label class="field-text"><strong>Facility</strong></label>{{r.facility}}
+						</li>
+
+						<li>
+							<label class="field-text"><strong>Physicain</strong></label>{{r.facility}}
+						</li>
+						<li class="list-divider">Categories</li>
+						<li>
+							<label class="field-text"><strong>Category 1</strong></label>
+
+								<div ng-if="r.arterialDuplex =='Y'">
+									<i class="icon-caret-right"></i>Arterial
+								</div>
+								<div ng-if="r.venousDuplex =='Y'">
+										<i class="icon-caret-right"></i>Venous	
+								</div>
+
+						</li>
+						<li>
+							<label class="field-text"><strong>Category 2</strong></label>
+								
+								<div ng-if="r.ultraConsult =='Y'">
+										<i class="icon-caret-right"></i>Ultrasound & Consultation	
+								</div>
+								<div ng-if="r.venogram =='Y'">
+									<i class="icon-caret-right"></i>Venogram with possible intervention
+								</div>
+								<div ng-if="r.angiogram =='Y'"> 
+									<i class="icon-caret-right"></i>Angiogram with possible intervention
+								</div>
+								<div ng-if="r.ultraConsult =='Y'">
+									<i class="icon-caret-right"></i>Other
+								</div>
+							
+						</li>
+						<li>
+							<label class="field-text"><strong>Inidications</strong></label>
+
+
+								<div ng-if="r.claudication =='Y'">
+										<i class="icon-caret-right"></i>Claudication
+								</div>
+
+								<div ng-if="r.absentPulses =='Y'">
+										<i class="icon-caret-right"></i>Decreased/Absent Pulses
+								</div>
+								<div ng-if="r.dvt =='Y'">
+									<i class="icon-caret-right"></i>DVT
+								</div>
+								<div ng-if="r.pain =='Y'"> 
+									<i class="icon-caret-right"></i>Pain
+								</div>
+								
+								<div ng-if="r.interEvaluation =='Y'">
+										<i class="icon-caret-right"></i>Post Intervention Evaluation
+								</div>
+								<div ng-if="r.pvd =='Y'">
+									<i class="icon-caret-right"></i>PVD
+								</div>
+								<div ng-if="r.swelling =='Y'"> 
+									<i class="icon-caret-right"></i>Swelling
+								</div>
+								<div ng-if="r.varicoseVeins =='Y'">
+									<i class="icon-caret-right"></i>Varicose Veins
+								</div>
+
+								<div ng-if="r.ulcer =='Y'">
+									<i class="icon-caret-right"></i>Ulcer
+								</div>
+						</li>
+					
+						<li class="list-divider">Documents</li>
+					<li class="border-box" style="display:block;height:100px;">
+						<div id="doc-canvas" class="doc" style="position:absolute;left:0;top:0;right:0;bottom:0;display:block;">
+							<span ng-repeat="im in r.imgs">
+								
+								<img src = "{{im}}" height="100" width="100"/>
+							</span>
+							</span>
+							</div>
+					</li>
+					</div>
+					</div>
+					<li ng-show="a.patientDetails.loading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
+				</ul>
+			</div>
+			
+		</div>
+	</div>
+</div>

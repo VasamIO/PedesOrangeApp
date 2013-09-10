@@ -1,0 +1,78 @@
+<!doctype html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title></title>
+	<meta name="description" content="">
+	<!-- <meta name="viewport" content="width=device-width"> -->
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<!-- build:css styles/main.css -->
+	<link rel="stylesheet" href="styles/font-awesome.css" type="text/css" charset="utf-8">
+	<link rel="stylesheet" href="styles/ratchet.css">
+	<link rel="stylesheet" href="styles/main.css">
+	<!-- endbuild -->
+<style type="text/css">
+      .css-form input.ng-invalid.ng-dirty {
+        background-color: #FA787E;
+      }
+    
+    </style>
+</head>
+<body ng-app="SPAApp" ng-controller="IndexCtrl">
+	<div ng-view class="container view-animate-container"></div>
+	<div id="menu" style="display: none;">
+		<div class="lpanel">
+			<ul>
+				<li class="header">
+					<h3 class="title">Navigation</h3>
+				</li>
+				<li ng-repeat="m in menuItems" ng-class="m.active===true?'active':''">
+					<a ng-click="menuItemClick(m)" stop-event="click">
+						<i ng-class="m.icon + ' icon-2x'"></i>{{m.name}}
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="popover" ng-class="Logger.show?'visible':''" class="popover">
+	  <header class="popover-header">
+  	    <a class="button" ng-if="Logger.type==='C'" ng-click="Logger.show=false;Logger.title=null;Logger.message=null;Logger.type=null;">
+  	      No
+  	    </a>
+	    <h3 class="title">{{Logger.title || ((Logger.type==='C')?'Confirm':((Logger.type==='E')?'Error':'Alert'))}}</h3>
+	    <a ng-if="Logger.type!=='C'" class="button" ng-click="Logger.show=false;Logger.title=null;Logger.message=null;Logger.type=null;">
+	      OK
+	    </a>
+	    <a class="button" ng-if="Logger.type==='C'" ng-click="Logger.show=false;Logger.title=null;Logger.message=null;Logger.type=null;Logger.confirmYes();">
+	      Yes
+	    </a>
+		
+	  </header>
+	  <ul class="list">
+	    <li>{{Logger.message}}</li>
+	  </ul>
+	</div>	
+	
+	<script src="lib/jquery-2.0.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/angular-mobile.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/angular-resource.min.js" type="text/javascript" charset="utf-8"></script>
+	<!-- build:js scripts/scripts.js -->
+	
+	<script src="scripts/directives/ng-infinite-scroll.js" type="text/javascript" charset="utf-8"></script>
+	<script src="scripts/app.js" type="text/javascript" charset="utf-8"></script>
+	<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="scripts/controllers/index.js" type="text/javascript" charset="utf-8"></script>
+	<script src="scripts/controllers/controllers.js" type="text/javascript" charset="utf-8"></script>
+	
+	<!-- endbuild --> 
+	<script src="lib/fc/FusionCharts.js" type="text/javascript" charset="utf-8"></script>
+	
+</body>
+</html>
