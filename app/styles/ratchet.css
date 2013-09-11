@@ -770,6 +770,11 @@ select {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);  
 }
 
+.button-disabled {
+  cursor:none;
+  color:gray;
+}
+
 /* Main button */
 .button-main {
   background-color: #1c1c1c;
@@ -809,6 +814,15 @@ select {
   background-color: #b21a1a;
 }
 
+.button-main:active,
+.button-disabled:active {
+   cursor:none;
+  color:gray;
+   background-color: #1c1c1c;
+  background: -webkit-linear-gradient(top, #535353, #1c1c1c);
+  
+  
+}
 /* Block level buttons (full width buttons) */
 .button-block {
   display: block;

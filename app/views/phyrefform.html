@@ -6,7 +6,7 @@
 	<h1 class="title" ng-swipe-right="back()"> Referral Form</h1>
 </header>
 <div class="content">
-<form novalidate class="css-form" name="form">
+<form novalidate class="css-form" name="refForm">
  <space></space>
  <space></space>	
 	<div class="input-group inset">
@@ -21,7 +21,7 @@
 
 		<div class="input-row">
 			<label nowrap>Patient <font color="red">*</font></label>
-			<input type = "text"  placeholder="Patient Name" ng-model="pname" required>
+			<input type = "text"  placeholder="Patient Name" ng-model="pname" required >
       </div>
 		<div class="input-row">
 			<label>Phone</label>
@@ -85,9 +85,17 @@
 
 </ul>  
   <input type="hidden" ng-model="fileIds" value="282,233">
-<a class="button button-block" ng-click="openCamera('fileIds','upImgbar')"><i class="icon-camera icon-large"></i> Upload Images
-	<a class="button-main button-block" ng-click="order()"><i class="icon-hospital icon-large"></i> Order</a>
-</a><!-- 
+	<a class="button button-block" ng-click="openCamera('fileIds','upImgbar')"><i class="icon-camera icon-large"></i> Upload Images </a>
+
+	 			<div ng-show="pname === ''   || !(art || venous) || !(uc || ai || veno) || !(cl || dap || dvt || pain || piv || pvd || se || nhw || vv)">
+                 <a   class="button-main button-block button-disabled" ><i class="icon-hospital icon-large"></i> Order  </a>
+                </div>
+
+                <div ng-show="pname !== '' && (art || venous) && (uc || ai || veno) && (cl || dap || dvt || pain || piv || pvd || se || nhw || vv)">
+                 <a  class="button-main button-block "  ng-click="order()"  ><i class="icon-hospital icon-large"></i> Order  </a>
+                </div>
+
+<!-- 
 <a class="button button-block" ng-click="uploadFile('/home/devuser/Pictures/one.png')"><i class="icon-camera icon-large"></i> Upload Photo From Desk</a> -->
 </div>
 </form>

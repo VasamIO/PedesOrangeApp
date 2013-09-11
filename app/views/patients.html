@@ -1,11 +1,11 @@
 <div id="patientPage" class="page">
 	<header class="bar-title">
-		<a ng-hide=" a.selection==='PatientDetails'" class="button" ng-click="back()"  stop-event="click">
+		<a ng-hide="a.selection==='PatientDetails'" class="button" ng-click="back()"  stop-event="click">
 			<i class="icon-arrow-left icon-large"></i>
 		</a>
 		<h1 class="title" ng-swipe-right="back()">
 
-		<i ng-show="a.loading || a.patients.loading || a.patientDetails.loading " class="icon-spinner icon-spin icon-large" style="display: none;"></i>{{a.pageTitle}}</h1>
+		<i ng-show="a.loading || a.patients.loading || a.patientDetails.loading " class="icon-spinner icon-spin icon-large" style="display: none;"></i> 	{{a.pageTitle}}</h1>
 		
 		<a ng-if="a.selection==='PatientDetails'" class="button" ng-click="a.selection='Patients'" stop-event="click">
 			<i class="icon-remove icon-large"></i>
@@ -24,7 +24,7 @@
 							<div><label class="field-text"><strong>Physican Name:</strong></label>{{r.physicianName}} 
 							</div>
 							<div><label class="field-text"><strong>Facility:</strong></label>{{r.facility}} </div>
-					<div><label class="field-text"><strong>Date:</strong></label>{{r.creationDate}} {{r.uploadDocIds}} </div>
+					<div><label class="field-text"><strong>Date:</strong></label>{{r.creationDate}} <!-- {{r.uploadDocIds}} --> </div>
 							<span class="chevron"></span>
 							
 						</a>
@@ -47,12 +47,16 @@
 							<label class="field-text"><strong>Phone</strong></label>{{r.phone}}
 						</li>
 						<li>
-							<label class="field-text"><strong>Facility</strong></label>{{r.facility}}
+							<label class="field-text"><strong>Facility</strong></label>
+							<span ng-if="r.facility =='nrb'">
+									New Report Bearch
+								</span>
+								<span ng-if="r.facility =='cr'">
+										Carolina	
+								</span>
 						</li>
 
-						<li>
-							<label class="field-text"><strong>Physicain</strong></label>{{r.facility}}
-						</li>
+						
 						<li class="list-divider">Categories</li>
 						<li>
 							<label class="field-text"><strong>Category 1</strong></label>
@@ -117,25 +121,31 @@
 									<i class="icon-caret-right"></i>Ulcer
 								</div>
 						</li>
-					</div>
-					</div>
-					<div ng-repeat="r in a.patientDetails.data">
-					<div  ng-if="r.patientId == a.patients.current.patientId">		
 					
-					<ul class="list inset form right" >	
+					</div>
+					</div>
+					<ul class="list inset form right" >
+
+						
 						<li class="list-divider">Documents</li>
+						
+						<li ng-hide="a.patients.current.uploadDocIds.length > 3">No documents uploaded.</li>
+						<div ng-repeat="(key, value) in image_data">   
+					<div  ng-if="key == a.patients.current.patientId">		
+						
 					<li class="border-box" style="display:block;height:100px;">
 						<div id="doc-canvas" class="doc" style="position:absolute;left:0;top:0;right:0;bottom:0;display:block;">
-							<span ng-repeat="im in r.imgs">
+							<span ng-repeat="im in value">
 								
-								<img src = "{{im}}" height="100" width="100"/>
+								<img ng-src = "{{im}}" height="100" width="100"/>
 							</span>
-							</span>
+							</span>  
 							</div>
 					</li>
+					
 					</div>
 					</div>
-					<li ng-show="a.patientDetails.loading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
+					<li ng-show="a.patientDetails.imagesloading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
 				</ul>
 			</div>
 			
