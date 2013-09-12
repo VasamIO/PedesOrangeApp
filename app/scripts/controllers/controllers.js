@@ -143,6 +143,7 @@ app.controller('LoginCtrl', ['$scope', '$location', 'Session', 'Menu', function 
 
 
 app.controller('PhyFormCtrl', ['$scope', '$location', 'Menu','Logger','Session','RaModel', function ($scope, $location,  Menu,Logger,Session,RaModel) {
+	 $scope.uploadingimages = false;
 	function init() {
 		$scope.date = '2013-06-20';
 		$scope.time = '09:30';
@@ -176,7 +177,7 @@ app.controller('PhyFormCtrl', ['$scope', '$location', 'Menu','Logger','Session',
 			 Decreased/Absent Pulses
 			 DVT
 			 Pain
-			 Post Intervention Evaluation
+			 Post Intervention Evaluation  
 			 PVD
 			 Swelling/Edema
 			 Ulcer/Non-Healing Wound
@@ -185,6 +186,14 @@ app.controller('PhyFormCtrl', ['$scope', '$location', 'Menu','Logger','Session',
 	     }	
 	*/
 
+
+console.log("************"+$scope.facility);
+//Logger.showAlert(,"Error");
+	if(typeof $scope.facility === "undefined" ||$scope.facility === "nofacility" ) {
+		Logger.showAlert("Please select facility","Error");
+		return;
+		
+	}
 	if($scope.pname == null) {
 		Logger.showAlert("Please enter patient name","Error");
 		return;
@@ -202,7 +211,7 @@ app.controller('PhyFormCtrl', ['$scope', '$location', 'Menu','Logger','Session',
 		Logger.showAlert("Please select atleast one from Indications","Error");
 		return;
 	}
-	alert("--------Upload file Ids:"+$scope.fileIds);
+	//alert("--------Upload file Ids:"+$scope.fileIds);
 	RaModel.save({'dataSource':'PatientReferralFormV','operation':'insert'}, { "sessionId":Session.get().sessionId,
 	  'phone':$scope.phone,
 	  'uploadDocIds':  $scope.fileIds,
@@ -238,12 +247,14 @@ app.controller('PhyFormCtrl', ['$scope', '$location', 'Menu','Logger','Session',
 
 
 	}, function(result){
-					//console.log('***********'+angular.fromJson(result)+"********"+result.sqlCall);
-					//Logger.showAlert("Raw -------JSON", result.toString());
 				if (result.$error) {
 					Logger.showAlert(result.errorMessage,result.errorTitle);
 				} else {
-					Logger.showAlert("Updated Successfully","Update");
+					
+						Logger.showConfirm('Updated Successfully', function(){
+							$scope.back();
+					},"Update",'Ok');
+					
 				}
 			});
 	};
@@ -277,6 +288,8 @@ app.controller('PhyFormCtrl', ['$scope', '$location', 'Menu','Logger','Session',
 
 
 	function uploadFile (mediaFile,fileIds,upImgbar) {
+		
+		$scope.uploadingimages = true;
 	    var path = mediaFile;
 	    var name = mediaFile;
 	    var options = {};
@@ -295,10 +308,11 @@ app.controller('PhyFormCtrl', ['$scope', '$location', 'Menu','Logger','Session',
 	    ft.upload( mediaFile, uploadServerUrl,
 	       	//success
 	        function(r) {
-				var _json  = eval(r.response);
+	      		var _json  = eval(r.response);
 		    	$scope.fileIds = (typeof $scope.fileIds !== "undefined" ?$scope.fileIds:"")+ ","+_json[0].fileId;
 		    //	alert("Uploaded ids..."+$scope.fileIds);
 		    	$scope.upimages.push(mediaFile);
+		    	$scope.uploadingimages = false;
 		    }, //failure
 		    function(error) {
 	            Logger.showError(error);
@@ -616,6 +630,7 @@ var _lc;
 this.downloadFile  = function(fid,pid) {
 var imagedata = [];
 var parentimagedata = {};
+
 parentimagedata.pid = pid;
 console.log("Downloading file for ..."+fid);
 var params = "rev=1&sid="+Session.get().sessionId+"&ds=PatientReferralFormV&fid=";

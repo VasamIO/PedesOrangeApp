@@ -16,17 +16,34 @@
 			
 			<div class="tab" ng-switch-when="Patients" infinite-scroll="getMorePatients()" infinite-scroll-distance="50">
 				<ul class="list inset">
-
-					<li ng-repeat="r in a.patients.data">
+					<li> Find:<input type = "text" style="margin-bottom:0px;height:35px"  placeholder="Name or Physician or Facility"  ng-model="searchText"></li>	
+					<li ng-repeat="r in a.patients.data | filter:searchText">
 						<a stop-event="click" ng-click="a.patients.current = r; a.selection='PatientDetails';" ng-swipe-right="a.patients.current = r; a.selection='PatientDetails';">
-							<div>#{{$index + 1}} </div>
+							<!-- <div>#{{$index + 1}} </div>
 							<div><label class="field-text"><strong>Patient Name:</strong></label>{{r.patientName}}</div>
-							<div><label class="field-text"><strong>Physican Name:</strong></label>{{r.physicianName}} 
+							<div><label class="field-text"><strong>Physician Name:</strong></label>{{r.physicianName}} 
 							</div>
 							<div><label class="field-text"><strong>Facility:</strong></label>{{r.facility}} </div>
-					<div><label class="field-text"><strong>Date:</strong></label>{{r.creationDate}} <!-- {{r.uploadDocIds}} --> </div>
+					<div><label class="field-text"><strong>Date:</strong></label>{{r.creationDate | timeAgo}} <!-- {{r.uploadDocIds}}  </div>
+							<span class="chevron"></span>
+							 -->
+
+						<div> <strong><i class="icon-user"></i> {{r.patientName}}</strong></div>
+							<div style="margin-left:15px"><label class="field-text">referred by</label> {{r.physicianName}}</div>
+							<div style="margin-left:15px">
+									<span ng-if="r.facility =='nrb'">
+									@ New Report Bearch
+								</span>
+								<span ng-if="r.facility =='cr'">
+									@ Carolina	
+								</span>
+							</div>
+							
+							
+					<div class = "rightaligndate" style="color:gray"><small>{{r.creationDate | date:'MM-dd-yyyy HH:mm'}}</small> <!-- {{r.uploadDocIds}} --> </div>
 							<span class="chevron"></span>
 							
+
 						</a>
 					</li>
 					<li ng-show="a.patients.loading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
@@ -57,73 +74,81 @@
 						</li>
 
 						
-						<li class="list-divider">Categories</li>
-						<li>
-							<label class="field-text"><strong>Category 1</strong></label>
+						<li class="list-divider">Category 1</li>
+							
 
-								<div ng-if="r.arterialDuplex =='Y'">
-									<i class="icon-caret-right"></i>Arterial
-								</div>
-								<div ng-if="r.venousDuplex =='Y'">
-										<i class="icon-caret-right"></i>Venous	
-								</div>
+								<li ng-if="r.arterialDuplex =='Y'">
+									 <input type="checkbox" name ="h" value="Y" checked="true" disabled /> Arterial
+  
+								</li>
+						
+								<li ng-if="r.venousDuplex =='Y'">
+										<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Venous
+								</li>
 
-						</li>
-						<li>
-							<label class="field-text"><strong>Category 2</strong></label>
+						<li class="list-divider">Category 2</li>
+						
 								
-								<div ng-if="r.ultraConsult =='Y'">
-										<i class="icon-caret-right"></i>Ultrasound & Consultation	
-								</div>
-								<div ng-if="r.venogram =='Y'">
-									<i class="icon-caret-right"></i>Venogram with possible intervention
-								</div>
-								<div ng-if="r.angiogram =='Y'"> 
-									<i class="icon-caret-right"></i>Angiogram with possible intervention
-								</div>
-								<div ng-if="r.ultraConsult =='Y'">
-									<i class="icon-caret-right"></i>Other
-								</div>
+								<li ng-if="r.ultraConsult =='Y'">
+										<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Ultrasound & Consultation	
+								</li>
+								<li ng-if="r.venogram =='Y'">
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Venogram with possible intervention
+								</li>
+								
+								<li ng-if="r.angiogram =='Y'"> 
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Angiogram with possible intervention
+								</li>
+								<li ng-if="r.ultraConsult =='Y'">
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Other
+								</li>
 							
 						</li>
-						<li>
-							<label class="field-text"><strong>Inidications</strong></label>
+							<li class="list-divider">Inidications</li>
+						
+						
 
-
-								<div ng-if="r.claudication =='Y'">
-										<i class="icon-caret-right"></i>Claudication
-								</div>
-
-								<div ng-if="r.absentPulses =='Y'">
-										<i class="icon-caret-right"></i>Decreased/Absent Pulses
-								</div>
-								<div ng-if="r.dvt =='Y'">
-									<i class="icon-caret-right"></i>DVT
-								</div>
-								<div ng-if="r.pain =='Y'"> 
-									<i class="icon-caret-right"></i>Pain
-								</div>
+								<li ng-if="r.claudication =='Y'">
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Claudication
+								</li>
+									
+								<li ng-if="r.absentPulses =='Y'">
+										<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Decreased/Absent Pulses
+								</li>
 								
-								<div ng-if="r.interEvaluation =='Y'">
-										<i class="icon-caret-right"></i>Post Intervention Evaluation
-								</div>
-								<div ng-if="r.pvd =='Y'">
-									<i class="icon-caret-right"></i>PVD
-								</div>
-								<div ng-if="r.swelling =='Y'"> 
-									<i class="icon-caret-right"></i>Swelling
-								</div>
-								<div ng-if="r.varicoseVeins =='Y'">
-									<i class="icon-caret-right"></i>Varicose Veins
-								</div>
+								<li ng-if="r.dvt =='Y'">
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >DVT
+								</li>
+								
+								<li ng-if="r.pain =='Y'"> 
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Pain
+								</li>
+								
+								<li ng-if="r.interEvaluation =='Y'">
+										<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Post Intervention Evaluation
+								</li>
+								
+								<li ng-if="r.pvd =='Y'">
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >PVD
+								</li>
+								
+								<li ng-if="r.swelling =='Y'"> 
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Swelling
+								</li>
+								
+								<li ng-if="r.varicoseVeins =='Y'">
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Varicose Veins
+								</li>
+								
+								<li ng-if="r.ulcer =='Y'">
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Ulcer
+								</li>
 
-								<div ng-if="r.ulcer =='Y'">
-									<i class="icon-caret-right"></i>Ulcer
-								</div>
-						</li>
-					
+						
 					</div>
 					</div>
+					<li ng-show="a.patientDetails.loading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
+				</ul>	
 					<ul class="list inset form right" >
 
 						
@@ -146,6 +171,17 @@
 					</div>
 					</div>
 					<li ng-show="a.patientDetails.imagesloading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
+				</ul>
+				<ul class="list inset form right">
+					<li class="list-divider">Texting</li>
+					<li>
+						<div><input type = "text" style="margin-bottom:0px;height:35px"  placeholder="Type something" ></div>
+						<div>
+							<a class="button"><i class="icon-meh"></i></a>
+						</div>
+						
+					</li>
+
 				</ul>
 			</div>
 			

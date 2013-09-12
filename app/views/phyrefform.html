@@ -15,10 +15,12 @@
 			<label>Facility</label>
 			
 		</div>
-		<div class="input-row">
-			<select ng-model="facility"> <option value="nrb">New Report Beach</option><option value="cr">Carolina</option></select>
-		</div>
-
+			<select ng-model="facility"> 
+				<option value="nofacility" ng-selected="1==1">Please select one</option>
+				<option value="nrb" >New Report Beach</option>
+				<option value="cr">Carolina</option>
+			</select>
+		
 		<div class="input-row">
 			<label nowrap>Patient <font color="red">*</font></label>
 			<input type = "text"  placeholder="Patient Name" ng-model="pname" required >
@@ -29,7 +31,7 @@
 		</div>
 	</div>
  <ul class="list inset">
-<li class="list-divider">select any one of the following options</li>
+<li class="list-divider">Select any one of the following options<font color="red">*</font></li>
   <li><input type="checkbox" name ="h" value="Y" ng-model="art"/> Arterial</li>
   <li><input type="checkbox" name ="h" value="Y" ng-model="venous"/> Venous</li>
 </ul>
@@ -39,7 +41,7 @@
   <li><input type="checkbox" name ="h" value="Y" ng-model="right"/> Right</li>
 </ul>
 <ul class="list inset">
-<li class="list-divider">select any one of the following options</li>
+<li class="list-divider">Select any one of the following options<font color="red">*</font></li>
 
   <li><input type="checkbox" name ="h" value="Y" ng-model="uc"/> Ultrasound & Consulation</li>
   <li><input type="checkbox" name ="h" value="Y" ng-model="ai"/> Angiogram with possible intervention</li>
@@ -49,7 +51,7 @@
 <div style="align:center"><a class="button button-negative " ng-click="createAlarm()"> Stat</a></div>
 
 <ul class="list inset">
-  <li class="list-divider">select any one of the following options</li>
+  <li class="list-divider">Select any one of the following options<font color="red">*</font></li>
   <li><input type="checkbox"  value="Y" ng-model="cl"/> Claudication</li>
   <li><input type="checkbox"  value="Y" ng-model="dap"/> Decreased/Absent Pulses</li>
   <li><input type="checkbox"  value="Y" ng-model="dvt"/> DVT</li>
@@ -78,20 +80,21 @@
     <img src="{{ imgurl }}" height="100" width="100"/>
 </li> -->
 <li>
-    <span style="margin-left:10px" ng-repeat="imgurl in upimages">
+    <span  ng-repeat="imgurl in upimages">
       <img src="{{ imgurl }}" height="100" width="100" border="1"/></span>
     </span>
 </li>
 
+	<li ng-show="uploadingimages" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
 </ul>  
   <input type="hidden" ng-model="fileIds" value="282,233">
 	<a class="button button-block" ng-click="openCamera('fileIds','upImgbar')"><i class="icon-camera icon-large"></i> Upload Images </a>
 
-	 			<div ng-show="pname === ''   || !(art || venous) || !(uc || ai || veno) || !(cl || dap || dvt || pain || piv || pvd || se || nhw || vv)">
+	 			<div ng-show="uploadingimages || pname == null   || !(art || venous) || !(uc || ai || veno) || !(cl || dap || dvt || pain || piv || pvd || se || nhw || vv)">
                  <a   class="button-main button-block button-disabled" ><i class="icon-hospital icon-large"></i> Order  </a>
                 </div>
 
-                <div ng-show="pname !== '' && (art || venous) && (uc || ai || veno) && (cl || dap || dvt || pain || piv || pvd || se || nhw || vv)">
+                <div ng-show="pname != null && (art || venous) && (uc || ai || veno) && (cl || dap || dvt || pain || piv || pvd || se || nhw || vv) && !uploadingimages">
                  <a  class="button-main button-block "  ng-click="order()"  ><i class="icon-hospital icon-large"></i> Order  </a>
                 </div>
 

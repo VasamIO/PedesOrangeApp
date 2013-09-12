@@ -160,6 +160,7 @@ app.service('Logger', function() {
 	this.title = '';
 	this.message = '';
 	this.confirmCallback = null;
+	this.buttonLabels = '';
 	this.log = function(msg) {
 		debug(msg);
 	};
@@ -190,6 +191,7 @@ app.service('Logger', function() {
 			$this.type = 'C';
 			$this.title = title;
 			$this.message = message;
+			$this.buttonLabels = buttonLabels;
 			$this.confirmCallback = confirmCallback;
 		}
 	};

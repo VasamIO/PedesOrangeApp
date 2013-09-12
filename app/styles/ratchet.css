@@ -92,9 +92,10 @@ video {
 }
 
 /* Prevents iOS text size adjust after orientation change, without disabling (Thanks to @necolas) */
+
 html {
   -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 /* Base styles
@@ -112,13 +113,16 @@ body {
 }
 
 /* Universal link styling */
+
 a {
   color: #0882f0;
   text-decoration: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Removes the dark touch outlines on links */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* Removes the dark touch outlines on links */
 }
 
 /* Wrapper to be used around all content not in .bar-title and .bar-tab */
+
 .content {
   position: absolute;
   top: 0;
@@ -127,7 +131,6 @@ a {
   left: 0;
   overflow: auto;
   background-color: #e7e7e7;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
@@ -135,27 +138,35 @@ a {
 
 /* Hack to force all relatively and absolutely positioned elements still render while scrolling
    Note: This is a bug for "-webkit-overflow-scrolling: touch" */
+
 .content > * {
   -webkit-transform: translateZ(0px);
-          transform: translateZ(0px);
+  -ms-transform: translateZ(0px);
+  transform: translateZ(0px);
 }
 
 /* Utility wrapper to pad in components like forms, block buttons and segmented-controllers so they're not full-bleed */
+
 .content-padded {
   padding: 10px;
 }
 
 /* Pad top/bottom of content so it doesn't hide behind .bar-title and .bar-tab.
    Note: For these to work, content must come after both bars in the markup */
+
 .bar-title ~ .content {
   top: 44px;
 }
+
 .bar-tab ~ .content {
   bottom: 51px;
 }
+
 .bar-header-secondary ~ .content {
   top: 88px;
-}/* General bar styles
+}
+
+/* General bar styles
 -------------------------------------------------- */
 
 [class*="bar-"] {
@@ -164,20 +175,24 @@ a {
   z-index: 11;
   height: 44px;
   padding: 5px;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 /* Modifier class to dock any bar below .bar-title */
+
 .bar-header-secondary {
   top: 45px;
 }
 
 /* Modifier class to dock any bar to bottom of viewport */
+
 .bar-footer {
   bottom: 0;
 }
 
 /* Generic bar for wrapping buttons, segmented controllers, etc. */
+
 .bar-standard {
   background-color: #f2f2f2;
   background-image: -webkit-linear-gradient(top, #f2f2f2 0, #e5e5e5 100%);
@@ -187,6 +202,7 @@ a {
 }
 
 /* Flip border position to top for footer bars */
+
 .bar-footer.bar-standard,
 .bar-footer-secondary.bar-standard {
   border-top: 1px solid #aaa;
@@ -197,19 +213,27 @@ a {
 -------------------------------------------------- */
 
 /* Bar docked to top of viewport for showing page title and actions */
+
 .bar-title {
   top: 0;
   display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: box;
   border-bottom: 1px solid #1c1c1c;
   box-shadow: inset 0 1px 1px -1px rgba(255, 255, 255, .8);
   -webkit-box-orient: horizontal;
-          box-orient: horizontal;
-  background: -webkit-linear-gradient(top, #535353, #1c1c1c);
-  border-top: 1px solid #525252;		  
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: horizontal;
+  -ms-flex-direction: horizontal;
+  box-orient: horizontal;
+  background: -webkit-linear-gradient(top, #41240F, #41240F);
+  border-top: 1px solid #1c1c1c;
 }
 
 /* Centered text in the .bar-title */
+
 .bar-title .title {
   position: absolute;
   top: 0;
@@ -232,6 +256,7 @@ a {
 }
 
 /* Retain specified title color */
+
 .bar-title .title a {
   color: inherit;
 }
@@ -240,6 +265,7 @@ a {
 -------------------------------------------------- */
 
 /* Bar docked to bottom used for primary app navigation */
+
 .bar-tab {
   bottom: 0;
   left: 0;
@@ -256,31 +282,44 @@ a {
 }
 
 /* Wrapper for individual tab */
+
 .tab-inner {
   display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: box;
   height: 100%;
   list-style: none;
   -webkit-box-orient: horizontal;
-          box-orient: horizontal;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: horizontal;
+  -ms-flex-direction: horizontal;
+  box-orient: horizontal;
 }
 
 /* Navigational tab */
+
 .tab-item {
   height: 100%;
   padding-top: 9px;
   text-align: center;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-box-flex: 1;
-          box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  box-flex: 1;
 }
 
 /* Active state for tab */
+
 .tab-item.active {
   box-shadow: inset 0 0 20px rgba(0, 0, 0, .5);
 }
 
 /* Icon for tab  */
+
 .tab-icon {
   display: block;
   height: 18px;
@@ -288,6 +327,7 @@ a {
 }
 
 /* Label for tab */
+
 .tab-label {
   margin-top: 1px;
   font-size: 10px;
@@ -300,24 +340,27 @@ a {
 -------------------------------------------------- */
 
 /* Generic style for all buttons in .bar-title */
+
 .bar-title [class*="button"] {
   position: relative;
-  z-index: 11; /* Places buttons over full width title */
+  z-index: 11;
+  /* Places buttons over full width title */
   font-size: 12px;
   line-height: 23px;
   color: #ddd;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
-  background-color: #1c1c1c;
-  background: -webkit-linear-gradient(top, #535353, #1c1c1c);
-  border: 1px solid #1c1c1c;
+  background-color: #3D240F;
+  background: -webkit-linear-gradient(top, #41240F, #41240F);
   box-shadow: 0 1px rgba(255, 255, 255, .25);
   -webkit-box-flex: 0;
-          box-flex: 0;
+  -webkit-flex: 0;
+  -ms-flex: 0;
+  box-flex: 0;
 }
-
 
 /* Hacky way to right align buttons outside of flex-box system
    Note: is only absolutely positioned button, would be better if flex-box had an "align right" option */
+
 .bar-title .title + [class*="button"]:last-child,
 .bar-title .button + [class*="button"]:last-child,
 .bar-title [class*="button"].pull-right {
@@ -327,35 +370,42 @@ a {
 }
 
 /* Override standard button active states */
+
 .bar-title .button:active {
   color: #fff;
-  background-color: #1c1c1c;
+  background-color: #3D240F;
 }
 
 /* Directional buttons in title bars (thanks to @GregorAdams for solution - http://cssnerd.com/2011/11/30/the-best-pure-css3-ios-style-arrow-back-button/)
 -------------------------------------------------- */
 
 /* Add relative positioning so :before content is positioned properly */
+
 .bar-title .button-prev,
 .bar-title .button-next {
   position: relative;
 }
 
 /* Prev/next button base styles */
+
 .bar-title .button-prev {
-  margin-left: 7px; /* Push over to make room for :before content */
+  margin-left: 7px;
+  /* Push over to make room for :before content */
   border-left: 0;
   border-bottom-left-radius: 10px 15px;
   border-top-left-radius: 10px 15px;
 }
+
 .bar-title .button-next {
-  margin-right: 7px; /* Push over to make room for :before content */
+  margin-right: 7px;
+  /* Push over to make room for :before content */
   border-right: 0;
   border-top-right-radius: 10px 15px;
   border-bottom-right-radius: 10px 15px;
 }
 
 /* Pointed part of directional button */
+
 .bar-title .button-prev:before,
 .bar-title .button-next:after {
   position: absolute;
@@ -366,24 +416,29 @@ a {
   content: '';
   box-shadow: inset 1px 0 #535353, inset 0 1px #1c1c1c;
   -webkit-mask-image: -webkit-gradient(linear, left top, right bottom, from(#535353), color-stop(.33, #1c1c1c), color-stop(.5, transparent), to(transparent));
-                  mask-image: gradient(linear, left top, right bottom, from(#535353), color-stop(.33, #1c1c1c), color-stop(.5, transparent), to(transparent));
+  mask-image: gradient(linear, left top, right bottom, from(#535353), color-stop(.33, #1c1c1c), color-stop(.5, transparent), to(transparent));
 }
+
 .bar-title .button-prev:before {
   left: -5px;
   background: -webkit-linear-gradient(top, #535353, #1c1c1c);
   border-left: 1.5px solid #1c1c1c;
   -webkit-transform: rotate(-45deg) skew(-10deg, -10deg);
-          transform: rotate(-45deg) skew(-10deg, -10deg);
+  -ms-transform: rotate(-45deg) skew(-10deg, -10deg);
+  transform: rotate(-45deg) skew(-10deg, -10deg);
 }
+
 .bar-title .button-next:after {
   right: -5px;
   background: -webkit-linear-gradient(top, #535353, #1c1c1c);
   border-top: 1.5px solid #1c1c1c;
   -webkit-transform: rotate(135deg) skew(-10deg, -10deg);
-          transform: rotate(135deg) skew(-10deg, -10deg);
+  -ms-transform: rotate(135deg) skew(-10deg, -10deg);
+  transform: rotate(135deg) skew(-10deg, -10deg);
 }
 
 /* Active states for the directional buttons */
+
 .bar-title .button-prev:active,
 .bar-title .button-next:active,
 .bar-title .button-prev:active:before,
@@ -392,13 +447,16 @@ a {
   background-color: #1c1c1c;
   background-image: none;
 }
+
 .bar-title .button-prev:active:before,
 .bar-title .button-next:active:after {
   content: '';
 }
+
 .bar-title .button-prev:active:before {
   box-shadow: inset 0 3px 3px rgba(0, 0, 0, .2);
 }
+
 .bar-title .button-next:active:after {
   box-shadow: inset 0 -3px 3px rgba(0, 0, 0, .2);
 }
@@ -407,6 +465,7 @@ a {
 -------------------------------------------------- */
 
 /* Add proper padding and replace buttons normal dropshadow with a shine from bar */
+
 [class*="bar"] .button-block {
   padding: 7px 0;
   margin-bottom: 0;
@@ -414,6 +473,7 @@ a {
 }
 
 /* Override standard padding changes for .button-blocks */
+
 [class*="bar"] .button-block:active {
   padding: 7px 0;
 }
@@ -422,11 +482,13 @@ a {
 -------------------------------------------------- */
 
 /* Remove standard segmented bottom margin */
+
 [class*="bar-"] .segmented-controller {
   margin-bottom: 0;
 }
 
 /* Add margins between segmented controllers and buttons */
+
 [class*="bar-"] .segmented-controller + [class*="button"],
 [class*="bar-"] [class*="button"] + .segmented-controller {
   margin-left: 5px;
@@ -445,49 +507,59 @@ a {
   border-radius: 3px;
   box-shadow: 0 1px rgba(255, 255, 255, .25);
   -webkit-box-flex: 1;
-          box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  box-flex: 1;
 }
 
 /* Set color for tab border and highlight */
+
 .bar-title .segmented-controller li {
   border-left: 1px solid #0e5895;
   box-shadow: inset 1px 0 rgba(255, 255, 255, .25);
 }
 
 /* Remove inset shadow from first tab or one to the right of the active tab  */
+
 .bar-title .segmented-controller .active + li,
 .bar-title .segmented-controller li:first-child {
   box-shadow: none;
 }
 
 /* Remove left-hand border from first tab */
+
 .bar-title .segmented-controller li:first-child {
   border-left-width: 0;
 }
 
 /* Depressed state (active) */
+
 .bar-title .segmented-controller li.active {
   background-color: #0082c4;
   box-shadow: inset 0 1px 6px rgba(0, 0, 0, .3);
 }
 
 /* Set color of links to white */
+
 .bar-title .segmented-controller li > a {
   color: #fff;
 }
-
 
 /* Search forms in standard bar
 -------------------------------------------------- */
 
 /* Position/size search bar within the bar */
+
 .bar-standard input[type=search] {
   height: 32px;
   margin: 0;
-}/* Lists
+}
+
+/* Lists
 -------------------------------------------------- */
 
 /* Remove usual bullet styles from list */
+
 .list {
   margin-bottom: 10px;
   list-style: none;
@@ -495,18 +567,22 @@ a {
 }
 
 /* Pad each list item and add dividers */
+
 .list li {
   position: relative;
-  padding: 20px 60px 20px 10px; /* Given extra right padding to accomodate counts, chevrons or buttons */
+  padding: 20px 60px 20px 10px;
+  /* Given extra right padding to accomodate counts, chevrons or buttons */
   border-bottom: 1px solid #e7e7e7;
 }
 
 /* Give top border to first list items */
+
 .list li:first-child {
   border-top: 1px solid #e7e7e7;
 }
 
 /* If a list of links, make sure the child <a> takes up full list item tap area (want to avoid selecting child buttons though) */
+
 .list li > a:not([class*="button"]) {
   position: relative;
   display: block;
@@ -522,19 +598,21 @@ a {
   width: auto;
   margin-right: 10px;
   margin-left: 10px;
-  border: 1px solid rgba(0, 0, 0, .2);  
+  border: 1px solid rgba(0, 0, 0, .2);
   border-radius: 6px;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 /* Remove border from first/last standard list items to avoid double border at top/bottom of lists */
+
 .list.inset li:first-child {
   border-top-width: 0;
 }
+
 .list.inset li:last-child {
   border-bottom-width: 0;
 }
-
 
 /* List dividers
 -------------------------------------------------- */
@@ -557,6 +635,7 @@ a {
 }
 
 /* Rounding first divider on inset lists and remove border on the top */
+
 .list.inset .list-divider:first-child {
   top: 0;
   border-top-width: 0;
@@ -564,44 +643,62 @@ a {
 }
 
 /* Rounding last divider on inset lists */
+
 .list.inset .list-divider:last-child {
   border-radius: 0 0 6px 6px;
 }
 
 /* Right-aligned subcontent in lists (chevrons, buttons, counts and toggles)
 -------------------------------------------------- */
+
 .list .chevron,
 .list [class*="button"],
 .list [class*="count"],
 .list .toggle {
   position: absolute;
-  top: 50%;
-  right: 10px;
+  top: 60%;
+  right: 10px;   
 }
 
- /* Position chevrons/counts vertically centered on the right in list items */
+
+.list [class*="rightaligndate"]
+{
+  position: absolute;
+  top: 22%;
+  right: 10px;
+}
+/* Position chevrons/counts vertically centered on the right in list items */
+
 .list .chevron,
 .list [class*="count"] {
-  margin-top: -10px; /* Half height of chevron */
+  margin-top: -10px;
+  /* Half height of chevron */
 }
 
 /* Push count over if there's a sibling chevron */
+
 .list .chevron + [class*="count"] {
   right: 30px;
 }
 
 /* Position buttons vertically centered on the right in list items */
+
 .list [class*="button"] {
   left: auto;
-  margin-top: -14px; /* Half height of button */
+  margin-top: -14px;
+  /* Half height of button */
 }
 
 .list .toggle {
-  margin-top: -15px; /* Half height of toggle */
-}/* Forms
+  margin-top: -15px;
+  /* Half height of toggle */
+}
+
+/* Forms
 -------------------------------------------------- */
 
 /* Force form elements to inherit font styles */
+
 input,
 textarea,
 button,
@@ -611,6 +708,7 @@ select {
 }
 
 /* Stretch inputs/textareas to full width and add height to maintain a consistent baseline */
+
 select,
 textarea,
 input[type="text"],
@@ -637,16 +735,18 @@ input[type="color"],
   border-radius: 3px;
   box-shadow: 0 1px 1px rgba(255, 255, 255, .2), inset 0 1px 1px rgba(0, 0, 0, .1);
   -webkit-appearance: none;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   outline: none;
 }
 
 input[type="text"],
-.required  {
-  border-color: red;
+.required {
+  /*border-color: red;*/
 }
 
 /* Fully round search input */
+
 input[type=search] {
   height: 34px;
   font-size: 14px;
@@ -654,11 +754,13 @@ input[type=search] {
 }
 
 /* Allow text area's height to grow larger than a normal input */
+
 textarea {
   height: auto;
 }
 
 /* Style select button to look like part of the Ratchet's style */
+
 select {
   height: auto;
   font-size: 14px;
@@ -668,11 +770,11 @@ select {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .1);
 }
 
-
 /* Input groups (cluster multiple inputs together into a single group)
 -------------------------------------------------- */
 
 /* Reset from initial form setup styles */
+
 .input-group {
   width: auto;
   height: auto;
@@ -683,6 +785,7 @@ select {
 }
 
 /* Remove spacing, borders, shadows and rounding since it all belongs on the .input-group not the input */
+
 .input-group input {
   margin-bottom: 0;
   background-color: transparent;
@@ -693,6 +796,7 @@ select {
 }
 
 /* Remove bottom border on last input to avoid double bottom border */
+
 .input-group input:last-child {
   border-bottom-width: 0;
 }
@@ -701,32 +805,39 @@ select {
 -------------------------------------------------- */
 
 /* To use labels with input groups, wrap a label and an input in an .input-row */
+
 .input-row {
   overflow: hidden;
   border-bottom: 1px solid #e7e7e7;
 }
 
 /* Remove bottom border on last input-row to avoid double bottom border */
+
 .input-row:last-child {
   border-bottom-width: 0;
 }
 
 /* Labels get floated left with a set percentage width */
+
 .input-row label {
   float: left;
   width: 25%;
-  padding: 11px 10px 9px 13px; /* Optimizing the baseline for mobile. */
+  padding: 11px 10px 9px 13px;
+  /* Optimizing the baseline for mobile. */
   font-weight: bold;
 }
 
 /* Actual inputs float to right of labels and also have a set percentage */
+
 .input-row label + input {
   float: right;
   width: 65%;
   padding-left: 0;
   margin-bottom: 0;
   border-bottom: 0;
-}/* General button styles
+}
+
+/* General button styles
 -------------------------------------------------- */
 
 [class*="button"] {
@@ -750,6 +861,7 @@ select {
 }
 
 /* Active */
+
 [class*="button"]:active {
   padding-top: 5px;
   padding-bottom: 3px;
@@ -763,19 +875,21 @@ select {
 -------------------------------------------------- */
 
 /* Overriding styles for buttons with modifiers  */
+
 .button-main,
 .button-positive,
 .button-negative {
   color: #fff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);  
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
 }
 
 .button-disabled {
-  cursor:none;
-  color:gray;
+  cursor: none;
+  color: gray;
 }
 
 /* Main button */
+
 .button-main {
   background-color: #1c1c1c;
   background: -webkit-linear-gradient(top, #535353, #1c1c1c);
@@ -783,6 +897,7 @@ select {
 }
 
 /* Positive button  */
+
 .button-positive {
   background-color: #34ba15;
   background-image: -webkit-linear-gradient(top, #34ba15 0, #2da012 100%);
@@ -791,49 +906,58 @@ select {
 }
 
 /* Negative button  */
+
 .button-negative {
   background-color: #e71e1e;
   background-image: -webkit-linear-gradient(top, #e71e1e 0,#c71a1a 100%);
+  background-image: -webkit-linear-gradient(top, #e71e1e 0, #c71a1a 100%);
   background-image: linear-gradient(to bottom, #e71e1e 0, #c71a1a 100%);
   border: 1px solid #b51a1a;
 }
 
 /* Active state for buttons with modifiers */
+
 .button-main:active,
 .button-positive:active,
 .button-negative:active {
   color: #fff;
 }
+
 .button-main:active {
   background-color: #1c1c1c;
 }
+
 .button-positive:active {
   background-color: #298f11;
 }
+
 .button-negative:active {
   background-color: #b21a1a;
 }
 
 .button-main:active,
 .button-disabled:active {
-   cursor:none;
-  color:gray;
-   background-color: #1c1c1c;
+  cursor: none;
+  color: gray;
+  border: 0px !important;
+  background-color: #1c1c1c;
   background: -webkit-linear-gradient(top, #535353, #1c1c1c);
-  
-  
+  border-color: red;
 }
+
 /* Block level buttons (full width buttons) */
+
 .button-block {
   display: block;
   padding: 11px 0 13px;
   margin-bottom: 10px;
   font-size: 16px;
   margin-right: 10px;
-  margin-left: 10px;  
+  margin-left: 10px;
 }
 
 /* Active state for block level buttons */
+
 .button-block:active {
   padding: 12px 0;
 }
@@ -842,6 +966,7 @@ select {
 -------------------------------------------------- */
 
 /* Generic styles for all counts within buttons */
+
 [class*="button"] [class*="count"] {
   padding-top: 2px;
   padding-bottom: 2px;
@@ -855,13 +980,16 @@ select {
 /* Position counts within block level buttons
    Note: These are absolutely positioned so that text of button isn't "pushed" by count and always
    stays at true center of button */
+
 .button-block [class*="count"] {
   position: absolute;
   right: 0;
   padding-top: 4px;
   padding-bottom: 4px;
   margin-right: 10px;
-}/* Chevrons
+}
+
+/* Chevrons
 -------------------------------------------------- */
 
 .chevron {
@@ -870,6 +998,7 @@ select {
 }
 
 /* Base styles for both 1/2's of the chevron */
+
 .chevron:before,
 .chevron:after {
   position: relative;
@@ -881,16 +1010,22 @@ select {
 }
 
 /* Position and rotate respective 1/2's of the chevron */
+
 .chevron:before {
   top: 5px;
   -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
+
 .chevron:after {
   top: 7px;
   -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}/* General count styles
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+/* General count styles
 -------------------------------------------------- */
 
 [class*="count"] {
@@ -908,6 +1043,7 @@ select {
 -------------------------------------------------- */
 
 /* Overriding styles for counts with modifiers  */
+
 .count-main,
 .count-positive,
 .count-negative {
@@ -916,6 +1052,7 @@ select {
 }
 
 /* Main count  */
+
 .count-main {
   background-color: #1eafe7;
   background-image: -webkit-linear-gradient(top, #1eafe7 0, #1a97c8 100%);
@@ -923,6 +1060,7 @@ select {
 }
 
 /* Positive count  */
+
 .count-positive {
   background-color: #34ba15;
   background-image: -webkit-linear-gradient(top, #34ba15 0, #2da012 100%);
@@ -930,15 +1068,21 @@ select {
 }
 
 /* Negative count  */
+
 .count-negative {
   background-color: #e71e1e;
   background-image: -webkit-linear-gradient(top, #e71e1e 0,#c71a1a 100%);
+  background-image: -webkit-linear-gradient(top, #e71e1e 0, #c71a1a 100%);
   background-image: linear-gradient(to bottom, #e71e1e 0, #c71a1a 100%);
-}/* Segmented controllers
+}
+
+/* Segmented controllers
 -------------------------------------------------- */
 
 .segmented-controller {
   display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: box;
   margin-bottom: 10px;
   overflow: hidden;
@@ -953,10 +1097,15 @@ select {
   border-radius: 3px;
   box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 1px rgba(255, 255, 255, .8);
   -webkit-box-orient: horizontal;
-          box-orient: horizontal;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: horizontal;
+  -ms-flex-direction: horizontal;
+  box-orient: horizontal;
 }
 
 /* Section within controller */
+
 .segmented-controller li {
   overflow: hidden;
   text-align: center;
@@ -964,10 +1113,13 @@ select {
   border-left: 1px solid #aaa;
   box-shadow: inset 1px 0 rgba(255, 255, 255, .5);
   -webkit-box-flex: 1;
-          box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  box-flex: 1;
 }
 
 /* Link that fills each section */
+
 .segmented-controller li > a {
   display: block;
   padding: 8px 16px;
@@ -978,12 +1130,14 @@ select {
 }
 
 /* Remove border-left and shadow from first section */
+
 .segmented-controller li:first-child {
   border-left-width: 0;
   box-shadow: none;
 }
 
 /* Active segment of controller */
+
 .segmented-controller li.active {
   background-color: #ccc;
   box-shadow: inset 0 1px 5px rgba(0, 0, 0, .3);
@@ -995,7 +1149,9 @@ select {
 
 .segmented-controller-item.active {
   display: block;
-}/* Popovers (to be used with popovers.js)
+}
+
+/* Popovers (to be used with popovers.js)
 -------------------------------------------------- */
 
 .popover {
@@ -1007,20 +1163,24 @@ select {
   width: 280px;
   padding: 5px;
   margin-left: -146px;
-  background-color: #555;
-  background-image: -webkit-linear-gradient(top, #555 5%, #555 6%, #111 30%);
+  /* background-color: #555;*/
+  /* background-image: -webkit-linear-gradient(top, #555 5%, #555 6%, #111 30%);
   background-image: linear-gradient(to bottom, #555 5%, #555 6%,#111 30%);
+ */
   border: 1px solid #111;
   border-radius: 6px;
   opacity: 0;
   box-shadow: inset 0 1px 1px -1px #fff, 0 3px 10px rgba(0, 0, 0, .3);
   -webkit-transform: translate3d(0, -15px, 0);
-          transform: translate3d(0, -15px, 0);
+  -ms-transform: translate3d(0, -15px, 0);
+  transform: translate3d(0, -15px, 0);
   -webkit-transition: -webkit-transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
-                  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transition: -ms-transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 /* Caret on top of popover using CSS triangles (thanks to @chriscoyier for solution) */
+
 .popover:before,
 .popover:after {
   position: absolute;
@@ -1029,6 +1189,7 @@ select {
   height: 0;
   content: '';
 }
+
 .popover:before {
   top: -20px;
   margin-left: -21px;
@@ -1036,6 +1197,7 @@ select {
   border-bottom: 21px solid #111;
   border-left: 21px solid transparent;
 }
+
 .popover:after {
   top: -19px;
   margin-left: -20px;
@@ -1045,14 +1207,18 @@ select {
 }
 
 /* Wrapper for a title and buttons */
+
 .popover-header {
   display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: box;
   height: 34px;
   margin-bottom: 5px;
 }
 
 /* Centered title for popover */
+
 .popover-header .title {
   position: absolute;
   top: 0;
@@ -1068,22 +1234,26 @@ select {
 }
 
 /* Generic style for all buttons in .popover-header */
+
 .popover-header [class*="button"] {
   z-index: 25;
   font-size: 12px;
   line-height: 22px;
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
-  background-color: #454545;
-  background-image: -webkit-linear-gradient(top, #454545 0, #353535 100%);
-  background-image: linear-gradient(to bottom, #454545 0, #353535 100%);
+  background-color: #41240F;
+  background-image: -webkit-linear-gradient(top, #41240F 0, #41240F 100%);
+  background-image: linear-gradient(to bottom, #41240F 0, #41240F 100%);
   border: 1px solid #111;
   -webkit-box-flex: 0;
-          box-flex: 0;
+  -webkit-flex: 0;
+  -ms-flex: 0;
+  box-flex: 0;
 }
 
 /* Hacky way to right align buttons outside of flex-box system
    Note: is only absolutely positioned button, would be better if flex-box had an "align right" option */
+
 .popover-header .title + [class*="button"]:last-child,
 .popover-header .button + [class*="button"]:last-child,
 .popover-header [class*="button"].pull-right {
@@ -1093,6 +1263,7 @@ select {
 }
 
 /* Active state for popover header buttons */
+
 .popover-header .button:active {
   color: #fff;
   background-color: #0876b1;
@@ -1102,10 +1273,11 @@ select {
 -------------------------------------------------- */
 
 .popover.visible {
-	display:block;
+  display: block;
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 /* Backdrop (used as invisible touch escape)
@@ -1124,12 +1296,14 @@ select {
 -------------------------------------------------- */
 
 /* Positioning and giving darker border to look sharp against dark popover */
+
 .popover .button-block {
   margin-bottom: 5px;
   border: 1px solid #111;
 }
 
 /* Remove extra margin on bottom of last button */
+
 .popover .button-block:last-child {
   margin-bottom: 0;
 }
@@ -1148,36 +1322,47 @@ select {
   border: 1px solid #000;
   border-radius: 3px;
   -webkit-overflow-scrolling: touch;
-}/* Modals
+}
+
+/* Modals
 -------------------------------------------------- */
+
 .modal {
-  position: fixed; 
+  position: fixed;
   top: 0;
   opacity: 0;
-  z-index: 11; 
+  z-index: 11;
   width: 100%;
   min-height: 100%;
   overflow: hidden;
-  background-color: #fff;  
+  background-color: #fff;
   -webkit-transform: translate3d(0, 100%, 0);
-          transform: translate3d(0, 100%, 0);
+  -ms-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
   -webkit-transition: -webkit-transform .25s ease-in-out, opacity 1ms .25s;
-          transition:         transform .25s ease-in-out, opacity 1ms .25s;
+  transition: -ms-transform .25s ease-in-out, opacity 1ms .25s;
+  transition: transform .25s ease-in-out, opacity 1ms .25s;
 }
 
 /* Modal - When active
 -------------------------------------------------- */
+
 .modal.active {
   opacity: 1;
   height: 100%;
   -webkit-transition: -webkit-transform .25s ease-in-out;
-          transition:         transform .25 ease-in-out;
+  transition: -ms-transform .25 ease-in-out;
+  transition: transform .25 ease-in-out;
   -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
-}/* Slider styles (to be used with sliders.js)
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Slider styles (to be used with sliders.js)
 -------------------------------------------------- */
 
 /* Width/height of slider */
+
 .slider,
 .slider > li {
   width: 100%;
@@ -1185,32 +1370,40 @@ select {
 }
 
 /* Outer wrapper for slider */
+
 .slider {
   overflow: hidden;
   background-color: #000;
 }
 
 /* Inner wrapper for slider (width of all slides together) */
+
 .slider > ul {
   position: relative;
-  font-size: 0; /* Remove spaces from inline-block children */
+  font-size: 0;
+  /* Remove spaces from inline-block children */
   white-space: nowrap;
   -webkit-transition: all 0 linear;
-          transition: all 0 linear;
+  transition: all 0 linear;
 }
 
 /* Individual slide */
+
 .slider > ul > li {
   display: inline-block;
-  vertical-align: top; /* Ensure that li always aligns to top */
-  width: 100%; 
+  vertical-align: top;
+  /* Ensure that li always aligns to top */
+  width: 100%;
   height: 100%;
 }
 
 /* Required reset of font-size to same as standard body */
+
 .slider > ul > li > * {
   font-size: 14px;
-}/* Toggle styles (to be used with toggles.js)
+}
+
+/* Toggle styles (to be used with toggles.js)
 -------------------------------------------------- */
 
 .toggle {
@@ -1224,6 +1417,7 @@ select {
 }
 
 /* Text indicating "on" or "off". Default is "off" */
+
 .toggle:before {
   position: absolute;
   right: 13px;
@@ -1236,6 +1430,7 @@ select {
 }
 
 /* Sliding handle */
+
 .toggle-handle {
   position: absolute;
   top: -1px;
@@ -1249,10 +1444,12 @@ select {
   border: 1px solid rgba(0, 0, 0, .2);
   border-radius: 100px;
   -webkit-transition: -webkit-transform 0.1s ease-in-out, border 0.1s ease-in-out;
-                  transition: transform 0.1s ease-in-out, border 0.1s ease-in-out;
+  transition: -ms-transform 0.1s ease-in-out, border 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out, border 0.1s ease-in-out;
 }
 
 /* Active state for toggle */
+
 .toggle.active {
   background-color: #1c1c1c;
   background-image: -webkit-linear-gradient(top, #535353 0, #1c1c1c 100%);
@@ -1262,45 +1459,59 @@ select {
 }
 
 /* Active state for toggle handle */
+
 .toggle.active .toggle-handle {
   border-color: #535353;
   -webkit-transform: translate3d(48px,0,0);
-          transform: translate3d(48px,0,0);
+  -ms-transform: translate3d(48px,0,0);
+  transform: translate3d(48px,0,0);
 }
 
 /* Change "off" to "on" for active state */
+
 .toggle.active:before {
   right: auto;
   left: 15px;
   color: #fff;
   text-shadow: 0 -1px rgba(0, 0, 0, 0.25);
   content: "On";
-}/* Push styles (to be used with push.js)
+}
+
+/* Push styles (to be used with push.js)
 -------------------------------------------------- */
 
 /* Fade animation */
+
 .content.fade {
   left: 0;
   opacity: 0;
   -webkit-transition: opacity .2s ease-in-out;
-          transition: opacity .2s ease-in-out;
+  transition: opacity .2s ease-in-out;
 }
+
 .content.fade.in {
   opacity: 1;
 }
 
 /* Slide animation */
+
 .content.slide {
   -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
- -webkit-transition: -webkit-transform .25s ease-in-out;
-         transition:         transform .25s ease-in-out;
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform .25s ease-in-out;
+  transition: -ms-transform .25s ease-in-out;
+  transition: transform .25s ease-in-out;
 }
+
 .content.slide.left {
   -webkit-transform: translate3d(-100%, 0, 0);
-          transform: translate3d(-100%, 0, 0);
+  -ms-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
 }
+
 .content.slide.right {
   -webkit-transform: translate3d(100%, 0, 0);
-          transform: translate3d(100%, 0, 0);
+  -ms-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
 }
