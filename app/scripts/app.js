@@ -153,6 +153,8 @@ app.factory('RaModel', function($resource) {
 
 
 
+
+
 app.service('Logger', function() {
 	var $this = this;
 	this.show = false;
@@ -204,6 +206,22 @@ app.service('Logger', function() {
 });
 
 
+app.factory('QCalls', ['$http','$q',function($http,$q) {
+	var $this = this;
+	//var datas = null;
+	return {
+
+		 waitForAllQCalls: function(getURLs) { 
+		var httpcall1 =  $http({ url: getURLs[0], method: "GET",  headers: {'Content-Type': 'image/jpeg'}});
+		var httpcall2 =  $http({ url: getURLs[1], method: "GET",  headers: {'Content-Type': 'image/jpeg'}});
+			console.log(httpcall1);
+			console.log(httpcall2);
+          return $q.all([httpcall1,httpcall2]);
+      }
+	}
+	
+}]);
+
 app.service('Utils', ['Logger','Session',function(Logger,Session) {
 	var $this = this;
 	//var datas = null;
@@ -233,6 +251,7 @@ app.service('Utils', ['Logger','Session',function(Logger,Session) {
 
 	
 }]);
+
 app.service('Session', ['RaModel', '$location', 'Logger', function (RaModel, $location, Logger) {
 	var session = null, $this = this;
 	this.get = function () {
@@ -277,6 +296,7 @@ app.service('Session', ['RaModel', '$location', 'Logger', function (RaModel, $lo
 	this.signIn = function (username, pwd, callback) {
 		RaModel.save({'dataSource':'signin'}, {'username': username, 'password': pwd},
 		function(result) {
+			//alert("*********"+result);
 			Logger.log(angular.toJson(result));
 			if (result.$error) {
 				Logger.showAlert(result.errorMessage, result.errorTitle);

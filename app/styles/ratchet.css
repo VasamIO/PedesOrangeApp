@@ -356,6 +356,7 @@ a {
   -webkit-flex: 0;
   -ms-flex: 0;
   box-flex: 0;
+  margin-top: 0px !important;
 }
 
 /* Hacky way to right align buttons outside of flex-box system
@@ -891,8 +892,10 @@ select {
 /* Main button */
 
 .button-main {
-  background-color: #1c1c1c;
-  background: -webkit-linear-gradient(top, #535353, #1c1c1c);
+  background-color: #41240F;
+  background-image: -webkit-linear-gradient(top, #41240F 0, #41240F 100%);
+  background-image: linear-gradient(to bottom, #41240F 0, #41240F 100%);
+ 
   border: 1px solid #1c1c1c;
 }
 
@@ -920,11 +923,11 @@ select {
 .button-main:active,
 .button-positive:active,
 .button-negative:active {
-  color: #fff;
+  color: #3D240F;
 }
 
 .button-main:active {
-  background-color: #1c1c1c;
+  background-color: #3D240F;
 }
 
 .button-positive:active {
@@ -935,13 +938,13 @@ select {
   background-color: #b21a1a;
 }
 
-.button-main:active,
+
 .button-disabled:active {
   cursor: none;
   color: gray;
   border: 0px !important;
   background-color: #1c1c1c;
-  background: -webkit-linear-gradient(top, #535353, #1c1c1c);
+  background: -webkit-linear-gradient(top, #3D240F, #3D240F);
   border-color: red;
 }
 
@@ -1163,10 +1166,10 @@ select {
   width: 280px;
   padding: 5px;
   margin-left: -146px;
-  /* background-color: #555;*/
-  /* background-image: -webkit-linear-gradient(top, #555 5%, #555 6%, #111 30%);
-  background-image: linear-gradient(to bottom, #555 5%, #555 6%,#111 30%);
- */
+   background-color: #41240F;
+  background-image: -webkit-linear-gradient(top, #41240F 0, #41240F 100%);
+  background-image: linear-gradient(to bottom, #41240F 0, #41240F 100%);
+ 
   border: 1px solid #111;
   border-radius: 6px;
   opacity: 0;
@@ -1202,7 +1205,7 @@ select {
   top: -19px;
   margin-left: -20px;
   border-right: 20px solid transparent;
-  border-bottom: 20px solid #555;
+  border-bottom: 20px solid #3B200F;
   border-left: 20px solid transparent;
 }
 

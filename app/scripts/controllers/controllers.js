@@ -422,7 +422,7 @@ function query (callback){
 	};
 	$scope.getMore = function() {
 		s.offset += 20;
-		alert("****calling:"+s.offset);
+		//alert("****calling:"+s.offset);
 		query();
 	};
 	
@@ -434,7 +434,7 @@ function query (callback){
 
 
 
-app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', '$window','RaModel', 'Session', 'Cache', 'Menu','Logger', function ($scope, $http,$location,$window, RaModel, Session, Cache, Menu, Logger) {
+app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', '$window','RaModel','QCalls', 'Session', 'Cache', 'Menu','Logger', function ($scope, $http,$location,$window, RaModel, QCalls,Session, Cache, Menu, Logger) {
 	Logger.log('PatientDetailCtrl');
 
 	//Demo.setScope($scope);
@@ -442,7 +442,9 @@ app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', '$window','R
 	var currPatient = Cache.get('currPatient'), a = Cache.get('_a'), c, _limit = 20, $this = this;
 	$scope.image_data  = {};
 	$scope.nodocuments = true;
-	$scope.back = function() {
+	$scope.imageselected = false;
+	$scope.imageselected.urlIndex = "s";
+		$scope.back = function() {
 		Menu.setSubPage(true);
 		$location.path('/');
 	};
@@ -479,7 +481,7 @@ app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', '$window','R
 	};
   
 	this.init = function(){
-		a = {'pageTitle':'Account'};
+		a = {'pageTitle':'Patients'};
 	};
 
 	this.patientsQuery = function(){
@@ -505,6 +507,22 @@ app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', '$window','R
 			);
 	   
 	};
+
+
+//});
+/*
+
+	$scope.showAPopup = function () {
+      // Same as the code block at the beginning of this post.
+      var popupTpl = document.createElement("div");
+      popupTpl.append("<div>cooll.....</div>");
+      var popupScope = $scope.$new()
+      myShowPopupFunction($compile(popupTpl)(popupScope))
+      popupScope.$on("finished", function () {
+        myHidePopupFunction();
+        popupScope.$destroy();
+      });
+    };*/
 	$scope.$watch('a.selection', function(newValue, oldValue){
 		Logger.log(oldValue + '->' + newValue);
 		//alert(newValue);
@@ -522,6 +540,26 @@ app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', '$window','R
 			a.pageTitle = 'Patient Details';
 		} 
 	});
+
+$scope.$watch('imageselected', function(newValue, oldValue){
+		Logger.log(oldValue + '->' + newValue);
+		
+
+	});
+
+ 	$scope.openPopup = function(urlIndex1) {
+               $scope.imageselected = true;
+               alert(urlIndex1);
+               $scope.imageselected.urlIndex = urlIndex1;
+               alert($scope.imageselected.urlIndex);
+             
+    };
+
+$scope.closePopup = function() {
+               $scope.imageselected = false;
+        
+              
+    };
 	$scope.$watch('a.patients.current', function(a, o){
 		Logger.log(o + '->' + a);
 		if (o){
@@ -576,8 +614,10 @@ app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', '$window','R
 
 		//loading images
 
-				a.patientDetails.imagesloading = true;
-				$this.downloadFile(a.patients.current.uploadDocIds,pid);
+				//a.patientDetails.imagesloading = true;
+				  $scope.$evalAsync(this.downloadAllFiles (a.patients.current.uploadDocIds,pid));
+			
+				//$this.downloadFile(a.patients.current.uploadDocIds,pid);
 				
 				
 
@@ -625,12 +665,75 @@ app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', '$window','R
 	}
 	this.initScope();
 
+
+this.downloadAllFiles = function(fid,pid) {
+var imagedata = [];
+var parentimagedata = {};
+a.patientDetails.imagesloading = true;
+parentimagedata.pid = pid;
+
+var params = "rev=1&sid="+Session.get().sessionId+"&ds=PatientReferralFormV&fid=";
+var count = 1;
+var fileIds = [];
+if(typeof fid === "undefined") {
+	a.patientDetails.imagesloading = false;
+	return;
+}
+if(fid.indexOf(",") > -1) {
+fileIds = fid.split(",");
+	count = fileIds.length;
+} else {
+	fileIds[0] = fid;
+}
+var totalcalls = 0;
+//totalcalls = count;
+var qcalls = [];
+var acounter = 0;
+
+for(var c = 0 ; c < count; c++) {
+	if(fileIds[c] === "") {
+		continue;
+	} else {
+	if(fileIds[c].length > 1) {
+		/*	qcalls[acounter] = fileUploadUrl+"?"+params+fileIds[c];
+			console.log("DND URL:"+qcalls[acounter]);
+			acounter++;*/
+			imagedata.push(fileUploadUrl+"?"+params+fileIds[c]);
+	}
+}
+}
+a.patientDetails.imagesloading = false;
+$scope.image_data[pid] = imagedata;
+	/*QCalls.waitForAllQCalls(qcalls).then(function (returnValues){
+      //do something here.
+     
+      a.patientDetails.imagesloading = false;
+      	for(var ocounter = 0; ocounter  < returnValues.length; ocounter++ ) {
+	    	var responseText = returnValues[ocounter].data;
+	    	
+	    	var responseTextLen = responseText.length;
+	    	var binary = ''
+	    	for (var j = 0; j < responseTextLen; j+=1) {
+	       	 binary += String.fromCharCode(responseText.charCodeAt(j) & 0xff)
+	    	} 
+	   		imagedata.push(responseText);
+	   		totalcalls++
+ 				$scope.image_data[pid] = imagedata;
+
+			}
+			a.patientDetails.imagesloading = false;
+			
+   });*/
+	
+
+};
+
 var _fid ;
 var _lc;
 this.downloadFile  = function(fid,pid) {
 var imagedata = [];
 var parentimagedata = {};
-
+a.patientDetails.imagesloading = true;
 parentimagedata.pid = pid;
 console.log("Downloading file for ..."+fid);
 var params = "rev=1&sid="+Session.get().sessionId+"&ds=PatientReferralFormV&fid=";
@@ -647,7 +750,8 @@ if(fid.indexOf(",") > -1) {
 } else {
 	fileIds[0] = fid;
 }
-
+var totalcalls = 0;
+//totalcalls = count;
 for(var c = 0 ; c < count; c++) {
 	if(fileIds[c] == "") {
 		continue;
@@ -655,82 +759,48 @@ for(var c = 0 ; c < count; c++) {
 	console.log("Download url:"+fileUploadUrl+"?"+params+fileIds[c]);
 	  
      _fid = fileIds[c];_lc = c;
-     console.log("***"+_fid+"****"+c);
-     //(function(_fid,_lc,count,pid){
-     	console.log("***"+_fid+"****"+c+"***"+fileUploadUrl+"?"+params+_fid);
-    
-    /*$http({method: 'GET', url: fileUploadUrl+"?"+params+_fid}).
-  		success(function(data, status, headers, config) {
-  			console.log("call:"+_lc+" for "+fileUploadUrl+"?"+params+_fid);
-  			 var responseText = data;
-    var responseTextLen = responseText.length;
-    var binary = ''
-    for (var j = 0; j < responseTextLen; j+=1) {
-        binary += String.fromCharCode(responseText.charCodeAt(j) & 0xff)
-    } 
-*/
- xhr_object.open('GET', fileUploadUrl+"?"+params+fileIds[c], false);
+    //(function(_fid,_lc,count,pid,imagesloading1){
+    console.log("***"+_fid+"****"+c+"***"+fileUploadUrl+"?"+params+_fid);
+    var xhr_object = new XMLHttpRequest();
+    xhr_object.overrideMimeType('text/plain; charset=x-user-defined');
+	xhr_object.open('GET', fileUploadUrl+"?"+params+fileIds[c], true);
 	xhr_object.send(null);
-	//xhr_object.onreadystatechange = function(){
-			console.log("calling...");
+	xhr_object.onload = function() {
 		if(xhr_object.status == 200){
-    var responseText = xhr_object.responseText;
-    var responseTextLen = responseText.length;
-    var binary = ''
-    for (var j = 0; j < responseTextLen; j+=1) {
-        binary += String.fromCharCode(responseText.charCodeAt(j) & 0xff)
-    } 
-   imagedata.push('data:image/jpeg;base64,' + window.btoa(binary));
-  // a.patientDetails.imagesloading = false;
-  // parentimagedata.pid = pid;
-	//	parentimagedata.imgs = imagedata;
-		
 
-/*var _copyimagedata = $scope.image_data[pid];
-console.log("********"+_copyimagedata);
-if(typeof _copyimagedata !== "undefined") {
-	console.log("*** Got eixting image***"+_copyimagedata)
+     
+	    	var responseText = xhr_object.responseText;
+	    	/*alert("Response");
+	    	alert(responseText.length);*/
+	    	var responseTextLen = responseText.length;
+	    	var binary = ''
+	    	for (var j = 0; j < responseTextLen; j+=1) {
+	       	 binary += String.fromCharCode(responseText.charCodeAt(j) & 0xff)
+	    	} 
+	   		imagedata.push('data:image/jpeg;base64,' + window.btoa(binary));
+	   		totalcalls++
+ 			console.log("***"+((count - 1) === (totalcalls)) + "***"+(count - 1)+"***"+totalcalls);
+	   		if((count - 1) === totalcalls) {
+	   			//alert("**************"+a.patientDetails.imagesloading);
+				$scope.image_data[pid] = imagedata;
+				console.log($scope.image_data);
+				$scope.nodocuments = false;
+				$scope.a.patientDetails.imagesloading = false;
+				a.patientDetails.imagesloading = false;
+				//alert("**************"+a.patientDetails.imagesloading);
+	   		}
+	    }
+	} 
+    
+   //})(_fid,_lc,count,pid,a.patientDetails.imagesloading);
 }
-$scope.image_data[pid] = imagedata;
-		console.log($scope.image_data);
-*/   /* 
-    if(_lc  === (count - 1 )) {
-    	parentimagedata.pid = pid;
-		parentimagedata.imgs = imagedata;
-		
-		$scope.image_data = [pid,parentimagedata];
- 	}*/
- }
-	
-//}
-
-
-}
-$scope.image_data[pid] = imagedata;
-console.log($scope.image_data);
-$scope.nodocuments = false;
-a.patientDetails.imagesloading = false;
-    // this callback will be called asynchronously
-    // when the response is available
-  /*}).
-  error(function(data, status, headers, config) {
-  	Logger.showError(data);
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-  });*/
- // })(_fid,_lc,count,pid);
-    //alert(binary + " for "+ fileIds[c]);
-
-	
-
-//return imagedata;
 }
 
 
 
 
-var xhr_object = new XMLHttpRequest();
+//var xhr_object = new XMLHttpRequest();
 
-xhr_object.overrideMimeType('text/plain; charset=x-user-defined');
+//xhr_object.overrideMimeType('text/plain; charset=x-user-defined');
 
 }]);

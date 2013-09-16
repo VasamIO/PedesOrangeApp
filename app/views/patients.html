@@ -7,14 +7,15 @@
 
 		<i ng-show="a.loading || a.patients.loading || a.patientDetails.loading " class="icon-spinner icon-spin icon-large" style="display: none;"></i> 	{{a.pageTitle}}</h1>
 		
-		<a ng-if="a.selection==='PatientDetails'" class="button" ng-click="a.selection='Patients'" stop-event="click">
+		<a ng-if="a.selection==='PatientDetails'" class="button" ng-click="a.selection='Patients';closePopup()" stop-event="click">
 			<i class="icon-remove icon-large"></i>
 		</a>
 	</header>
+
 	
 	<div class="content slide" ng-switch on="a.selection">
 			
-			<div class="tab" ng-switch-when="Patients" infinite-scroll="getMorePatients()" infinite-scroll-distance="50">
+			<div class="tab" ng-switch-when="Patients" infinite-scroll="getMorePatients()" infinite-scroll-distance="10">
 				<ul class="list inset">
 					<li> Find:<input type = "text" style="margin-bottom:0px;height:35px"  placeholder="Name or Physician or Facility"  ng-model="searchText"></li>	
 					<li ng-repeat="r in a.patients.data | filter:searchText">
@@ -55,6 +56,7 @@
 				<div class="tab" ng-switch-when="PatientDetails">
 				<ul class="list inset form right" >
 
+<popupnew></popupnew>
 					<div ng-repeat="r in a.patientDetails.data">
 					<div  ng-if="r.patientId == a.patients.current.patientId">		
 						<li>
@@ -147,6 +149,7 @@
 						
 					</div>
 					</div>
+
 					<li ng-show="a.patientDetails.loading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
 				</ul>	
 					<ul class="list inset form right" >
@@ -161,17 +164,37 @@
 					<li class="border-box" style="display:block;height:100px;">
 						<div id="doc-canvas" class="doc" style="position:absolute;left:0;top:0;right:0;bottom:0;display:block;">
 							<span ng-repeat="im in value">
-								
-								<img ng-src = "{{im}}" height="100" width="100"/>
+							<a ng-click="openPopup('{{$index}}')">	<img ng-src = "{{im}}" height="100" width="100"  /></a>
 							</span>
-							</span>  
+				  
 							</div>
 					</li>
 					
 					</div>
 					</div>
+					<!-- <div ng-show="imageselected"> -->
+					<div id="modal1"   ng-class="imageselected?'modal active':'modal'" style="margin-top:10px">
+				  <header class="bar-title">
+				    <h1 class="title">View Image</h1>
+				    <a class="button"  ng-click="closePopup()">
+				      Close
+				    </a>
+				  </header>
+				  
+				  <div class="content content-padded">
+				   <div ng-repeat="(key, value) in image_data">   
+					<div  ng-if="key == a.patients.current.patientId">		
+					
+								<img ng-src = "{{value[imageselected.urlIndex]}}" />
+					
+				  </div>
+				</div>
+					</div>
+				</div>
+			<!-- </div> -->
 					<li ng-show="a.patientDetails.imagesloading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
 				</ul>
+				
 				<ul class="list inset form right">
 					<li class="list-divider">Texting</li>
 					<li>
