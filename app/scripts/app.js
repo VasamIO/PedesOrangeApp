@@ -222,6 +222,49 @@ app.factory('QCalls', ['$http','$q',function($http,$q) {
 	
 }]);
 
+//factory style, more involved but more sophisticated
+app.factory('CameraFactory', function() {
+    return {
+        openCamera: function(imageoptions,callback) {
+        		var jsonStr = eval('[{name:"value123",name1:"value345"}]');
+				if (!navigator.camera) {
+					Logger.showAlert("Camera API is not supported", "Error");
+			        return;
+			    }
+                var options =   {   quality: 50,
+                       destinationType: Camera.DestinationType.FILE_URI,
+                        sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
+                        encodingType: 0     // 0=JPG 1=PNG
+                 };
+                 navigator.camera.getPicture(function(imageData) {
+					    var path = imageData;
+					    var name = imageData;
+					    var uploadServerUrl = fileUploadUrl;
+					    var ft = new FileTransfer();
+					    //alert("ulr options:"+imageoptions);
+					    ft.upload( imageData, uploadServerUrl,
+					        function(r) {
+					      		callback.success(r.response)
+						    }, 
+						    function(error) {
+					  	      callback.failure(error);
+					        },
+					        imageoptions
+					      );  
+				 },
+			     function() {
+	                   Logger.showAlert('Error taking picture', 'Error');
+                 navigator},  options);
+			},
+
+		uploadFile: function(mediaFile,options,callback){
+			//$scope.uploadingimages = true;
+			
+		}
+    };
+});
+
+
 app.service('Utils', ['Logger','Session',function(Logger,Session) {
 	var $this = this;
 	//var datas = null;

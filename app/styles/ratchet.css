@@ -576,6 +576,12 @@ a {
   border-bottom: 1px solid #e7e7e7;
 }
 
+.commentli {
+  position: relative;
+  padding: 5px 10px 5px 3px;
+  /* Given extra right padding to accomodate counts, chevrons or buttons */
+  border-bottom: 1px solid #e7e7e7;
+}
 /* Give top border to first list items */
 
 .list li:first-child {
@@ -667,6 +673,22 @@ a {
   position: absolute;
   top: 22%;
   right: 10px;
+}
+
+.list [class*="rightaligndate1"]
+{
+  position: absolute;
+  top: 5%;
+  right: 10px;
+}
+
+.list [class*="innercomment"]
+{
+  position: absolute;
+  top: 22%;
+  right: 10px;
+  left:43px;
+ 
 }
 /* Position chevrons/counts vertically centered on the right in list items */
 
@@ -1331,24 +1353,23 @@ select {
 -------------------------------------------------- */
 
 .modal {
-  position: fixed;
+  position: absolute;
   top: 0;
-  opacity: 0;
+  opacity: 1;
   z-index: 11;
-  width: 100%;
-  min-height: 100%;
+  width: 94%;
+  min-height: 70%;
   overflow: hidden;
-  background-color: #fff;
-  -webkit-transform: translate3d(0, 100%, 0);
-  -ms-transform: translate3d(0, 100%, 0);
-  transform: translate3d(0, 100%, 0);
-  -webkit-transition: -webkit-transform .25s ease-in-out, opacity 1ms .25s;
-  transition: -ms-transform .25s ease-in-out, opacity 1ms .25s;
-  transition: transform .25s ease-in-out, opacity 1ms .25s;
+   height: 100%;
+  -webkit-transition: -webkit-transform .25s ease-in-out;
+  transition: -ms-transform .25 ease-in-out;
+  transition: transform .25 ease-in-out;
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
-
-/* Modal - When active
--------------------------------------------------- */
+/*
+-------------------------------------------------
 
 .modal.active {
   opacity: 1;
@@ -1359,7 +1380,7 @@ select {
   -webkit-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-}
+}*/
 
 /* Slider styles (to be used with sliders.js)
 -------------------------------------------------- */

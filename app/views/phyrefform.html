@@ -81,13 +81,13 @@
 </li> -->
 <li>
     <span  ng-repeat="imgurl in upimages">
-      <img src="{{ imgurl }}" height="100" width="100" border="1"/></span>
+      <img src="{{ imgurl }}" class="thumbnail"/></span>
     </span>
 </li>
 
 	<li ng-show="uploadingimages" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
 </ul>  
-  <input type="hidden" ng-model="fileIds" value="282,233">
+  <input type="hidden" ng-model="fileIds" value="">
 	<a class="button button-block" ng-click="openCamera('fileIds','upImgbar')"><i class="icon-camera icon-large"></i> Upload Images </a>
 
 	 			<div ng-show="uploadingimages || pname == null   || !(art || venous) || !(uc || ai || veno) || !(cl || dap || dvt || pain || piv || pvd || se || nhw || vv)">

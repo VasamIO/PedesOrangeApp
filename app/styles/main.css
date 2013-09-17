@@ -80,6 +80,16 @@ a,button,header,nav{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-u
 .border-box{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
 .inline{display:inline-block;}
 .block{display:block;}
+
+.thumbnail {
+                border: 1px solid #999;
+                background-color: #fff;
+               
+                padding: 5px;
+             
+               
+            }
+           
 .list li > a.link{padding:10px 20px;display:inline-block;margin:0px;}
 .button{margin-left:10px;margin-bottom:10px;}
 .content .tab{position:absolute;top:0;right:0;bottom:0;left:0;overflow:auto;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}

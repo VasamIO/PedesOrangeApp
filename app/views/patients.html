@@ -161,46 +161,55 @@
 						<div ng-repeat="(key, value) in image_data">   
 					<div  ng-if="key == a.patients.current.patientId">		
 						
-					<li class="border-box" style="display:block;height:100px;">
-						<div id="doc-canvas" class="doc" style="position:absolute;left:0;top:0;right:0;bottom:0;display:block;">
-							<span ng-repeat="im in value">
-							<a ng-click="openPopup('{{$index}}')">	<img ng-src = "{{im}}" height="100" width="100"  /></a>
+					<li >
+						<div >
+							<span ng-repeat="im in value" >
+							<a ng-click="openPopup('{{$index}}')" >	<img ng-src = "{{im}}+&thumb=Y" class="thumbnail"/></a>
 							</span>
 				  
-							</div>
+						</div>
 					</li>
+
 					
 					</div>
 					</div>
-					<!-- <div ng-show="imageselected"> -->
-					<div id="modal1"   ng-class="imageselected?'modal active':'modal'" style="margin-top:10px">
-				  <header class="bar-title">
-				    <h1 class="title">View Image</h1>
-				    <a class="button"  ng-click="closePopup()">
-				      Close
-				    </a>
-				  </header>
+					<div ng-show="imageselected"> 
+					<div id="modal1"   class="modal active" style="margin-top:10px">
+					 <nav class="bar-tab" >
+						<ul class="tab-inner">
+							<li class="tab-item"  ng-click="closePopup()" class="active">
+									<div class="tab-label">Close</div>
+							</li>
+							
+						</ul>
+					</nav>
 				  
 				  <div class="content content-padded">
-				   <div ng-repeat="(key, value) in image_data">   
-					<div  ng-if="key == a.patients.current.patientId">		
-					
-								<img ng-src = "{{value[imageselected.urlIndex]}}" />
-					
-				  </div>
-				</div>
+				 				<img ng-src = "{{image_data[a.patients.current.patientId][urlIndex]}}" />
 					</div>
 				</div>
-			<!-- </div> -->
+			 </div> 
 					<li ng-show="a.patientDetails.imagesloading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
 				</ul>
-				
+				<a class="button button-block" ng-click="openCamera('fileIds','upImgbar')"><i class="icon-camera icon-large"></i> Upload Images </a>
 				<ul class="list inset form right">
 					<li class="list-divider">Texting</li>
-					<li>
-						<div><input type = "text" style="margin-bottom:0px;height:35px"  placeholder="Type something" ></div>
+					<any ng-repeat="r in a.patientComments.data">
+					
+					<div class="commentli" ng-if="r.patientId == a.patients.current.patientId">		
 						<div>
-							<a class="button"><i class="icon-meh"></i></a>
+						<strong>{{displayName}}: </strong>
+						 {{r.comments}}	</div>
+						<div  style="color:gray"><small>{{r.creationDate | date:'MM-dd-yyyy HH:mm'}}</small> <!-- {{r.uploadDocIds}} --> </div>
+						
+					</div>
+
+					</any>
+			<li ng-show="a.patientComments.loading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
+					<li>
+						<div><input type = "text" style="margin-bottom:0px;height:35px"  placeholder="Type something" ng-model="newcomment" /></div>
+						<div>
+							<a class="button" ng-click="insertComments(a.patients.current.patientId,a.patients.current.referred,newcomment);newcomment=''"><i class="icon-meh"></i></a>
 						</div>
 						
 					</li>
