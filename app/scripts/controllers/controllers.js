@@ -230,7 +230,6 @@ app.controller('PhyFormCtrl', ['CameraFactory','$scope', '$location', 'Menu','Lo
 			});
 	};
 	$scope.openCamera  = function(fileIds,upImgbar) {
-						//$scope.uploadingimages = !$scope.uploadingimages;
 						var options = {};
 					    options.fileKey="file";
 					    options.fileName="patientinfo.JPG";
@@ -261,70 +260,11 @@ app.controller('PhyFormCtrl', ['CameraFactory','$scope', '$location', 'Menu','Lo
 						
 	}
 
-	/*= function(fileIds,upImgbar) {
-		var jsonStr = eval('[{name:"value123",name1:"value345"}]');
-				if (!navigator.camera) {
-					Logger.showAlert("Camera API is not supported", "Error");
-			        return;
-			    }
-                var options =   {   quality: 50,
-                       destinationType: Camera.DestinationType.FILE_URI,
-                        sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
-                        encodingType: 0     // 0=JPG 1=PNG
-                 };
-                 navigator.camera.getPicture(function(imageData) {
-						uploadFile(imageData,fileIds,upImgbar);    
-				 },
-			     function() {
-	                   Logger.showAlert('Error taking picture', 'Error');
-                 navigator},  options);
-	};
-
-
-	function uploadFile (mediaFile,fileIds,upImgbar) {
-		$scope.uploadingimages = true;
-	    var path = mediaFile;
-	    var name = mediaFile;
-	    var options = {};
-	    options.fileKey="file";
-	    options.fileName="patientinfo.JPG";
-	    options.mimeType="image/jpeg";
-	    var params = new Object();
-	    params.sid = Session.get().sessionId;
-	    params.name = name;
-	    params.ds = "PatientReferralFormV";
-	    options.params = params;
-	    options.chunkedMode = false;
-	    var uploadServerUrl = fileUploadUrl;
-	    var ft = new FileTransfer();
-	    ft.upload( mediaFile, uploadServerUrl,
-	        function(r) {
-	      		var _json  = eval(r.response);
-	      		if(typeof $scope.fileIds !== "undefined") {
-		    		$scope.fileIds = $scope.fileIds +","+_json[0].fileId;
-		    	} else {
-		    		$scope.fileIds = _json[0].fileId;
-		    	}
-		    	var imgurl = fileUploadUrl+"?rev=1&sid="+Session.get().sessionId+"&ds=PatientReferralFormV&fid="+_json[0].fileId;
-		    	console.log(imgurl);
-		    	$scope.upimages.push(imgurl);
-		    	$scope.uploadingimages = false;
-		    }, //failure
-		    function(error) {
-	              	$scope.uploadingimages = false;
-	            Logger.showError(error);
-
-	        },
-	        options
-	      );
-	}
-*/
-
 }]);
 
 
 
-app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', '$window','RaModel','QCalls', 'Session', 'Cache', 'Menu','Logger', function ($scope, $http,$location,$window, RaModel, QCalls,Session, Cache, Menu, Logger) {
+app.controller('PatientDetailCtrl', ['CameraFactory','$scope','$http' ,'$location', '$window','RaModel','QCalls', 'Session', 'Cache', 'Menu','Logger', function (CameraFactory,$scope, $http,$location,$window, RaModel, QCalls,Session, Cache, Menu, Logger) {
 	Logger.log('PatientDetailCtrl');
 
 	//Demo.setScope($scope);
@@ -482,8 +422,114 @@ app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', '$window','R
 			$this.loadCommentsQueryInternal(pid);
 	}
 
+		$scope.openCamera  = function() {
+			a.patientDetails.imagesloading = true;
+						var options = {};
+					    options.fileKey="file";
+					    options.fileName="patientinfo.JPG";
+					    options.mimeType="image/jpeg";
+					    var params = new Object();
+					    params.sid = Session.get().sessionId;
+					    params.name = name;
+					    params.ds = "PatientReferralFormV";
+					    options.params = params;
+					    options.chunkedMode = false;
+					    //$scope.uploadingimages = true;
+						CameraFactory.openCamera(options,{
+							success: function(r) {
+								$scope.uploadingimages = false;
+								var _json  = eval(r);
+							if(typeof $scope.fileIds !== "undefined") {
+		    					$scope.fileIds = $scope.fileIds +","+_json[0].fileId;
+			    			} else {
+			    					$scope.fileIds = _json[0].fileId;
+			    			}
+		    			var imgurl = fileUploadUrl+"?rev=1&sid="+Session.get().sessionId+"&ds=PatientReferralFormV&fid="+_json[0].fileId;
+		    			alert(imgurl);
+		    			alert("inerting.. document..2222>>"+$scope.fileIds);
+		    			var patientImgs = $scope.image_data[a.patients.current.patientId];
+		    			if(typeof patientImgs !== "undefined") {
+		    					patientImgs.push(imgurl);		
+		    			} else {
+		    				$scope.image_data.push(imgurl);
+		    			}
+		    			alert("inerting.. document.."+$scope.fileIds);
+		    			var fids = $scope.fileIds;
+		    			alert("ids:"+fids);
+		    			$this.insertDocument(fids);
+						a.patientDetails.imagesloading = false;
+		    			//$scope.uploadingimages = false;
+		    			},failure : function(error) {
+							Logger.showError(error);
+		    			}
+						});
+						
+	}/*
+$scope.openCamera  = function() {
+			a.patientDetails.imagesloading = true;
+					
+								$scope.uploadingimages = false;
+								var _json  = ["2322","1111"];
+							if(typeof $scope.fileIds !== "undefined") {
+		    					$scope.fileIds = $scope.fileIds +","+_json[0].fileId;
+			    			} else {
+			    					$scope.fileIds = _json[0].fileId;
+			    			}
+		    			var imgurl = fileUploadUrl+"?rev=1&sid="+Session.get().sessionId+"&ds=PatientReferralFormV&fid="+_json[0].fileId;
+		    			alert(imgurl);
+		    			alert("inerting.. document..2222>>"+$scope.fileIds);
+		    			var patientImgs = $scope.image_data[a.patients.current.patientId];
+		    			if(typeof patientImgs !== "undefined") {
+		    					patientImgs.push(imgurl);		
+		    			} else {
+		    				$scope.image_data.push(imgurl);
+		    			}
+		    			alert("inerting.. document.."+$scope.fileIds);
+		    			var fids = $scope.fileIds;
+		    			alert("ids:"+fids);
+		    			$this.insertDocument(fids);
+						a.patientDetails.imagesloading = false;
+		    			//$scope.uploadingimages = false;
+		    			
+	}*/
+	this.insertDocument = function(fileIds) {
+		alert("in insert coments.."+fileIds);
+		
+		alert("Patient Id:"+a.patients.current.patientId + " Fiel ids:"+fileIds + "user Id" + Session.get().sessionId);
+		if(typeof a.patients.current.uploadDocIds !== "undefined") {
+			fileIds += a.patients.current.uploadDocIds;
+		}
+				//var comments = $scope.newcomment;
+		//alert(comments);
+		alert("P Name:"+a.patientDetails.current.patientName);
+		alert("phone:"+a.patientDetails.current.phone);
+		alert("referred:"+a.patientDetails.current.referred);
+		RaModel.save({'dataSource':'PatientInfo','operation':'update'}, { "sessionId":Session.get().sessionId,
+	  'patientId':a.patients.current.patientId,
+	  'userId':  Session.get().userId,
+	  'patientName': a.patientDetails.current.patientName,
+	  'phone':a.patientDetails.current.phone,
+	  'createdBy':a.patientDetails.current.createdBy,
+	  'createdDate':a.patientDetails.current.createdDate,
+		'referred':a.patientDetails.current.referred,
+	  'uploadDocIds':fileIds,
+	  'lastUpdateDate': new Date()
+	 
+
+	}, function(result){
+				if (result.$error) {
+					Logger.showAlert(result.errorMessage,result.errorTitle);
+				} else {
+					alert("*** UPDATED");
+									a.patientDetails.imagesloading = false;
+		
+				}
+			});
+	};
+
 	$scope.insertComments = function(pid,userid,comments) {
-		//alert("in insert coments.."+pid+":"+userid);
+		
+		if(comments === '') return false;
 		a.patientComments.loading = true;
 
 		//var comments = $scope.newcomment;
@@ -514,7 +560,10 @@ app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', '$window','R
 					Logger.showAlert(result.errorMessage, result.errorTitle);
 				} else {
 					if (result.data.length > 0) {
+
 						a.patientDetails.data.push.apply(a.patientDetails.data, result.data);
+						a.patientDetails.current = result.data[0];
+						
 						if (result.data.length < _limit) {
 							a.patientDetails.hasMore = false;
 						} else {
@@ -545,6 +594,8 @@ app.controller('PatientDetailCtrl', ['$scope','$http' ,'$location', '$window','R
 				if(pid === patientDetails.patientId) {
 					recordFound = true;
 					a.patientDetails.loading = false;
+					a.patientDetails.current = patientDetails;
+
 					a.patientDetails.imagesloading = false;
 					break;
 

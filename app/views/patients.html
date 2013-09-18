@@ -56,9 +56,9 @@
 				<div class="tab" ng-switch-when="PatientDetails">
 				<ul class="list inset form right" >
 
-<popupnew></popupnew>
-					<div ng-repeat="r in a.patientDetails.data">
-					<div  ng-if="r.patientId == a.patients.current.patientId">		
+					<div ng-repeat="r in a.patientDetails.data;">
+					<div  ng-if="r.patientId == a.patients.current.patientId">	
+
 						<li>
 							<label class="field-text"><strong>Patient Name</strong></label>{{r.patientName}}
 						</li>
@@ -169,16 +169,22 @@
 				  
 						</div>
 					</li>
-
+<li ng-show="a.patientDetails.imagesloading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
 					
 					</div>
 					</div>
 					<div ng-show="imageselected"> 
-					<div id="modal1"   class="modal active" style="margin-top:10px">
+					<div id="modal1"   class="modal " >
+				<!-- 		<header class="bar-title">
+					    <h1 class="title">View Image</h1>
+					    <a class="button" ng-click="closePopup()" >
+					      <i class="icon-remove icon-large"></i>
+					    </a>
+					  </header> -->
 					 <nav class="bar-tab" >
 						<ul class="tab-inner">
 							<li class="tab-item"  ng-click="closePopup()" class="active">
-									<div class="tab-label">Close</div>
+									<strong>Close</strong>
 							</li>
 							
 						</ul>
@@ -189,12 +195,16 @@
 					</div>
 				</div>
 			 </div> 
-					<li ng-show="a.patientDetails.imagesloading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
+					</li>
 				</ul>
-				<a class="button button-block" ng-click="openCamera('fileIds','upImgbar')"><i class="icon-camera icon-large"></i> Upload Images </a>
+				<input type="hidden" ng-model="fileIds" value="">
+				
+
+				  <a class="button button-block" ng-click="openCamera() "><i class="icon-camera icon-large"></i> Upload Images </a>
+				 
 				<ul class="list inset form right">
 					<li class="list-divider">Texting</li>
-					<any ng-repeat="r in a.patientComments.data">
+					<any ng-repeat="r in a.patientComments.data | reverse">
 					
 					<div class="commentli" ng-if="r.patientId == a.patients.current.patientId">		
 						<div>
@@ -207,9 +217,10 @@
 					</any>
 			<li ng-show="a.patientComments.loading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
 					<li>
-						<div><input type = "text" style="margin-bottom:0px;height:35px"  placeholder="Type something" ng-model="newcomment" /></div>
+						<div><input type = "text" style="margin-bottom:0px;height:35px"  placeholder="Type something" ng-model="newcomment"
+						 ng-enter="insertComments(a.patients.current.patientId,a.patients.current.referred,newcomment);newcomment=''" /></div>
 						<div>
-							<a class="button" ng-click="insertComments(a.patients.current.patientId,a.patients.current.referred,newcomment);newcomment=''"><i class="icon-meh"></i></a>
+							<a class="button" style="top:37px" ng-click="insertComments(a.patients.current.patientId,a.patients.current.referred,newcomment);newcomment=''"><i class="icon-meh"></i></a>
 						</div>
 						
 					</li>
