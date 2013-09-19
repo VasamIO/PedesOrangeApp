@@ -536,7 +536,7 @@ $scope.openCamera  = function() {
 	  'patientName': a.patientDetails.current.patientName,
 	  'phone':a.patientDetails.current.phone,
 	  'createdBy':a.patientDetails.current.createdBy,
-	  'createdDate':a.patientDetails.current.createdDate,
+	  'creationDate':a.patientDetails.current.creationDate,
 		'referred':a.patientDetails.current.referred,
 	  'uploadDocIds':fileIds,
 	  'lastUpdateDate': new Date()
