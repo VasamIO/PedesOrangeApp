@@ -7,7 +7,7 @@
 
 		<i ng-show="a.loading || a.patients.loading || a.patientDetails.loading " class="icon-spinner icon-spin icon-large" style="display: none;"></i> 	{{a.pageTitle}}</h1>
 		
-		<a ng-if="a.selection==='PatientDetails'" class="button" ng-click="a.selection='Patients';closePopup()" stop-event="click">
+		<a ng-if="a.selection==='PatientDetails'" class="button" ng-click="a.selection='Patients';closePopup();	a.patientDetails.imagesrefresh = false;" stop-event="click">
 			<i class="icon-remove icon-large"></i>
 		</a>
 	</header>
@@ -41,7 +41,7 @@
 							</div>
 							
 							
-					<div class = "rightaligndate" style="color:gray"><small>{{r.creationDate | date:'MM-dd-yyyy HH:mm'}}</small> <!-- {{r.uploadDocIds}} --> </div>
+					<div class = "rightaligndate" style="color:gray"><small>{{r.lastUpdateDate | date:'MM-dd-yyyy HH:mm'}}</small> <!-- {{r.uploadDocIds}} --> </div>
 							<span class="chevron"></span>
 							
 
@@ -157,22 +157,24 @@
 						
 						<li class="list-divider">Documents</li>
 						
-						<li ng-hide="a.patients.current.uploadDocIds.length > 3">No documents uploaded.</li>
-						<div ng-repeat="(key, value) in image_data">   
-					<div  ng-if="key == a.patients.current.patientId">		
-						
+							<li ng-hide="a.patients.current.uploadDocIds.length > 3">No documents uploaded.</li>
+					
 					<li >
-						<div >
+						<div ng-repeat="(key, value) in image_data">  
+						<div ng-if="key == a.patients.current.patientId">
 							<span ng-repeat="im in value" >
 							<a ng-click="openPopup('{{$index}}')" >	<img ng-src = "{{im}}+&thumb=Y" class="thumbnail"/></a>
 							</span>
 				  
 						</div>
+						</div>
 					</li>
-<li ng-show="a.patientDetails.imagesloading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
 					
-					</div>
-					</div>
+<li ng-show="a.patientDetails.imagesrefresh" style="text-align: center; display: none;">
+	<a class="button " ng-click="refreshView()"><i class="icon-refresh"></i> Refresh </a>
+</li>
+		</ul>			
+					
 					<div ng-show="imageselected"> 
 					<div id="modal1"   class="modal " >
 				<!-- 		<header class="bar-title">
@@ -197,10 +199,10 @@
 			 </div> 
 					</li>
 				</ul>
-				<input type="hidden" ng-model="fileIds" value="">
+				<input type="hidden" ng-model="fileIds" value="222">
 				
 
-				  <a class="button button-block" ng-click="openCamera() "><i class="icon-camera icon-large"></i> Upload Images </a>
+				  <a class="button button-block" ng-click="openCamera()"><i class="icon-camera icon-large"></i> Upload Images </a>
 				 
 				<ul class="list inset form right">
 					<li class="list-divider">Texting</li>

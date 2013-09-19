@@ -84,7 +84,9 @@
       <img src="{{ imgurl }}" class="thumbnail"/></span>
     </span>
 </li>
-
+<li ng-show="imagesrefresh" style="text-align: center; display: none;">
+	<a class="button " ng-click="refreshView()"><i class="icon-refresh"></i> Refresh </a>
+</li>
 	<li ng-show="uploadingimages" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
 </ul>  
   <input type="hidden" ng-model="fileIds" value="">

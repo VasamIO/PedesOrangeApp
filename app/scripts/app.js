@@ -226,7 +226,7 @@ app.factory('QCalls', ['$http','$q',function($http,$q) {
 app.factory('CameraFactory', function() {
     return {
         openCamera: function(imageoptions,callback) {
-        		var jsonStr = eval('[{name:"value123",name1:"value345"}]');
+        		
 				if (!navigator.camera) {
 					Logger.showAlert("Camera API is not supported", "Error");
 			        return;
