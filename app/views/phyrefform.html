@@ -32,36 +32,36 @@
 	</div>
  <ul class="list inset">
 <li class="list-divider">Select any one of the following options<font color="red">*</font></li>
-  <li><input type="checkbox" name ="h" value="Y" ng-model="art"/> Arterial</li>
-  <li><input type="checkbox" name ="h" value="Y" ng-model="venous"/> Venous</li>
+  <li ng-click="art = !art"><input type="checkbox" name ="h" value="Y" ng-model="art"/> Arterial</li>
+  <li ng-click="venous = !venous"><input type="checkbox" name ="h" value="Y" ng-model="venous"/> Venous</li>
 </ul>
 <ul class="list inset">
-  <li><input type="checkbox" name ="h" value="Y" ng-model="bil"/> Bilterial</li>
-  <li><input type="checkbox" name ="h" value="Y" ng-model="left"/> Left</li>
-  <li><input type="checkbox" name ="h" value="Y" ng-model="right"/> Right</li>
+  <li ng-click= "bil = !bil" ><input type="checkbox" name ="h" value="Y" ng-model="bil"/> Bilterial</li>
+  <li ng-click= "left = !left"><input type="checkbox" name ="h" value="Y" ng-model="left"/> Left</li>
+  <li ng-click= "right = !right"><input type="checkbox" name ="h" value="Y" ng-model="right"/> Right</li>
 </ul>
 <ul class="list inset">
 <li class="list-divider">Select any one of the following options<font color="red">*</font></li>
 
-  <li><input type="checkbox" name ="h" value="Y" ng-model="uc"/> Ultrasound & Consulation</li>
-  <li><input type="checkbox" name ="h" value="Y" ng-model="ai"/> Angiogram with possible intervention</li>
-  <li><input type="checkbox" name ="h" value="Y" ng-model="veno"/> Venogram with possible intervention</li>
-  <li><input type="checkbox" name ="h" value="Y" ng-model="ot"/> Other</li>
+  <li ng-click= "uc = !uc"><input type="checkbox" name ="h" value="Y" ng-model="uc"/> Ultrasound & Consulation</li>
+  <li ng-click= "ai = !ai"><input type="checkbox" name ="h" value="Y" ng-model="ai"/> Angiogram with possible intervention</li>
+  <li ng-click= "veno = !veno"><input type="checkbox" name ="h" value="Y" ng-model="veno"/> Venogram with possible intervention</li>
+  <li ng-click= "ot = !ot"><input type="checkbox" name ="h" value="Y" ng-model="ot"/> Other</li>
 </ul>
 <div style="align:center"><a class="button button-negative " ng-click="createAlarm()"> Stat</a></div>
 
 <ul class="list inset">
   <li class="list-divider">Select any one of the following options<font color="red">*</font></li>
-  <li><input type="checkbox"  value="Y" ng-model="cl"/> Claudication</li>
-  <li><input type="checkbox"  value="Y" ng-model="dap"/> Decreased/Absent Pulses</li>
-  <li><input type="checkbox"  value="Y" ng-model="dvt"/> DVT</li>
-  <li><input type="checkbox"  value="Y" ng-model="pain"/> Pain</li>
-  <li><input type="checkbox"  value="Y" ng-model="piv"/> Post Intervention Evaluation</li>
-  <li><input type="checkbox"  value="Y" ng-model="pvd"/> PVD</li>
-  <li><input type="checkbox"  value="Y" ng-model="se"/> Swelling/Edema</li>
-  <li><input type="checkbox"  value="Y" ng-model="nhw"/> Ulcer/Non-Healing Wound</li>
-  <li><input type="checkbox"  value="Y" ng-model="vv"/> Varicose Veins</li>
-<li><input type="checkbox"  value="Y" ng-model="iot"/> Others</li>
+  <li ng-click= "cl = !cl"><input type="checkbox"  value="Y" ng-model="cl"/> Claudication</li>
+  <li ng-click= "dap = !dap"><input type="checkbox"  value="Y" ng-model="dap"/> Decreased/Absent Pulses</li>
+  <li ng-click= "dvt = !dvt"><input type="checkbox"  value="Y" ng-model="dvt"/> DVT</li>
+  <li ng-click= "pain = !pain"><input type="checkbox"  value="Y" ng-model="pain"/> Pain</li>
+  <li ng-click= "piv = !piv"><input type="checkbox"  value="Y" ng-model="piv"/> Post Intervention Evaluation</li>
+  <li ng-click= "pvd = !pvd"><input type="checkbox"  value="Y" ng-model="pvd"/> PVD</li>
+  <li ng-click= "se = !se"><input type="checkbox"  value="Y" ng-model="se"/> Swelling/Edema</li>
+  <li ng-click= "nhw = !nhw"><input type="checkbox"  value="Y" ng-model="nhw"/> Ulcer/Non-Healing Wound</li>
+  <li ng-click= "vv = !vv"><input type="checkbox"  value="Y" ng-model="vv"/> Varicose Veins</li>
+<li ng-click= "iot = !iot"><input type="checkbox"  value="Y" ng-model="iot"/> Others</li>
 </ul>
 <div class="input-group inset">
 		<div class="input-row">
@@ -84,9 +84,9 @@
       <img src="{{ imgurl }}" class="thumbnail"/></span>
     </span>
 </li>
-<li ng-show="imagesrefresh" style="text-align: center; display: none;">
+<!-- <li ng-show="imagesrefresh" style="text-align: center; display: none;">
 	<a class="button " ng-click="refreshView()"><i class="icon-refresh"></i> Refresh </a>
-</li>
+</li> -->
 	<li ng-show="uploadingimages" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
 </ul>  
   <input type="hidden" ng-model="fileIds" value="">

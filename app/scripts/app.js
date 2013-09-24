@@ -223,7 +223,7 @@ app.factory('QCalls', ['$http','$q',function($http,$q) {
 }]);
 
 //factory style, more involved but more sophisticated
-app.factory('CameraFactory', function() {
+app.factory('CameraFactory', ['Logger',function(Logger) {
     return {
         openCamera: function(imageoptions,callback) {
         		
@@ -254,15 +254,12 @@ app.factory('CameraFactory', function() {
 				 },
 			     function() {
 	                   Logger.showAlert('Error taking picture', 'Error');
-                 navigator},  options);
-			},
+				 },  options);
+			}
 
-		uploadFile: function(mediaFile,options,callback){
-			//$scope.uploadingimages = true;
-			
-		}
+		
     };
-});
+}]);
 
 
 app.service('Utils', ['Logger','Session',function(Logger,Session) {
@@ -596,6 +593,34 @@ app.directive('ngEnter', function() {
             });
         };
     });
+
+  app.directive("ngTap", function() {
+  return function($scope, $element, $attributes) {
+    var tapped;
+    tapped = false;
+    $element.bind("click", function() {
+    	Logger.showAlert("click event");
+      if (!tapped) {
+        return $scope.$apply($attributes["ngTap"]);
+      }
+    });
+    $element.bind("touchstart", function(event) {
+    	Logger.showAlert("touch start");
+      return tapped = true;
+    });
+    $element.bind("touchmove", function(event) {
+    	Logger.showAlert("touch move");
+      tapped = false;
+      return event.stopImmediatePropagation();
+    });
+    return $element.bind("touchend", function() {
+    	Logger.showAlert("touch end");
+      if (tapped) {
+        return $scope.$apply($attributes["ngTap"]);
+      }
+    });
+  };
+});
 
 app.directive('timeAgo', ['timeAgo', 'nowTime', function(timeago, nowTime) {
 	return {
