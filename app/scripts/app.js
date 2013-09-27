@@ -150,8 +150,22 @@ app.factory('RaModel', function($resource) {
 		}
 	});
 });
+app.factory('DropDownFactory', ['RaModel','Logger','Session',function(RaModel,Logger,Session) {
+    return {
+        loadDropDown: function(ds,valueAttribute,displayAttribute,callback) {
+        		console.log("***In load drop down******");
+        	 var dsoptions =	{'dataSource':ds};
+        	 var  options =	{'limit':100,'offset':0, 
+        	 				 'params':{'executeCountSql': 'N'}, 'sessionId':Session.get().sessionId, 
+        	 				 'select': [valueAttribute,displayAttribute],
+        	 				 'orderBy': '#creationDate# DESC'};
 
+				RaModel.query(dsoptions,options ,callback);
+			}
 
+		
+    };
+}]);
 
 
 

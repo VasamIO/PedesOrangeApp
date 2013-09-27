@@ -32,12 +32,12 @@
 						<div> <strong><i class="icon-user"></i> {{r.patientName}}</strong></div>
 							<div style="margin-left:15px"><label class="field-text">referred by</label> {{r.physicianName}}</div>
 							<div style="margin-left:15px">
-									<span ng-if="r.facility =='nrb'">
-									@ New Report Bearch
-								</span>
-								<span ng-if="r.facility =='cr'">
-									@ Carolina	
-								</span>
+									<div ng-repeat="faci in facilityDropDown">
+										<anytag ng-if="faci.facilityCode == r.facility">
+											@ {{faci.facilityName}}
+										</anytag>
+									</div>
+								
 							</div>
 							
 							
@@ -67,12 +67,12 @@
 						</li>
 						<li>
 							<label class="field-text"><strong>Facility</strong></label>
-							<span ng-if="r.facility =='nrb'">
-									New Report Bearch
-								</span>
-								<span ng-if="r.facility =='cr'">
-										Carolina	
-								</span>
+
+								<anytag ng-repeat="faci in facilityDropDown">
+										<anytag ng-if="faci.facilityCode == r.facility">
+										{{faci.facilityName}}
+										</anytag>
+								</anytag>
 						</li>
 
 						
@@ -101,8 +101,8 @@
 								<li ng-if="r.angiogram =='Y'"> 
 									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Angiogram with possible intervention
 								</li>
-								<li ng-if="r.ultraConsult =='Y'">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Other
+								<li ng-if="r.otherVenogram !== 'undefined' && r.otherVenogram.length > 2">
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Others: {{r.otherVenogram}}
 								</li>
 							
 						</li>
@@ -144,6 +144,9 @@
 								
 								<li ng-if="r.ulcer =='Y'">
 									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Ulcer
+								</li>
+								<li ng-if="r.otherIndication !== 'undefined' && r.otherIndication.length > 2">
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Others: {{r.otherIndication}}
 								</li>
 
 						

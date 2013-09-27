@@ -15,11 +15,11 @@
 			<label>Facility</label>
 			
 		</div>
-			<select ng-model="facility"> 
-				<option value="nofacility" ng-selected="1==1">Please select one</option>
-				<option value="nrb" >New Report Beach</option>
-				<option value="cr">Carolina</option>
+			<select ng-model="facility" >
+			    <option value="nofacility" ng-selected="1==1" >Please select one</option>
+			     <option ng-repeat="item in facilityDropDown" value="{{item.facilityCode}}">{{item.facilityName}}</option>
 			</select>
+		
 		
 		<div class="input-row">
 			<label nowrap>Patient <font color="red">*</font></label>
@@ -46,7 +46,8 @@
   <li ng-click= "uc = !uc"><input type="checkbox" name ="h" value="Y" ng-model="uc"/> Ultrasound & Consulation</li>
   <li ng-click= "ai = !ai"><input type="checkbox" name ="h" value="Y" ng-model="ai"/> Angiogram with possible intervention</li>
   <li ng-click= "veno = !veno"><input type="checkbox" name ="h" value="Y" ng-model="veno"/> Venogram with possible intervention</li>
-  <li ng-click= "ot = !ot"><input type="checkbox" name ="h" value="Y" ng-model="ot"/> Other</li>
+  <li ng-click= "oto = !oto"><input type="checkbox" name ="h" value="Y" ng-model="oto"/> Other</li>
+  <li ng-show="oto"><input type="text" name ="h" value="Y" ng-model="ot"/> </li>
 </ul>
 <div style="align:center"><a class="button button-negative " ng-click="createAlarm()"> Stat</a></div>
 
@@ -61,7 +62,8 @@
   <li ng-click= "se = !se"><input type="checkbox"  value="Y" ng-model="se"/> Swelling/Edema</li>
   <li ng-click= "nhw = !nhw"><input type="checkbox"  value="Y" ng-model="nhw"/> Ulcer/Non-Healing Wound</li>
   <li ng-click= "vv = !vv"><input type="checkbox"  value="Y" ng-model="vv"/> Varicose Veins</li>
-<li ng-click= "iot = !iot"><input type="checkbox"  value="Y" ng-model="iot"/> Others</li>
+<li ng-click= "ioto = !ioto"><input type="checkbox"  value="Y" ng-model="ioto"/> Others</li>
+  <li ng-show="ioto"><input type="text" name ="h" value="Y" ng-model="iot"/> </li>
 </ul>
 <div class="input-group inset">
 		<div class="input-row">
@@ -92,11 +94,11 @@
   <input type="hidden" ng-model="fileIds" value="">
 	<a class="button button-block" ng-click="openCamera('fileIds','upImgbar')"><i class="icon-camera icon-large"></i> Upload Images </a>
 
-	 			<div ng-show="uploadingimages || pname == null   || !(art || venous) || !(uc || ai || veno) || !(cl || dap || dvt || pain || piv || pvd || se || nhw || vv)">
+	 			<div ng-show="uploadingimages || pname == null   || !(art || venous) || !(uc || ai || veno || oto) || !(cl || dap || dvt || pain || piv || pvd || se || nhw || vv || ioto)">
                  <a   class="button-main button-block button-disabled" ><i class="icon-hospital icon-large"></i> Order  </a>
                 </div>
 
-                <div ng-show="pname != null && (art || venous) && (uc || ai || veno) && (cl || dap || dvt || pain || piv || pvd || se || nhw || vv) && !uploadingimages">
+                <div ng-show="pname != null && (art || venous) && (uc || ai || veno || oto) && (cl || dap || dvt || pain || piv || pvd || se || nhw || vv || ioto) && !uploadingimages">
                  <a  class="button-main button-block "  ng-click="order()"  ><i class="icon-hospital icon-large"></i> Order  </a>
                 </div>
 
