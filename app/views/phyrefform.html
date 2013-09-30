@@ -15,7 +15,7 @@
 			<label>Facility</label>
 			
 		</div>
-			<select ng-model="facility" >
+			<select ng-model="facility" multiple ng-multiple="true">
 			    <option value="nofacility" ng-selected="1==1" >Please select one</option>
 			     <option ng-repeat="item in facilityDropDown" value="{{item.facilityCode}}">{{item.facilityName}}</option>
 			</select>
