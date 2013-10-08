@@ -49,8 +49,9 @@ div.lpanel ul li a i{top:10px;left:10px;position:absolute;font-size:1.5em;}
 @media all and (orientation:landscape){.content .chart2{width:50%;height:100%;overflow:hidden;float:left;}
 }
 .content.black{
-	/*background-color:#8B4C39;*/
-	background-color:#8B4C39;
+	background-color:#51240F;
+	background-image:url('../icon.png');
+	
 	background-position: bottom center;
 	background-repeat: no-repeat;
 }

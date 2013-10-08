@@ -58,11 +58,15 @@ app.controller('LoginCtrl', ['$scope', '$location', 'Session', 'Menu', function 
 
 app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$scope', '$location', 'Menu','Logger','Session','RaModel', function (DropDownFactory,CameraFactory,$rootScope,$scope, $location,  Menu,Logger,Session,RaModel) {
 	 $scope.uploadingimages = false;
+	 var $this = this;
 	 $scope.imagesrefresh  = false ;
+	 $scope.format = 'M/d/yy h:mm:ss a';
+	 $scope.title = "Referral Form";
+	 $scope.selection = "ReferralForm";
 		$scope.facilityDropDown = [];
 		$scope.fileIds = "";
 	function init() {
-		$scope.date = '2013-06-20';
+		$scope.date = new Date();
 		$scope.time = '09:30';
 		$scope.upimages =[];
 		$scope.userName = Session.get().displayName;
@@ -76,13 +80,28 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		$location.path('/');
 	};
 
-	$scope.order = function() {
-	console.log("*******"+$scope.iot);
+
+	$scope.$watch('selection', function(newValue, oldValue){
+		Logger.log(oldValue + '->' + newValue);
+		//alert(newValue);
+		/*
+		a.patients.initialized = true;
+		*/if (newValue === 'ReferralForm') {
+			$scope.title = 'Referral Form';
+			
+			
+			
+		} else if (newValue === 'ConfirmRefferral') {
+			$scope.title = 'Confirm Refferral';
+		} 
+	});
+
+	$scope.order = function(facility) {
+	console.log("facility -->"+facility + " > pname-->"+$scope.pname);
 //	Logger.showAlert("****"+$scope.ot);  
 	if(typeof $scope.facility === "undefined" ||$scope.facility === "nofacility" ) {
 		Logger.showAlert("Please select facility","Error");
 		return;
-		
 	}
 	
 	if($scope.pname == null) {
@@ -93,15 +112,21 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		return;
 	} else if($scope.uc == null && $scope.ai == null  
 		&&  $scope.veno == null && $scope.ot == null ) {
-		Logger.showAlert("Please select/enter atleast one from Ultrasound, Angiogram Intervention or Venogram Intervention","Error");
+		Logger.showAlert("Please select atleast one from Examinations","Error");
 		return;
 	} else if($scope.dap == null && $scope.dvt == null
 				&& $scope.pain == null && $scope.piv == null
-				&& $scope.pvd == null && $scope.se == null
+				&& $scope.pse == null && $scope.pvd == null && $scope.se == null
 				&& $scope.vv == null && $scope.nhw == null  && $scope.cl == null && $scope.iot == null) {
 		Logger.showAlert("Please select/enter atleast one from Indications","Error");
 		return;
 	}
+	 //$scope.selection  = "ConfirmRefferral";
+	 $this.confirmreferral();
+}
+
+  this.confirmreferral = function() {
+  	console.log("**************** In confirm refferrral********");
 
 	$scope.uploadingimages =  true;
 	//alert("--------Upload file Ids:"+$scope.fileIds);
@@ -125,6 +150,7 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
       "varicoseVeins":$scope.vv?"Y":"N",
       "interEvaluation":$scope.piv?"Y":"N",    
       "otherIndication": $scope.iot,
+      "surgicalEvaluation": $scope.pse,
       "venousDuplex":$scope.venous ? 'Y' : 'N',
       "arterialDuplex":$scope.art ? 'Y' : 'N',
       "bilultra":$scope.bil ? 'Y' : 'N',  
@@ -144,7 +170,11 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 					Logger.showAlert(result.errorMessage,result.errorTitle);
 				} else {
 					
-						Logger.showConfirm('Updated Successfully', function(){
+						var d = new Date($scope.date);
+						var time = d.getHours()+""+d.getMinutes();
+						d = d.getMonth()+"/"+d.getDate()+"/"+d.getFullYear();
+						
+						Logger.showConfirm('Congratulations Dr.'+$scope.userName+' you have referred Ms Johnson for an Atherectomy with Pedes Orange County. Your referral was received '+d+' at '+time+' hours from your Irvine Office facility. We will begin processing your referral immediately. Please let us know if you have any questions', function(){
 							$scope.back();
 					},"Update",'Ok');
 					

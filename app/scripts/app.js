@@ -306,6 +306,20 @@ app.service('Utils', ['Logger','Session',function(Logger,Session) {
 	
 }]);
 
+
+
+
+/*
+input[type="checkbox"]  {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+   
+    cursor:pointer;
+}*/
+
 app.service('Session', ['RaModel', '$location', 'Logger', function (RaModel, $location, Logger) {
 	var session = null, $this = this;
 	this.get = function () {
@@ -363,7 +377,9 @@ app.service('Session', ['RaModel', '$location', 'Logger', function (RaModel, $lo
 		});
 	};
 	this.signOff = function () {
-		Logger.showConfirm('Do you want to Sign Off?', function(){
+		Logger.showConfirm('Would you like to log out?', function(button){
+			//Logger.showAlert(button);
+			if(button  === 2) return;
 			RaModel.save({'dataSource':'signoff'}, {'sessionId': session.sessionId},
 			function(result) {
 				Logger.log(angular.toJson(result));

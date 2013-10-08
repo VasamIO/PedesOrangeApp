@@ -133,7 +133,7 @@ a {
   bottom: 0;
   left: 0;
   overflow: auto;
-  
+ 
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
@@ -917,9 +917,6 @@ select {
 .button-disabled {
   cursor: none;
   color: gray;
- background-color: #f8f8f8;
-  background-image: -webkit-linear-gradient(top, #f8f8f8 0, #f8f8f8 100%);
-  background-image: linear-gradient(to bottom, #f8f8f8 0, #f8f8f8 100%);
 }
 
 /* Main button */
@@ -975,9 +972,10 @@ select {
 .button-disabled:active {
   cursor: none;
   color: gray;
-background-color: #f8f8f8;
-  background-image: -webkit-linear-gradient(top, #f8f8f8 0, #f8f8f8 100%);
-  background-image: linear-gradient(to bottom, #f8f8f8 0, #f8f8f8 100%);
+  border: 0px !important;
+  background-color: #1c1c1c;
+  background: -webkit-linear-gradient(top, #3D240F, #3D240F);
+  border-color: red;
 }
 
 /* Block level buttons (full width buttons) */
@@ -989,7 +987,6 @@ background-color: #f8f8f8;
   font-size: 16px;
   margin-right: 10px;
   margin-left: 10px;
-
 }
 
 /* Active state for block level buttons */
@@ -1560,31 +1557,4 @@ input[type="checkbox"]  {
     vertical-align:middle;
    
     cursor:pointer;
-}
-
-.logodiv {
-   
-    display: block;
-    overflow: auto;
-   position: fixed;
-  bottom: 0;
-  left: 30%;
-}
-
-.logodiv:after {
-    content: "";
-    background: url(../icon.png);
-    opacity: 0.1;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;   
-}
-.headerlogo {
-  height:20px;
-  width:20px;
-  vertical-align: middle;
-  margin-bottom:3px;
 }

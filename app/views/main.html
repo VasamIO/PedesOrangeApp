@@ -1,10 +1,9 @@
 <div class="page" ng-class="Menu.isOpen()?'open':''">
 	<header class="bar-title">
-		<a class="button" ng-click="Menu.toggle()">
-			<i ng-hide="Menu.isOpen()" class="icon-align-justify icon-large"></i>
+		<a ng-show="Menu.isOpen()" class="button" ng-click="Menu.toggle()">
 			<i ng-show="Menu.isOpen()" class="icon-remove icon-large"></i>
 		</a>	
-		<h1 class="title">Home</h1>
+		<h1 class="title"><img src="icon.png" class="headerlogo"/>&nbsp;Home</h1>
 		<a class="button" ng-click="signOff()">
 			<i class="icon-signout icon-large"></i> {{userName}}
 		</a>
@@ -12,18 +11,19 @@
 	<div class="content black slide" ng-click="Menu.isOpen() && Menu.toggle()">
 		<space></space>
 		<ul class="list inset" ng-if="showIntro"><li>Welcome {{userName}},<br><br>
-			
+			 
 		</li></ul>
 		<space></space>
 		<a class='icon' ng-repeat="m in menuItems" ng-hide="m.code==='/'" ng-click="Menu.menuItemClick(m)" stop-event="click">
 			<i ng-class="m.icon" class="icon-2x"></i>
 			<span>{{m.name}}</span>
-		</a>
+		</a> 
 		<span>
-
-		
-	
 		</span>
+
+		<div class="logodiv" style="width: 150px; height: 150px;"></div>
 	</div>
 
+
+	
 </div>
