@@ -478,7 +478,7 @@ app.service('Menu', ['$location', function ($location) {
 	};
 
 	var isOpen = false, subPage = false, active,
-	items = [{code:'phyform', icon:'icon-building', name:'Referral Form'},{code:'refform', icon:'icon-copy', name:'Referrals'}];
+	items = [{code:'phyform', icon:'icon-building', name:'Referral Form',cls:'icon',style:''},{code:'refform', icon:'icon-copy', name:'Referrals',cls:'icon',style:'background-color:#ccc'}];
 
 	this.getItem = function(code){
 		var len = items.length;

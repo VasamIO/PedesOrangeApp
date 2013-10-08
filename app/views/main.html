@@ -14,7 +14,7 @@
 			 
 		</li></ul>
 		<space></space>
-		<a class='icon' ng-repeat="m in menuItems" ng-hide="m.code==='/'" ng-click="Menu.menuItemClick(m)" stop-event="click">
+		<a  ng-repeat="m in menuItems" ng-hide="m.code==='/'" class='icon'  ng-click="Menu.menuItemClick(m)" stop-event="click">
 			<i ng-class="m.icon" class="icon-2x"></i>
 			<span>{{m.name}}</span>
 		</a> 

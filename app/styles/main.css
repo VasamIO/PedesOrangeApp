@@ -56,10 +56,16 @@ div.lpanel ul li a i{top:10px;left:10px;position:absolute;font-size:1.5em;}
 }
 
 .icon
-{display:block;width:82%;height:90px;margin-bottom:10px;margin-left:10.44%;
+{   
+	display:block;width:82%;height:90px;margin-bottom:10px;margin-left:10.44%;
 	position:relative;padding:10px;text-shadow:0 -1px 0 rgba(0,0,0,.3);
 	background-color:#51240F;
-	background:-webkit-linear-gradient(top,#51240F,#51240F);border:1px inset #1c1c1c;box-shadow:0 1px rgba(255,255,255,.25);-webkit-box-flex:0;box-flex:0;border-radius:10px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+	background:-webkit-linear-gradient(top,#51240F,#51240F);
+	border:1px inset #1c1c1c;
+	box-shadow:0 1px rgba(255,255,255,.25);-webkit-box-flex:0;box-flex:0;
+	border-radius:10px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;
+}
+
 @media (max-width:1280px){.icon{width:74%;margin-left:2.28%;}
 .icon a:last-child{margin-right:2.28%;}
 }
