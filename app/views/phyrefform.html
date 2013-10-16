@@ -18,6 +18,7 @@
 <!-- 
 
 <div  class="tab" ng-switch-when="ReferralForm"  infinite-scroll-distance="10"> -->
+   <form name="phyForm">
 	<div class="input-group inset">
 		<div class="input-row">
 			<label>Facility</label>
@@ -40,7 +41,8 @@
       </div>
 		<div class="input-row">
 			<label>Phone</label>
-			<input type="text" placeholder="Patient's Contact Number"   ng-model="phone">
+			<input type="text" name="pphone" placeholder="Patient's Contact Number. Ex (714) 345-4567" ng-pattern="/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/" maxlength="14" ng-model="phone"/>
+
 		</div>
 	</div>
  <ul class="list inset">
@@ -62,8 +64,17 @@
   <li ng-click= "oto = !oto"><input type="checkbox" name ="h" value="Y" ng-model="oto"  ng-click= "oto = !oto"/> Other</li>
   <li ng-show="oto"><input type="text" name ="h" value="Y" ng-model="ot" /> </li>
 </ul>
-<div style="align:center"><a class="button button-negative " > STAT</a></div>
 
+<div style="align:center">
+<ul class="segmented-controller" style="width:150px;margin:10px">
+
+	<input type="hidden" ng-model="statsel"/>
+	
+  <li  >
+   <a ng-click="statsel=!statsel" ng-class="statsel?'activecust':''">STAT</a>
+  </li>
+</ul>
+</div>
 <ul class="list inset">
   <li class="list-divider">Indications</li>
   <li ng-click= "cl = !cl"><input type="checkbox"  value="Y" ng-model="cl" ng-click= "cl = !cl"/> Claudication</li>
@@ -119,7 +130,7 @@
                 <div ng-show="pname != null && (art || venous) && (uc || ai || veno || oto) && (cl || dap || dvt || pain || piv || pvd || pse || se || nhw || vv || ioto) && !uploadingimages">
                  
                 </div> -->
-		<a  class="button-block " ng-click="order()" ><i class="icon-hospital icon-large"></i> Initiate Referral  </a>
+		<a  class="button-block " ng-click="order(phyForm.pphone.$valid)" ><i class="icon-hospital icon-large"></i> Initiate Referral  </a>
 <!-- 
 <a class="button button-block" ng-click="uploadFile('/home/devuser/Pictures/one.png')"><i class="icon-camera icon-large"></i> Upload Photo From Desk</a> -->
 <!-- 
@@ -131,6 +142,6 @@
 
 </div>
  -->
-
+</form>
 </div>
 </div>

@@ -58,6 +58,7 @@ app.controller('LoginCtrl', ['$scope', '$location', 'Session', 'Menu', function 
 
 app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$scope', '$location', 'Menu','Logger','Session','RaModel', function (DropDownFactory,CameraFactory,$rootScope,$scope, $location,  Menu,Logger,Session,RaModel) {
 	 $scope.uploadingimages = false;
+	 $scope.phoneNumberPattern = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/; //.(714) 345-4567
 	 var $this = this;
 	 $scope.imagesrefresh  = false ;
 	 $scope.format = 'M/d/yy h:mm:ss a';
@@ -72,6 +73,7 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		$scope.userName = Session.get().displayName;
 		$scope.userId = Session.get().userId;
 	   	$scope.facilityDropDown = $rootScope.facilitydata;
+	   	console.log("***Pattern*******"+$scope.phoneNumberPattern);
   	}
 	init();
 
@@ -96,8 +98,8 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		} 
 	});
 
-	$scope.order = function(facility) {
-	console.log("facility -->"+facility + " > pname-->"+$scope.pname);
+	$scope.order = function(isValidPhone) {
+	console.log("valid phone number -->"+isValidPhone );
 //	Logger.showAlert("****"+$scope.ot);  
 	if(typeof $scope.facility === "undefined" ||$scope.facility === "nofacility" ) {
 		Logger.showAlert("Please select facility","Error");
@@ -106,6 +108,9 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 	
 	if($scope.pname == null) {
 		Logger.showAlert("Please enter patient name","Error");
+		return;
+	} else if(!isValidPhone) {
+		Logger.showAlert("Please enter valid phone number. Ex (xxx) xxx-xxxx","Error");
 		return;
 	} else if ($scope.venous == null && $scope.art == null) {
 		Logger.showAlert("Please select atleast one from Arterial or Venous","Error");
@@ -224,6 +229,7 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		    					});
 		    			},failure : function(error) {
 							Logger.showError(error);
+							$scope.uploadingimages = false;
 		    			}
 						});
 						
@@ -289,7 +295,13 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
 		$scope.a = a;
 		$this.patientsQuery();
 	};
-  
+  	
+  	 $scope.removeImg = function(imageKey,imagevalue,index) {
+  	 	console.log("******** Key:"+imageKey+" Value:"+imagevalue+" at:"+index);
+  	 	var images = $scope.image_data[imageKey];
+  	 	images.splice(index,1);
+  	 	console.log("********Images********"+images);
+  	 }
 	this.init = function(){
 		a = {'pageTitle':'Patients'};
 	};

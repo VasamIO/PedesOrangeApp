@@ -1116,11 +1116,11 @@ background-color: #f8f8f8;
 -------------------------------------------------- */
 
 .segmented-controller {
-  display: -webkit-box;
+  /*display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: box;
-  margin-bottom: 10px;
+  */margin-bottom: 10px;
   overflow: hidden;
   font-size: 12px;
   font-weight: bold;
@@ -1129,7 +1129,7 @@ background-color: #f8f8f8;
   background-color: #f8f8f8;
   background-image: -webkit-linear-gradient(top, #f8f8f8 0, #d4d4d4 100%);
   background-image: linear-gradient(to bottom, #f8f8f8 0, #d4d4d4 100%);
-  border: 1px solid #aaa;
+  /*border: 1px solid #aaa;
   border-radius: 3px;
   box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 1px rgba(255, 255, 255, .8);
   -webkit-box-orient: horizontal;
@@ -1137,8 +1137,9 @@ background-color: #f8f8f8;
   -webkit-box-direction: normal;
   -webkit-flex-direction: horizontal;
   -ms-flex-direction: horizontal;
-  box-orient: horizontal;
+  box-orient: horizontal;*/
 }
+
 
 /* Section within controller */
 
@@ -1146,7 +1147,7 @@ background-color: #f8f8f8;
   overflow: hidden;
   text-align: center;
   white-space: nowrap;
-  border-left: 1px solid #aaa;
+  /*border-left: 1px solid #aaa;*/
   box-shadow: inset 1px 0 rgba(255, 255, 255, .5);
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -1161,7 +1162,12 @@ background-color: #f8f8f8;
   padding: 8px 16px;
   overflow: hidden;
   line-height: 15px;
-  color: #333;
+  color: #fff;
+   background-color: #e71e1e;
+  background-image: -webkit-linear-gradient(top, #e71e1e 0,#c71a1a 100%);
+  background-image: -webkit-linear-gradient(top, #e71e1e 0, #c71a1a 100%);
+  background-image: linear-gradient(to bottom, #e71e1e 0, #c71a1a 100%);
+  border: 1px solid #b51a1a;
   text-overflow: ellipsis;
 }
 
@@ -1178,6 +1184,13 @@ background-color: #f8f8f8;
   background-color: #ccc;
   box-shadow: inset 0 1px 5px rgba(0, 0, 0, .3);
 }
+
+.segmented-controller li > a.activecust {
+  background-color:green;
+   color: #3D240F;
+  box-shadow: inset 0 1px 5px rgba(0, 0, 0, .3);
+}
+
 
 .segmented-controller-item {
   display: none;
@@ -1587,4 +1600,29 @@ input[type="checkbox"]  {
   width:20px;
   vertical-align: middle;
   margin-bottom:3px;
+}
+
+.img-wrap {
+    position: relative;
+    display: inline-block;
+   padding: 5px;
+    font-size: 0;
+}
+.img-wrap .close {
+    position: absolute;
+    top: -6px;
+    right: -5px;
+   
+   
+    padding: 1px 1px 1px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    font-size: 22px;
+    line-height: 10px;
+    border-radius: 4px;
+}
+.img-wrap:hover .close {
+    opacity: 1;
 }

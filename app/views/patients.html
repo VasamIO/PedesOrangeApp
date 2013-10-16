@@ -166,7 +166,11 @@
 						<div ng-repeat="(key, value) in image_data">  
 						<div ng-if="key == a.patients.current.patientId">
 							<span ng-repeat="im in value" >
-							<a ng-click="openPopup('{{$index}}')" >	<img ng-src = "{{im}}+&thumb=Y" class="thumbnail"/></a>
+								<div class="img-wrap">
+    								<span class="close" ng-click="removeImg(key,im,$index)"><i class="icon-remove-sign"></i></span>
+    									<a ng-click="openPopup('{{$index}}')" ><img ng-src = "{{im}}+&thumb=Y" class="thumbnail"></a>
+								</div>
+									
 							</span>
 				  
 						</div>
@@ -180,12 +184,6 @@
 					
 					<div ng-show="imageselected"> 
 					<div id="modal1"   class="modal " >
-				<!-- 		<header class="bar-title">
-					    <h1 class="title">View Image</h1>
-					    <a class="button" ng-click="closePopup()" >
-					      <i class="icon-remove icon-large"></i>
-					    </a>
-					  </header> -->
 					 <nav class="bar-tab" >
 						<ul class="tab-inner">
 							<li class="tab-item"  ng-click="closePopup()" class="active">
