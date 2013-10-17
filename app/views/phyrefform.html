@@ -50,7 +50,7 @@
   <li ng-click="$parent.venous = !$parent.venous"><input type="checkbox" name ="h" value="Y" ng-model="$parent.venous" ng-click="$parent.venous = !$parent.venous"/> Venous</li>
 </ul>
 <ul class="list inset">
-  <li ng-click= "$parent.bil = !$parent.bil" ><input type="checkbox" name ="h" value="Y" ng-model="$parent.bil" ng-click= "$parent.bil = !$parent.bil" /> Bilateral</li>
+  <li ng-click= "$parent.bil = !$parent.bil;$parent.left=false;$parent.right=false" ><input type="checkbox" name ="h" value="Y" ng-model="$parent.bil" ng-click= "$parent.bil = !$parent.bil" /> Bilateral</li>
   <li ng-show="!$parent.bil" ng-click= "$parent.left = !$parent.left"><input type="checkbox" name ="h" value="Y" ng-model="$parent.left" ng-click= "$parent.left = !$parent.left" /> Left</li>
   <li ng-show="!$parent.bil" ng-click= "$parent.right = !$parent.right"><input type="checkbox" name ="h" value="Y" ng-model="$parent.right" ng-click= "$parent.right = !$parent.right" /> Right</li>
 </ul>

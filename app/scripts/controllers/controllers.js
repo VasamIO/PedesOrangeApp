@@ -146,8 +146,9 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 
   $scope.confirmreferral = function() {
   	console.log("**************** In confirm refferrral********");
+
+  	
 	$scope.uploadingimages =  true;
-	//alert("--------Upload file Ids:"+$scope.fileIds);
 	RaModel.save({'dataSource':'PatientReferralFormV','operation':'insert'}, { "sessionId":Session.get().sessionId,
 	  'phone':$scope.phone,
 	  'uploadDocIds':  $scope.fileIds,
@@ -155,10 +156,8 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
       "dateref":new Date(),
       "venogram": $scope.veno?"Y":"N",
       "otherVenogram":$scope.ot,
-	 'patientName':$scope.pname,
-	  
-     // "ultraconsult":$scope.uc?"Y":"N",
-      "pain":$scope.pain?"Y":"N",
+	  'patientName':$scope.pname,
+	  "pain":$scope.pain?"Y":"N",
       "ulcer":$scope.nhw?"Y":"N",
       "pvd":$scope.pvd?"Y":"N",
       "claudication":$scope.cl?"Y":"N",
@@ -180,8 +179,6 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
       "facility":$scope.facility,
       "vascularconsult": 'N',
       "exercisestudy": 'N'
-
-
 	}, function(result){
 		$scope.uploadingimages =  false;
 				if (result.$error) {
