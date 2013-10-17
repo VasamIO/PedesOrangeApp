@@ -251,6 +251,15 @@
 									<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Others: {{$parent.iot}}
 								</li>
 
+								 <li class="list-divider">upload images</li>
+								<li>
+								    <span  ng-repeat="imgurl in upimages">
+										<img src="{{ imgurl }}" class="thumbnail"/>
+								    </span>
+
+								</li>
+
+
 								<li>
 									<label> Physician</label>
 									{{userName}}
