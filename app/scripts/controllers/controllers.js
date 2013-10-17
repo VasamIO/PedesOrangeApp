@@ -133,12 +133,14 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 	 $scope.removeImg = function(imagevalue,index) {
   		Logger.showConfirm('Do you want to delete it?', function(button){
 			if(button  === 2) return;
-	  	 	$scope.upimages.splice(index,1);
-	  	 	var selectedFileID = imagevalue.substring(imagevalue.lastIndexOf("=")+1,imagevalue.length);
-	  	 	var _uploadDocIds =  $scope.fileIds;
-	  	 	if(_uploadDocIds.indexOf(selectedFileID) > -1) {
-	  	 		_uploadDocIds = _uploadDocIds.replace(selectedFileID,"");
-	  	 	}
+			$scope.safeApply(function(){
+		  	 	$scope.upimages.splice(index,1);
+		  	 	var selectedFileID = imagevalue.substring(imagevalue.lastIndexOf("=")+1,imagevalue.length);
+		  	 	var _uploadDocIds =  $scope.fileIds;
+		  	 	if(_uploadDocIds.indexOf(selectedFileID) > -1) {
+		  	 		_uploadDocIds = _uploadDocIds.replace(selectedFileID,"");
+		  	 	}
+		  	 });
 	 	});
   	 }
 
@@ -192,7 +194,7 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 						d = d.getMonth()+"/"+d.getDate()+"/"+d.getFullYear();
 						
 						Logger.showConfirm('Congratulations Dr.'+$scope.userName+' you have referred Ms Johnson for an Atherectomy with Pedes Orange County. Your referral was received '+d+' at '+time+' hours from your Irvine Office facility. We will begin processing your referral immediately. Please let us know if you have any questions', function(){
-							$scope.back();
+							$location.path('/');
 					},"Update",'Ok');
 					
 				}
@@ -312,30 +314,34 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
   	 	
 		Logger.showConfirm('Do you want to delete it?', function(button){
 			if(button  === 2) return;
-		 	var images = $scope.image_data[imageKey];
-	  	 	images.splice(index,1);
-	  	 	var selectedFileID = imagevalue.substring(imagevalue.lastIndexOf("=")+1,imagevalue.length);
-	  	 	var _uploadDocIds =  a.patients.current.uploadDocIds;
-	  	 	if(_uploadDocIds.indexOf(selectedFileID) > -1) {
-	  	 		_uploadDocIds = _uploadDocIds.replace(selectedFileID,"");
-	  	 	}
-	  	 	RaModel.save({'dataSource':'PatientInfo','operation':'update'}, { "sessionId":Session.get().sessionId,
-			  'patientId':a.patients.current.patientId,
-			  'userId':  Session.get().userId,
-			  'patientName': a.patientDetails.current.patientName,
-			  'phone':a.patientDetails.current.phone,
-			  'createdBy':a.patientDetails.current.createdBy,
-			  'creationDate':a.patientDetails.current.creationDate,
-			  'referred':a.patientDetails.current.referred,
-			  "facility":a.patientDetails.current.facility,
-			  'uploadDocIds':_uploadDocIds,
-			  'lastUpdateDate': new Date()
-			}, function(result){
-					if (result.$error) {
-						Logger.showAlert(result.errorMessage,result.errorTitle);
-					} else {
-					}
-			});
+		 	
+			$scope.safeApply(function(){
+			 	var images = $scope.image_data[imageKey];
+		  	 	images.splice(index,1);
+		  	 	var selectedFileID = imagevalue.substring(imagevalue.lastIndexOf("=")+1,imagevalue.length);
+		  	 	var _uploadDocIds =  a.patients.current.uploadDocIds;
+		  	 	if(_uploadDocIds.indexOf(selectedFileID) > -1) {
+		  	 		_uploadDocIds = _uploadDocIds.replace(selectedFileID,"");
+		  	 	}
+
+		  	 	RaModel.save({'dataSource':'PatientInfo','operation':'update'}, { "sessionId":Session.get().sessionId,
+				  'patientId':a.patients.current.patientId,
+				  'userId':  Session.get().userId,
+				  'patientName': a.patientDetails.current.patientName,
+				  'phone':a.patientDetails.current.phone,
+				  'createdBy':a.patientDetails.current.createdBy,
+				  'creationDate':a.patientDetails.current.creationDate,
+				  'referred':a.patientDetails.current.referred,
+				  "facility":a.patientDetails.current.facility,
+				  'uploadDocIds':_uploadDocIds,
+				  'lastUpdateDate': new Date()
+				}, function(result){
+						if (result.$error) {
+							Logger.showAlert(result.errorMessage,result.errorTitle);
+						} else {
+						}
+				});
+			})
 		});
   	 }
 	this.init = function(){
