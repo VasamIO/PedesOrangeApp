@@ -146,7 +146,6 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 
   $scope.confirmreferral = function() {
   	console.log("**************** In confirm refferrral********");
-
 	$scope.uploadingimages =  true;
 	//alert("--------Upload file Ids:"+$scope.fileIds);
 	RaModel.save({'dataSource':'PatientReferralFormV','operation':'insert'}, { "sessionId":Session.get().sessionId,
@@ -169,12 +168,12 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
       "varicoseVeins":$scope.vv?"Y":"N",
       "interEvaluation":$scope.piv?"Y":"N",    
       "otherIndication": $scope.iot,
-      "surgicalEvaluation": $scope.pse,
+      "surgicalEvaluation": $scope.pse?"Y":"N",
       "venousDuplex":$scope.venous ? 'Y' : 'N',
       "arterialDuplex":$scope.art ? 'Y' : 'N',
-      "bilultra":$scope.bil ? 'Y' : 'N',  
-      "rightultra":$scope.right ? 'Y' : 'N',  
-      "leftultra":$scope.left ? 'Y' : 'N',  
+      "bilUltra":$scope.bil ? 'Y' : 'N',  
+      "rightUltra":$scope.right ? 'Y' : 'N',  
+      "leftUltra":$scope.left ? 'Y' : 'N',  
       "angiogram":$scope.ai ? 'Y' : 'N',
       "ultraConsult":$scope.uc ? 'Y' : 'N',
       "status":'Submitted',
@@ -192,9 +191,11 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 						var d = new Date($scope.date);
 						var time = d.getHours()+""+d.getMinutes();
 						d = d.getMonth()+"/"+d.getDate()+"/"+d.getFullYear();
-						
-						Logger.showConfirm('Congratulations Dr.'+$scope.userName+' you have referred Ms Johnson for an Atherectomy with Pedes Orange County. Your referral was received '+d+' at '+time+' hours from your Irvine Office facility. We will begin processing your referral immediately. Please let us know if you have any questions', function(){
-							$location.path('/');
+						var test = $scope.art?"Arterial":"Venous";
+						Logger.showConfirm('Congratulations Dr.'+$scope.userName+' you have referred '+$scope.pname+' for an '+test+' with Pedes Orange County. Your referral was received '+d+' at '+time+' hours from your Irvine Office facility. We will begin processing your referral immediately. Please let us know if you have any questions', function(){
+							$scope.safeApply (function(){
+								$location.path('/');
+							});
 					},"Update",'Ok');
 					
 				}
