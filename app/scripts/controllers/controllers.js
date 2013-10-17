@@ -126,11 +126,23 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		Logger.showAlert("Please select/enter atleast one from Indications","Error");
 		return;
 	}
-	 //$scope.selection  = "ConfirmRefferral";
-	 $this.confirmreferral();
+	 $scope.selection  = "ConfirmRefferral";
+	 //$this.confirmreferral();
 }
 
-  this.confirmreferral = function() {
+	 $scope.removeImg = function(imagevalue,index) {
+  		Logger.showConfirm('Do you want to delete it?', function(button){
+			if(button  === 2) return;
+	  	 	$scope.upimages.splice(index,1);
+	  	 	var selectedFileID = imagevalue.substring(imagevalue.lastIndexOf("=")+1,imagevalue.length);
+	  	 	var _uploadDocIds =  $scope.fileIds;
+	  	 	if(_uploadDocIds.indexOf(selectedFileID) > -1) {
+	  	 		_uploadDocIds = _uploadDocIds.replace(selectedFileID,"");
+	  	 	}
+	 	});
+  	 }
+
+  $scope.confirmreferral = function() {
   	console.log("**************** In confirm refferrral********");
 
 	$scope.uploadingimages =  true;

@@ -76,7 +76,7 @@
 						</li>
 
 						
-						<li class="list-divider">Category 1</li>
+						<li class="list-divider"></li>
 							
 
 								<li ng-if="r.arterialDuplex =='Y'">
@@ -88,7 +88,7 @@
 										<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Venous
 								</li>
 
-						<li class="list-divider">Category 2</li>
+						<li class="list-divider"></li>
 						
 								
 								<li ng-if="r.ultraConsult =='Y'">
@@ -158,9 +158,9 @@
 					<ul class="list inset form right" >
 
 						
-						<li class="list-divider">Documents</li>
+						<li class="list-divider">Upload images</li>
 						
-							<li ng-hide="a.patients.current.uploadDocIds.length > 3">No documents uploaded.</li>
+							<li ng-hide="a.patients.current.uploadDocIds.length > 3">No images uploaded.</li>
 					
 					<li >
 						<div ng-repeat="(key, value) in image_data">  

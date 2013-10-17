@@ -267,7 +267,7 @@ app.factory('CameraFactory', ['Logger',function(Logger) {
 					      );  
 				 },
 			     function() {
-	                   Logger.showAlert('Error taking picture', 'Error');
+					   Logger.showAlert('Error taking picture', 'Error');
 				 },  options);
 			}
 
