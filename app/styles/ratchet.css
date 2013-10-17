@@ -1610,7 +1610,7 @@ input[type="checkbox"]  {
 }
 .img-wrap .close {
     position: absolute;
-    top: -6px;
+    top: 18px;
     right: -5px;
    
    
@@ -1619,7 +1619,7 @@ input[type="checkbox"]  {
     font-weight: bold;
     cursor: pointer;
     text-align: center;
-    font-size: 22px;
+    font-size:18px;
     line-height: 10px;
     border-radius: 4px;
 }

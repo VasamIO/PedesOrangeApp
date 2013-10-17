@@ -17,7 +17,7 @@
 			
 			<div class="tab" ng-switch-when="Patients" infinite-scroll="getMorePatients()" infinite-scroll-distance="10">
 				<ul class="list inset">
-					<li> Find:<input type = "text" style="margin-bottom:0px;height:35px"  placeholder="Name or Physician or Facility"  ng-model="searchText"></li>	
+					<li> Find:<input tyzpe = "text" style="margin-bottom:0px;height:35px"  placeholder="Name or Physician or Facility"  ng-model="searchText"></li>	
 					<li ng-repeat="r in a.patients.data | filter:searchText">
 						<a stop-event="click" ng-click="a.patients.current = r; a.selection='PatientDetails';" ng-swipe-right="a.patients.current = r; a.selection='PatientDetails';">
 							<!-- <div>#{{$index + 1}} </div>
@@ -166,8 +166,9 @@
 						<div ng-repeat="(key, value) in image_data">  
 						<div ng-if="key == a.patients.current.patientId">
 							<span ng-repeat="im in value" >
+							
 								<div class="img-wrap">
-    								<span class="close" ng-click="removeImg(key,im,$index)"><i class="icon-remove-sign"></i></span>
+    								<span class="close" ><a class="button" ng-click="removeImg(key,im,$index)"><i class="icon-trash"></i> </a></span>
     									<a ng-click="openPopup('{{$index}}')" ><img ng-src = "{{im}}+&thumb=Y" class="thumbnail"></a>
 								</div>
 									
