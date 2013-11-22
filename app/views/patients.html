@@ -5,7 +5,7 @@
 		</a>
 		<h1 class="title" ng-swipe-right="back()"> 
 
-		<i ng-show="a.loading || a.patients.loading || a.patientDetails.loading " class="icon-spinner icon-spin icon-large" style="display: none;"></i> 	<img src="icon.png" class="headerlogo"/> {{a.pageTitle}}</h1>
+		<i ng-show="a.loading || a.patients.loading || a.patientDetails.loading " class="icon-spinner icon-spin icon-large" style="display: none;"></i> 	<img src="pedesor.png" class="headerlogo"/> {{a.pageTitle}}</h1>
 		
 	<a ng-if="a.selection==='PatientDetails'" class="button" ng-click="a.selection='Patients';closePopup();	a.patientDetails.imagesrefresh = false;" stop-event="click">
 			<i class="icon-remove icon-large"></i>
@@ -80,42 +80,42 @@
 							
 
 								<li ng-if="r.arterialDuplex =='Y'">
-									 <input type="checkbox" name ="h" value="Y" checked="true" disabled /> Arterial
+									 <strong> Arterial</strong>
   
 								</li>
 						
 								<li ng-if="r.venousDuplex =='Y'">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Venous
+										 <strong>Venous</strong>
 								</li>
 
 						<li class="list-divider"></li>
 								<li ng-if="r.bilUltra =='Y'">
-									 <input type="checkbox" name ="h" value="Y" checked="true" disabled /> Bilateral
+									 <strong>Bilateral</strong>
   
 								</li>
 						
 								<li ng-if="r.rightUltra =='Y'">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Right
+									<strong>Right</strong>
 								</li>						
 						
 								<li ng-if="r.leftUltra =='Y'">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Left
+										 <strong>Left</strong>
 								</li>						
 						
-						<li class="list-divider">Examinations</li>
+						<li class="list-divider">Evaluation/Treatment</li>
 									
 								<li ng-if="r.ultraConsult =='Y'">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Ultrasound & Consultation	
+										 <strong>Ultrasound & Consultation	</strong>
 								</li>
 								<li ng-if="r.venogram =='Y'">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Venogram with possible intervention
+									 <strong>Venogram with possible intervention</strong>
 								</li>
 								
 								<li ng-if="r.angiogram =='Y'"> 
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Angiogram with possible intervention
+									<strong>Angiogram with possible intervention</strong>
 								</li>
 								<li ng-if="r.otherVenogram !== 'undefined' && r.otherVenogram.length > 2">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Others: {{r.otherVenogram}}
+									 <strong>Others: {{r.otherVenogram}}</strong>
 								</li>
 							
 						</li>
@@ -124,42 +124,42 @@
 						
 
 								<li ng-if="r.claudication =='Y'">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Claudication
+									<strong>Claudication</strong>
 								</li>
 									
 								<li ng-if="r.absentPulses =='Y'">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Decreased/Absent Pulses
+									<strong>Decreased/Absent Pulses</strong>
 								</li>
 								
 								<li ng-if="r.dvt =='Y'">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >DVT
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / ><strong>DVT</strong>
 								</li>
 								
 								<li ng-if="r.pain =='Y'"> 
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Pain
+									<strong>Pain</strong>
 								</li>
 								
 								<li ng-if="r.interEvaluation =='Y'">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Post Intervention Evaluation
+									<strong>Post Intervention Evaluation</strong>
 								</li>
 								
 								<li ng-if="r.pvd =='Y'">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >PVD
+									<strong>PVD</strong>
 								</li>
 								
 								<li ng-if="r.swelling =='Y'"> 
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Swelling
+									<strong>Swelling</strong>
 								</li>
 								
 								<li ng-if="r.varicoseVeins =='Y'">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Varicose Veins
+									<strong>Varicose Veins</strong>
 								</li>
 								
 								<li ng-if="r.ulcer =='Y'">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Ulcer
+									<strong>Ulcer</strong>
 								</li>
 								<li ng-if="r.otherIndication !== 'undefined' && r.otherIndication.length > 2">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Others: {{r.otherIndication}}
+									 <strong>Others: {{r.otherIndication}}</strong>
 								</li>
 
 						

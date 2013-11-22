@@ -6,7 +6,7 @@
 		<a ng-show="selection==='ConfirmRefferral'" class="button" ng-click="selection='ReferralForm'" stop-event="click">
 			<i class="icon-arrow-left icon-large"></i> 
 		</a>
-	<h1 class="title" ><img src="icon.png" class="headerlogo"/> {{title}}</h1>
+	<h1 class="title" ><img src="pedesor.png" class="headerlogo" /> {{title}}</h1>
 </header>
  <div class="content black slide" ng-switch on="selection">
  
@@ -33,35 +33,54 @@
 		</div>
 		<div class="input-row">
 			<label nowrap>Patient <font color="red">*</font></label>
-			<input type = "text"  placeholder="Last name, First name" ng-model="$parent.pname" required >
-      </div>
-		<div class="input-row">
-			<label>Phone</label>
-			<input type="text" name="pphone" placeholder="Patient's Contact Number." ng-pattern="/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/" maxlength="14" ng-model="$parent.phone"/>
+		<input type = "text"   placeholder="Last name" ng-model="$parent.lname" required >
+	  </div>
+	  	<div class="input-row">
+			<label nowrap></label>
+		<input type = "text"  placeholder="First name" ng-model="$parent.fname" required >
+	  </div>
+	
+		<div class="input-row" >
+			<label style="width:60%;float: left;">Patient Contact Number</label>
+		</div>
+
+		<div class="input-row" >
+			<div >
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<input type="text" style="width:15%;" name="arcode" placeholder="" ng-pattern="/^[0-9]{3}$/" maxlength="3" ng-model="$parent.arcode"/>) 
+			<input type="text" style="width:15%" name="prefix" placeholder="" 
+			ng-pattern="/^[0-9]{3}$/" maxlength="3" ng-model="$parent.prefix"/> - 
+			<input type="text" style="width:20%" name="linenumber" placeholder="" ng-pattern="/^[0-9]{4}$/" maxlength="4" ng-model="$parent.linenumber"/></div>
 
 		</div>
 	</div>
  <ul class="list inset">
 
-  <li ng-click="$parent.art = !$parent.art"><input type="checkbox" name ="h" value="Y" ng-model="$parent.art" ng-click="$parent.art = !$parent.art"/> Arterial</li>
-  <li ng-click="$parent.venous = !$parent.venous"><input type="checkbox" name ="h" value="Y" ng-model="$parent.venous" ng-click="$parent.venous = !$parent.venous"/> Venous</li>
+<li ng-click="$parent.art = !$parent.art" ng-swipe-right= "$parent.art = !$parent.art" ng-class="$parent.art?'btnselafter':'btnselbefore'">
+  	<input type="hidden" name ="h"  value="Y" ng-model="$parent.art" ng-click="$parent.art = !$parent.art"/> Arterial
+  </li>
+  <li ng-click="$parent.venous = !$parent.venous" ng-swipe-right= "$parent.venous = !$parent.venous" ng-class="$parent.venous?'btnselafter':'btnselbefore'">
+  	<input type="hidden" name ="h"  value="Y" ng-model="$parent.venous" ng-click="$parent.venous = !$parent.venous"/> Venous</li>
 </ul>
-<ul class="list inset">
-  <li ng-click= "$parent.bil = !$parent.bil;$parent.left=false;$parent.right=false" ><input type="checkbox" name ="h" value="Y" ng-model="$parent.bil" ng-click= "$parent.bil = !$parent.bil" /> Bilateral</li>
-  <li ng-show="!$parent.bil" ng-click= "$parent.left = !$parent.left"><input type="checkbox" name ="h" value="Y" ng-model="$parent.left" ng-click= "$parent.left = !$parent.left" /> Left</li>
-  <li ng-show="!$parent.bil" ng-click= "$parent.right = !$parent.right"><input type="checkbox" name ="h" value="Y" ng-model="$parent.right" ng-click= "$parent.right = !$parent.right" /> Right</li>
-</ul>
-<ul class="list inset">
-<li class="list-divider">Examinations</li>
+ 
 
-  <li ng-click= "$parent.uc = !$parent.uc"><input type="checkbox" name ="h" value="Y" ng-model="$parent.uc"  ng-click= "$parent.uc = !$parent.uc"/> Ultrasound & Consultation</li>
-  <li ng-click= "$parent.ai = !$parent.ai"><input type="checkbox" name ="h" value="Y" ng-model="$parent.ai"  ng-click= "$parent.ai = !$parent.ai"/> Angiogram with possible intervention</li>
-  <li ng-click= "$parent.veno = !$parent.veno"><input type="checkbox" name ="h" value="Y" ng-model="$parent.veno"  ng-click= "$parent.veno = !$parent.veno"/> Venogram with possible intervention</li>
-  <li ng-click= "$parent.oto = !$parent.oto"><input type="checkbox" name ="h" value="Y" ng-model="$parent.oto"  ng-click= "$parent.oto = !$parent.oto"/> Other</li>
+
+<ul class="list inset">
+  <li ng-click= "$parent.bil = !$parent.bil;$parent.left=false;$parent.right=false" ng-class="$parent.bil?'btnselafter':'btnselbefore'" ng-swipe-right= "$parent.bil = !$parent.bil;$parent.left=false;$parent.right=false" ><input type="hidden" name ="h" value="Y" ng-model="$parent.bil" ng-click= "$parent.bil = !$parent.bil" /> Bilateral</li>
+  <li ng-show="!$parent.bil" ng-click= "$parent.left = !$parent.left" ng-class="$parent.left?'btnselafter':'btnselbefore'" ng-swipe-right="$parent.left = !$parent.left"><input type="hidden" name ="h" value="Y" ng-model="$parent.left" ng-click= "$parent.left = !$parent.left" /> Left</li>
+  <li ng-show="!$parent.bil" ng-click= "$parent.right = !$parent.right" ng-class="$parent.right?'btnselafter':'btnselbefore'" ng-swipe-right="$parent.right = !$parent.right"><input type="hidden" name ="h" value="Y" ng-model="$parent.right" ng-click= "$parent.right = !$parent.right" /> Right</li>
+</ul>
+<ul class="list inset">
+<li class="list-divider">Evaluation/Treatment</li>
+
+  <li ng-click= "$parent.uc = !$parent.uc" ng-swipe-right="$parent.uc = !$parent.uc" ng-class="$parent.uc?'btnselafter':'btnselbefore'" ><input type="hidden" name ="h" value="Y" ng-model="$parent.uc"  ng-click= "$parent.uc = !$parent.uc"/> Ultrasound & Consultation</li>
+  <li ng-click= "$parent.ai = !$parent.ai" ng-swipe-right="$parent.ai = !$parent.ai" ng-class="$parent.ai?'btnselafter':'btnselbefore'"><input type="hidden" name ="h" value="Y" ng-model="$parent.ai"  ng-click= "$parent.ai = !$parent.ai"/> Angiogram with possible intervention</li>
+  <li ng-click= "$parent.veno = !$parent.veno" ng-swipe-right="$parent.veno = !$parent.veno" ng-class="$parent.veno?'btnselafter':'btnselbefore'"><input type="hidden" name ="h" value="Y" ng-model="$parent.veno"  ng-click= "$parent.veno = !$parent.veno"/> Venogram with possible intervention</li>
+  <li ng-click= "$parent.oto = !$parent.oto" ng-swipe-right="$parent.oto = !$parent.oto" ng-class="$parent.oto?'btnselafter':'btnselbefore'"><input type="hidden" name ="h" value="Y" ng-model="$parent.oto"  ng-click= "$parent.oto = !$parent.oto"/> Other</li>
   <li ng-show="$parent.oto"><input type="text" name ="h" value="Y" ng-model="$parent.ot" /> </li>
 </ul>
 
 <div style="align:center">
+
 <ul class="segmented-controller" style="width:150px;margin:10px">
 
 	<input type="hidden" ng-model="$parent.statsel"/>
@@ -69,23 +88,26 @@
   <li  >
    <a ng-click="statsel=!statsel" ng-class="statsel?'activecust':''">STAT</a>
   </li>
+
 </ul>
+
+      
 </div>
 <ul class="list inset">
   <li class="list-divider">Indications</li>
   
-  <li ng-show="$parent.art" ng-click= "$parent.cl = !$parent.cl"><input type="checkbox"  value="Y" ng-model="$parent.cl" ng-click= "$parent.cl = !$parent.cl"/> Claudication</li>
+  <li ng-show="$parent.art" ng-click= "$parent.cl = !$parent.cl"  ng-swipe-right="$parent.cl = !$parent.cl"ng-class="$parent.cl?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.cl" ng-click= "$parent.cl = !$parent.cl"/> Claudication</li>
   
-  <li ng-show="$parent.art" ng-click= "$parent.dap = !$parent.dap"><input type="checkbox"  value="Y" ng-model="$parent.dap" ng-click= "$parent.dap = !$parent.dap"/> Decreased/Absent Pulses</li>
-  <li ng-show="$parent.venous" ng-click= "$parent.dvt = !$parent.dvt"><input type="checkbox"  value="Y" ng-model="$parent.dvt" ng-click= "$parent.dvt = !$parent.dvt"/> DVT</li>
-  <li ng-click= "$parent.pain = !$parent.pain"><input type="checkbox"  value="Y" ng-model="$parent.pain" ng-click= "$parent.pain = !$parent.pain"/> Pain</li>
-  <li ng-click= "$parent.piv = !$parent.piv"><input type="checkbox"  value="Y" ng-model="$parent.piv" ng-click= "$parent.piv = !$parent.piv"/> Post-Intervention Evaluation</li>
-  <li ng-click= "$parent.pse = !$parent.pse"><input type="checkbox"  value="Y" ng-model="$parent.pse" ng-click= "$parent.pse = !$parent.pse"/> Pre-Surgical Evaluation</li>
-  <li ng-click= "$parent.pvd = !$parent.pvd"><input type="checkbox"  value="Y" ng-model="$parent.pvd" ng-click= "$parent.pvd = !$parent.pvd"/> PVD</li>
-  <li ng-show="$parent.venous" ng-click= "$parent.se = !$parent.se"><input type="checkbox"  value="Y" ng-model="$parent.se" ng-click= "$parent.se = !$parent.se"/> Swelling/Edema</li>
-  <li ng-show="$parent.art" ng-click= "$parent.nhw = !$parent.nhw"><input type="checkbox"  value="Y" ng-model="$parent.nhw" ng-click= "$parent.nhw = !$parent.nhw"/> Ulcer/Non-Healing Wound</li>
-  <li ng-show="$parent.venous" ng-click= "$parent.vv = !$parent.vv"><input type="checkbox"  value="Y" ng-model="$parent.vv" ng-click= "$parent.vv = !$parent.vv"/> Varicose Veins</li>
-<li ng-click= "$parent.ioto = !$parent.ioto"><input type="checkbox"  value="Y" ng-model="$parent.ioto" ng-click= "$parent.ioto = !$parent.ioto"/> Others</li>
+  <li ng-show="$parent.art" ng-click= "$parent.dap = !$parent.dap" ng-swipe-right="$parent.dap = !$parent.dap" ng-class="$parent.dap?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.dap" ng-click= "$parent.dap = !$parent.dap"/> Decreased/Absent Pulses</li>
+  <li ng-show="$parent.venous" ng-click= "$parent.dvt = !$parent.dvt" ng-swipe-right="$parent.dvt = !$parent.dvt" ng-class="$parent.dvt?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.dvt" ng-click= "$parent.dvt = !$parent.dvt"/> DVT</li>
+  <li ng-click= "$parent.pain = !$parent.pain"  ng-swipe-right="$parent.pain = !$parent.pain"ng-class="$parent.pain?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.pain" ng-click= "$parent.pain = !$parent.pain"/> Pain</li>
+  <li ng-click= "$parent.piv = !$parent.piv" ng-swipe-right="$parent.piv = !$parent.piv" ng-class="$parent.piv?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.piv" ng-click= "$parent.piv = !$parent.piv"/> Post-Intervention Evaluation</li>
+  <li ng-click= "$parent.pse = !$parent.pse"  ng-swipe-right="$parent.pse = !$parent.pse" ng-class="$parent.pse?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.pse" ng-click= "$parent.pse = !$parent.pse"/> Pre-Surgical Evaluation</li>
+  <li ng-click= "$parent.pvd = !$parent.pvd" ng-swipe-right="$parent.pvd = !$parent.pvd" ng-class="$parent.pvd?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.pvd" ng-click= "$parent.pvd = !$parent.pvd"/> PVD</li>
+  <li ng-show="$parent.venous" ng-click= "$parent.se = !$parent.se" ng-swipe-right="$parent.se = !$parent.se" ng-class="$parent.se?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.se" ng-click= "$parent.se = !$parent.se"/> Swelling/Edema</li>
+  <li ng-show="$parent.art" ng-click= "$parent.nhw = !$parent.nhw" ng-class="$parent.nhw?'btnselafter':'btnselbefore'" ng-swipe-right="$parent.nhw = !$parent.nhw"><input type="hidden"  value="Y" ng-model="$parent.nhw" ng-click= "$parent.nhw = !$parent.nhw"/> Ulcer/Non-Healing Wound</li>
+  <li ng-show="$parent.venous" ng-click= "$parent.vv = !$parent.vv" ng-swipe-right="$parent.vv = !$parent.vv" ng-class="$parent.vv?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.vv" ng-click= "$parent.vv = !$parent.vv"/> Varicose Veins</li>
+<li ng-click= "$parent.ioto = !$parent.ioto" ng-swipe-right="$parent.ioto = !$parent.ioto" ng-class="$parent.ioto?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.ioto" ng-click= "$parent.ioto = !$parent.ioto"/> Others</li>
   <li ng-show="$parent.ioto"><input type="text" name ="h"  ng-model="$parent.iot" /> </li>
 </ul>
 <div class="input-group inset">
@@ -137,7 +159,7 @@
                 <div ng-show="pname != null && (art || venous) && (uc || ai || veno || oto) && (cl || dap || dvt || pain || piv || pvd || pse || se || nhw || vv || ioto) && !uploadingimages">
                  
                 </div> -->
-		<a  class="button-block " ng-click="order(phyForm.pphone.$valid)" ><i class="icon-hospital icon-large"></i> Initiate Referral  </a>
+		<a  class="button-block " ng-click="order(phyForm.arcode.$valid,phyForm.prefix.$valid,phyForm.linenumber.$valid)" ><i class="icon-hospital icon-large"></i> Initiate Referral  </a>
 <!-- 
 <a class="button button-block" ng-click="uploadFile('/home/devuser/Pictures/one.png')"><i class="icon-camera icon-large"></i> Upload Photo From Desk</a> -->
 </form>
@@ -146,10 +168,12 @@
 	<div class="tab" ng-switch-when="ConfirmRefferral">
 			<ul class="list inset form right" >
 					<li>
-						<label class="field-text"><strong>Patient Name</strong></label>{{$parent.pname}}
+						<label class="field-text"><strong>Patient Name</strong></label>
+						{{$parent.lname}} {{$parent.fname}}
 						</li>
 						<li>
-							<label class="field-text"><strong>Phone</strong></label>{{$parent.phone}}
+							<label class="field-text"><strong>Phone</strong></label>
+							({{$parent.arcode}}) {{$parent.prefix}}-{{$parent.linenumber}}
 						</li>
 						<li>
 							<label class="field-text"><strong>Facility</strong></label>
@@ -165,89 +189,86 @@
 						<li class="list-divider"></li>
 
 								<li ng-if="$parent.art">
-									 <input type="checkbox" name ="h" value="Y" checked="true" disabled /> Arterial
-  
-								</li>
+										<strong>Arterial</strong>
+  								</li>
 						
 								<li ng-if="$parent.venous">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Venous
+								 <strong>Venous</strong>
 								</li>
 
 							<li class="list-divider"></li>
 						
 						
 								<li ng-if="$parent.bil">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Bilateral
+								 <strong>Bilateral</strong>
 								</li>	
 								<li ng-if="$parent.left">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Left
+								 <strong>Left</strong>
 								</li>	
 
 								<li ng-if="$parent.right">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Rigth
+										 <strong>Right</strong>
 								</li>	
-							<li class="list-divider">Examinations</li>
+							<li class="list-divider">Evaluation/Treatment</li>
 						
 								<li ng-if="$parent.uc">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Ultrasound & Consultation	
+										 <strong>Ultrasound & Consultation	</strong>
 								</li>
 								<li ng-if="$parent.veno">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Venogram with possible intervention
+									 <strong>Venogram with possible intervention</strong>
 								</li>
 								
 								<li ng-if="$parent.ai"> 
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Angiogram with possible intervention
+									<strong>Angiogram with possible intervention</strong>
 								</li>
 								<li ng-if="$parent.ot !== 'undefined' && $parent.ot.length > 2">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Others: {{$parent.ot}}
+									 <strong>Others: {{$parent.ot}}</strong>
 								</li>
 							
 						</li>
 							<li class="list-divider">Inidications</li>
-
-
 								<li ng-if="$parent.cl">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Claudication
+									<strong>Claudication</strong>
 								</li>
 									
 								<li ng-if="$parent.dap">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Decreased/Absent Pulses
+										<strong>Decreased/Absent Pulses</strong>
 								</li>
 								
 								<li ng-if="$parent.dvt">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >DVT
+									<strong>DVT</strong>
 								</li>
 								
 								<li ng-if="$parent.pain"> 
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Pain
+									<strong>Pain</strong>
 								</li>
 								<li ng-if="$parent.piv">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Post-Intervention Evaluation
+										<strong>Post-Intervention Evaluation</strong>
 								</li>
 								
 								<li ng-if="$parent.pse">
-										<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Pre-Surgical Evaluation
+										<strong>Pre-Surgical Evaluation</strong>
 								</li>
 								
 								<li ng-if="$parent.pvd">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >PVD
+									<strong>PVD</strong>
 								</li>
 								
 								<li ng-if="$parent.se"> 
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Swelling
+									<strong>Swelling</strong>
 								</li>
 								
 								<li ng-if="$parent.vv">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Varicose Veins
+									<strong>Varicose Veins</strong>
 								</li>
 								
 								<li ng-if="$parent.nhw">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / >Ulcer/Non-Healing Wound
+									<strong>Ulcer/Non-Healing Wound</strong>
 								</li>
 									
 		
 								<li ng-if="$parent.iot !== 'undefined' && $parent.iot.length > 2">
-									<input type="checkbox" name ="h" value="Y" checked="true" disabled / > Others: {{$parent.iot}}
+									<strong>Others: {{$parent.iot}}</strong>
 								</li>
 
 								 <li class="list-divider">Upload images</li>
@@ -265,7 +286,7 @@
 								</li>
 								<li>
 									<label>Date</label>
-									 <div style="margin-top:10px">{{date | date:'MM/dd/yyyy HH:mm'}}</div>
+									 {{date | date:'MM/dd/yyyy HH:mm'}}
 								</li>
 							</ul>	
 			<a  class="button-block " ng-click="confirmreferral()" ><i class="icon-hospital icon-large"></i> Confirms Referral  </a>

@@ -3,7 +3,7 @@
 		<a ng-show="Menu.isOpen()" class="button" ng-click="Menu.toggle()">
 			<i ng-show="Menu.isOpen()" class="icon-remove icon-large"></i>
 		</a>	
-		<h1 class="title"><img src="icon.png" class="headerlogo"/>&nbsp;Home</h1>
+		<h1 class="title"><img src="pedesor.png" class="headerlogo"/>&nbsp;Home</h1>
 		<a class="button" ng-click="signOff()">
 			<i class="icon-signout icon-large"></i> {{userName}}
 		</a>
@@ -16,12 +16,15 @@
 		<space></space>
 		<a  ng-repeat="m in menuItems" ng-hide="m.code==='/'" class='icon' style="{{m.style}} !important"  ng-click="Menu.menuItemClick(m)" stop-event="click">
 			<i ng-class="m.icon" class="icon-2x"></i>
-			<span>{{m.name}}</span>
+			<span><b>{{m.name}}</b></span>
 		</a> 
 		<span>
 		</span>
 
-		<div class="logodiv" style="width: 150px; height: 150px;"></div>
+			<div style="background:;width: 280px; height: 150px;">
+				<img src="pedesor.png" style="opacity: 0.5;width: 350px; height: 200px;"/> 
+	    	</div>
+
 	</div>
 
    

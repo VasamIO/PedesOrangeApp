@@ -5,9 +5,14 @@ space{height:9px;width:100%;display:block;}
 a{cursor:pointer;}
 .content{z-index:10;}
 div.menu{display:block;position:absolute;left:20px;top:43px;right:20px;bottom:40px;z-index:1;background:-webkit-linear-gradient(top,#41240F,#3D240F);list-style:none;width:auto;border:0px;overflow-y:hidden;overflow-x:hidden;opacity:0.90;}
-div.menu ul li{display:block;line-height:22px;border-bottom:1px solid #1c1c1c;padding:5px 60px 5px 10px;}
+div.menu ul li{display:block;
+		line-height:22px;
+		border-bottom:1px solid #1c1c1c;
+		padding:5px 60px 5px 10px;
+	}
 div.menu ul li:first-child{border-top:1px solid #1c1c1c;}
 div.menu ul li a{color:#fff;font-weight:bold;}
+
 .view-animate-container{position:relative;height:100%;}
 .view-animate-container2{position:relative;}
 .view-animate-container > *,.view-animate-container2 > *{display:block;width:100%;position:absolute;top:0;left:0;right:0;bottom:0;}
@@ -50,7 +55,7 @@ div.lpanel ul li a i{top:10px;left:10px;position:absolute;font-size:1.5em;}
 }
 .content.black{
 	/*background-color:#8B4C39;*/
-	background-color:#8B4C39;
+	/*background-color:#8B4C39;*/
 	background-position: bottom center;
 	background-repeat: no-repeat;
 }
@@ -59,11 +64,21 @@ div.lpanel ul li a i{top:10px;left:10px;position:absolute;font-size:1.5em;}
 {   
 	display:block;width:82%;height:90px;margin-bottom:10px;margin-left:10.44%;
 	position:relative;padding:10px;text-shadow:0 -1px 0 rgba(0,0,0,.3);
-	background-color:#51240F;
-	background:-webkit-linear-gradient(top,#51240F,#51240F);
-	border:1px inset #1c1c1c;
+	background-color:#CCC;
 	box-shadow:0 1px rgba(255,255,255,.25);-webkit-box-flex:0;box-flex:0;
 	border-radius:10px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;
+	
+-webkit-border-radius:4px;
+-moz-border-radius:4px;
+-o-border-radius:4px;-ms-border-radius:4px;border-radius:4px;
+outline:none;
+text-align:center;text-decoration:none;
+color:#5d5d5f;letter-spacing:.05em;
+text-shadow:0 1px 1px #e7e7e7,0 -1px 0 #959597;
+background-image:-webkit-gradient(linear, , left top, color-stop(0, #e7e7e7), color-stop(0.33333333333333326, #bebebf), color-stop(1, #959597));
+background-image:-webkit-linear-gradient(top, #e7e7e7 0%, #bebebf 33.33333333333333%, #959597 100%);background-image:-moz-linear-gradient(top, #e7e7e7 0%, #bebebf 33.33333333333333%, #959597 100%);background-image:-o-linear-gradient(top, #e7e7e7 0%, #bebebf 33.33333333333333%, #959597 100%);background-image:-ms-linear-gradient(top, #e7e7e7 0%, #bebebf 33.33333333333333%, #959597 100%);background-image:-webkit-linear-gradient(to bottom, #e7e7e7 0%, #bebebf 33.33333333333333%, #959597 100%);background-image:-moz-linear-gradient(to bottom, #e7e7e7 0%, #bebebf 33.33333333333333%, #959597 100%);background-image:-o-linear-gradient(to bottom, #e7e7e7 0%, #bebebf 33.33333333333333%, #959597 100%);background-image:-ms-linear-gradient(to bottom, #e7e7e7 0%, #bebebf 33.33333333333333%, #959597 100%);background-image:linear-gradient(to bottom, #e7e7e7 0%, #bebebf 33.33333333333333%, #959597 100%);border:1px solid #777779;-webkit-box-shadow:0 1px 1px #5d5d5f;-moz-box-shadow:0 1px 1px #5d5d5f;
+-o-box-shadow:0 1px 1px #5d5d5f;-ms-box-shadow:0 1px 1px #5d5d5f;box-shadow:0 1px 1px #5d5d5f;
+
 }
 
 @media (max-width:1280px){.icon{width:74%;margin-left:2.28%;}
@@ -76,9 +91,9 @@ div.lpanel ul li a i{top:10px;left:10px;position:absolute;font-size:1.5em;}
 @media (max-width:600px){.icon{width:84%;margin-left:7.5%;}
 .icon a:last-child{margin-right:2.5%;}
 }
-.icon:active{color:#fff;background-color:#3D240F;padding-top:15px;background-image:none;box-shadow:inset 0 3px 3px rgba(0,0,0,.2);}
+.icon:active{color:#fff;background-color:#767676;padding-top:15px;background-image:none;box-shadow:inset 0 3px 3px rgba(0,0,0,.2);}
 a,button,header,nav{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:moz-none;-ms-user-select:none;user-select:none;}
-.icon i,.icon span{text-align:center;color:#ddd;display:block;margin:auto;}
+.icon i,.icon span{text-align:center;color:#353030;display:block;margin:auto;}
 .icon span{margin-top:10px;}
 .icon i{max-width:50px;}
 .tab-item i{color:#ddd;}

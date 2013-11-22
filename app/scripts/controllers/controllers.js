@@ -98,26 +98,28 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		} 
 	});
 
-	$scope.order = function(isValidPhone) {
-	console.log("valid phone number -->"+isValidPhone );
+	$scope.order = function(arcode,prefix,lineumber) {
+	
 //	Logger.showAlert("****"+$scope.ot);  
+console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 	if(typeof $scope.facility === "undefined" ||$scope.facility === "nofacility" ) {
 		Logger.showAlert("Please select facility","Error");
 		return;
 	}
-	
-	if($scope.pname == null) {
+	console.log("****"+$scope.art+"**********"+$scope.venous);
+	if($scope.fname == null && $scope.lname == null) {
 		Logger.showAlert("Please enter patient name","Error");
 		return;
-	} else if(!isValidPhone) {
+	} else if((!arcode || !prefix || !lineumber ) 
+		|| ($scope.arcode == null || $scope.prefix == null || $scope.linenumber == null  )){
 		Logger.showAlert("Please enter valid phone number. Ex (xxx) xxx-xxxx","Error");
 		return;
-	} else if ($scope.venous == null && $scope.art == null) {
+	} else if (($scope.venous == null || !$scope.venous)&& ($scope.art == null ||!$scope.art)) {
 		Logger.showAlert("Please select atleast one from Arterial or Venous","Error");
 		return;
 	} else if($scope.uc == null && $scope.ai == null  
 		&&  $scope.veno == null && $scope.ot == null ) {
-		Logger.showAlert("Please select atleast one from Examinations","Error");
+		Logger.showAlert("Please select atleast one from Evaluation/Treatment","Error");
 		return;
 	} else if($scope.dap == null && $scope.dvt == null
 				&& $scope.pain == null && $scope.piv == null
@@ -146,17 +148,23 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 
   $scope.confirmreferral = function() {
   	console.log("**************** In confirm refferrral********");
-
-  	
 	$scope.uploadingimages =  true;
+	var _pname = "";
+
+	if(typeof $scope.lname !== "undefined") {
+		_pname += $scope.lname +" ";
+	}
+	if(typeof $scope.fname !== "undefined") {
+		_pname += $scope.lname;
+	}
 	RaModel.save({'dataSource':'PatientReferralFormV','operation':'insert'}, { "sessionId":Session.get().sessionId,
-	  'phone':$scope.phone,
+	  'phone':"("+$scope.arcode+") "+$scope.prefix+"-"+$scope.linenumber,
 	  'uploadDocIds':  $scope.fileIds,
 	  "referred":$scope.userId,                             
       "dateref":new Date(),
       "venogram": $scope.veno?"Y":"N",
       "otherVenogram":$scope.ot,
-	  'patientName':$scope.pname,
+	  'patientName':_pname,
 	  "pain":$scope.pain?"Y":"N",
       "ulcer":$scope.nhw?"Y":"N",
       "pvd":$scope.pvd?"Y":"N",
