@@ -155,7 +155,7 @@ console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 		_pname += $scope.lname +" ";
 	}
 	if(typeof $scope.fname !== "undefined") {
-		_pname += $scope.lname;
+		_pname += $scope.fname;
 	}
 	RaModel.save({'dataSource':'PatientReferralFormV','operation':'insert'}, { "sessionId":Session.get().sessionId,
 	  'phone':"("+$scope.arcode+") "+$scope.prefix+"-"+$scope.linenumber,
@@ -197,7 +197,7 @@ console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 						var time = d.getHours()+""+d.getMinutes();
 						d = d.getMonth()+"/"+d.getDate()+"/"+d.getFullYear();
 						var test = $scope.art?"Arterial":"Venous";
-						Logger.showConfirm('Congratulations Dr.'+$scope.userName+' you have referred '+$scope.pname+' for an '+test+' with Pedes Orange County. Your referral was received '+d+' at '+time+' hours from your Irvine Office facility. We will begin processing your referral immediately. Please let us know if you have any questions', function(){
+						Logger.showConfirm('Congratulations Dr.'+$scope.userName+' you have referred '+_pname+' for an '+test+' with Pedes Orange County. Your referral was received '+d+' at '+time+' hours from your Irvine Office facility. We will begin processing your referral immediately. Please let us know if you have any questions', function(){
 							$scope.safeApply (function(){
 								$location.path('/');
 							});
