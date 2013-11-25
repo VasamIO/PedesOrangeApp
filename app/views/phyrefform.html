@@ -170,10 +170,10 @@
 						{{$parent.lname}} {{$parent.fname}}
 						</li>
 						<li>
-							<label class="field-text"><strong>Phone</strong></label>
+							<label class="field-text" ><strong>Patient Contact Number</strong></label>
 							({{$parent.arcode}}) {{$parent.prefix}}-{{$parent.linenumber}}
 						</li>
-						<li>
+						<li style="padding:20px 35px 20px 10px">
 							<label class="field-text"><strong>Facility</strong></label>
 
 								<anytag ng-repeat="faci in facilityDropDown">
@@ -269,7 +269,7 @@
 									<strong>Others: {{$parent.iot}}</strong>
 								</li>
 
-								 <li class="list-divider">Upload images</li>
+								 <li class="list-divider">Uploaded images</li>
 								<li>
 								    <span  ng-repeat="imgurl in upimages">
 										<img src="{{ imgurl }}" class="thumbnail"/>
