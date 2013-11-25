@@ -195,7 +195,7 @@ console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 					
 						var d = new Date($scope.date);
 						var time = d.getHours()+""+d.getMinutes();
-						d = d.getMonth()+"/"+d.getDate()+"/"+d.getFullYear();
+						d = (d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear();
 						var test = $scope.art?"Arterial":"Venous";
 						Logger.showConfirm('Congratulations Dr.'+$scope.userName+' you have referred '+_pname+' for an '+test+' with Pedes Orange County. Your referral was received '+d+' at '+time+' hours from your Irvine Office facility. We will begin processing your referral immediately. Please let us know if you have any questions', function(){
 							$scope.safeApply (function(){
