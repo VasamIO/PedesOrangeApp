@@ -100,7 +100,7 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 
 	$scope.showCnfMsg = function(statselected) {
 		if(statselected) {
-		Logger.showAlert("Stat selected","Stat Info");	
+		Logger.showAlert("Notifications will sent to Crystal, Neil Goldstein and Brianna","Info");	
 		}
 	}
 	$scope.order = function(arcode,prefix,lineumber) {
