@@ -92,9 +92,9 @@
   <li>
     <b>STAT Ordered</b>
     
-    <input type="hidden" ng-model="$parent.statsel"/>
+    <input type="hidden" ng-model="$parent.statsel" />
 
-    <div class="toggle" ng-class='statsel?"active":""' ng-click="statsel=!statsel" ng-swipe-right="statsel=true" ng-swipe-left="statsel=false">
+    <div class="toggle" ng-class='$parent.statsel?"active":""' ng-click="$parent.statsel=!$parent.statsel;showCnfMsg(statsel);" ng-swipe-right="$parent.statsel=true;showCnfMsg(statsel);" ng-swipe-left="$parent.statsel=false;showCnfMsg(statsel);">
       <div class="toggle-handle"></div>
     </div>
   </li>
@@ -105,7 +105,7 @@
 <ul class="list inset">
   <li class="list-divider">Indications</li>
   
-  <li ng-show="$parent.art" ng-click= "$parent.cl = !$parent.cl"  ng-swipe-right="$parent.cl = !$parent.cl"ng-class="$parent.cl?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.cl" ng-click= "$parent.cl = !$parent.cl"/> Claudication</li>
+  <li ng-show="$parent.art" ng-click= "$parent.cl = !$parent.cl"  ng-swipe-right="$parent.cl = !$parent.cl" ng-class="$parent.cl?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.cl" ng-click= "$parent.cl = !$parent.cl"/> Claudication</li>
   
   <li ng-show="$parent.art" ng-click= "$parent.dap = !$parent.dap" ng-swipe-right="$parent.dap = !$parent.dap" ng-class="$parent.dap?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.dap" ng-click= "$parent.dap = !$parent.dap"/> Decreased/Absent Pulses</li>
   <li ng-show="$parent.venous" ng-click= "$parent.dvt = !$parent.dvt" ng-swipe-right="$parent.dvt = !$parent.dvt" ng-class="$parent.dvt?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.dvt" ng-click= "$parent.dvt = !$parent.dvt"/> DVT</li>
@@ -235,6 +235,14 @@
 								</li>
 							
 						</li>
+
+						  <li>
+						    <b>STAT Ordered</b>
+						    {{parent.statsel}}
+						    <div class="toggle" ng-class='$parent.statsel?"active":""'>
+						      <div class="toggle-handle"></div>
+						    </div>
+						  </li>
 							<li class="list-divider">Inidications</li>
 								<li ng-if="$parent.cl">
 									<strong>Claudication</strong>

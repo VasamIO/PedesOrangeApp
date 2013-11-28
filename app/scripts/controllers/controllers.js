@@ -98,6 +98,11 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		} 
 	});
 
+	$scope.showCnfMsg = function(statselected) {
+		if(statselected) {
+		Logger.showAlert("Stat selected","Stat Info");	
+		}
+	}
 	$scope.order = function(arcode,prefix,lineumber) {
 	
 //	Logger.showAlert("****"+$scope.ot);  
@@ -184,6 +189,7 @@ console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
       "angiogram":$scope.ai ? 'Y' : 'N',
       "ultraConsult":$scope.uc ? 'Y' : 'N',
       "status":'Submitted',
+      "stat":$scope.statsel?"Y":"N",
       "facility":$scope.facility,
       "vascularconsult": 'N',
       "exercisestudy": 'N'

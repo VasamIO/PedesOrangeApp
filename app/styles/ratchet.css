@@ -1530,7 +1530,7 @@ background-image:-webkit-linear-gradient(top, #e7e7e7 0%, #bebebf 33.33333333333
 
 .toggle:before {
   position: absolute;
-  right: 13px;
+  right: 10px;
   font-weight: bold;
   line-height: 38px;
   color: #777;
