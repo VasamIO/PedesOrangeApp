@@ -78,17 +78,26 @@
 </ul>
 
 <div style="align:center">
-
+<!-- 
 <ul class="segmented-controller" style="width:150px;margin:10px">
 
-	<input type="hidden" ng-model="$parent.statsel"/>
+	
 	
   <li  >
    <a ng-click="statsel=!statsel" ng-class="statsel?'activecust':''">STAT</a>
   </li>
 
-</ul>
-
+</ul> -->
+<ul class="list inset">
+  <li>
+    <b>STAT Ordered</b>
+    <input type="hidden" ng-model="$parent.statsel"/>
+    <div class="toggle" ng-class='statsel?"active":""' ng-click="statsel=!statsel">
+      <div class="toggle-handle"></div>
+    </div>
+  </li>
+  </ul>
+<!-- ng-class="Demo.isEnabled()?'active':''" -->
       
 </div>
 <ul class="list inset">
