@@ -1,6 +1,6 @@
 <div class="page">
 <header class="bar-title">
-	<a ng-hide="selection==='ConfirmRefferral'" class="button" ng-click="back()">
+	<a ng-hide="selection==='ConfirmRefferral'" class="button" ng-click="back()" style="margin-left:0px;margin-top: 2px;">
 		<i class="icon-arrow-left icon-large"></i> 
 	</a>
 		<a ng-show="selection==='ConfirmRefferral'" class="button" ng-click="selection='ReferralForm'" stop-event="click">
@@ -278,12 +278,14 @@
 									<strong>Others: {{$parent.iot}}</strong>
 								</li>
 
-								 <li class="list-divider">Uploaded images</li>
+								 <li class="list-divider">Upload images</li>
 								<li>
 								    <span  ng-repeat="imgurl in upimages">
 										<img src="{{ imgurl }}" class="thumbnail"/>
 								    </span>
-
+								    <span ng-if="upimages.length == 0">
+								    	No images uploaded.
+								    </span>
 								</li>
 
 

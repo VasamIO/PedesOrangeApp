@@ -244,7 +244,7 @@ a {
   top: 0;
   left: 0;
   display: block;
-  width: 100%;
+  width: 85%;
   font-size: 18px;
   font-weight: bold;
   line-height: 44px;
@@ -364,7 +364,7 @@ a {
   -webkit-flex: 0;
   -ms-flex: 0;
   box-flex: 0;
-  margin-top: 0px !important;
+  /*margin-top: 0px !important;*/
 }
 
 /* Hacky way to right align buttons outside of flex-box system
@@ -1665,9 +1665,7 @@ input[type="checkbox"]  {
   width:60px;
   border:1px red;
   vertical-align: middle;
-  margin-bottom:3px;
-
-}
+  }
 
 .img-wrap {
     position: relative;

@@ -1,13 +1,14 @@
 <div id="patientPage" class="page">
 	<header class="bar-title">
-		<a ng-hide="a.selection==='PatientDetails'" class="button" ng-click="back()"  stop-event="click">
+		<a ng-hide="a.selection==='PatientDetails'" class="button" ng-click="back()"  stop-event="click" style="margin-left:0px;margin-top: 2px;">
 			<i class="icon-arrow-left icon-large"></i>
 		</a>
 		<h1 class="title" ng-swipe-right="back()"> 
 
-		<i ng-show="a.loading || a.patients.loading || a.patientDetails.loading " class="icon-spinner icon-spin icon-large" style="display: none;"></i> 	<img src="pedesor.png" class="headerlogo"/> {{a.pageTitle}}</h1>
+		<i ng-show="a.loading || a.patients.loading || a.patientDetails.loading " class="icon-spinner icon-spin icon-large" style="display: none;"></i> 	
+		<img src="pedesor.png" class="headerlogo"/> {{a.pageTitle}}</h1>
 		
-	<a ng-if="a.selection==='PatientDetails'" class="button" ng-click="a.selection='Patients';closePopup();	a.patientDetails.imagesrefresh = false;" stop-event="click">
+	<a ng-if="a.selection==='PatientDetails'" class="button" style="margin-left:0px;margin-top: 2px;" ng-click="a.selection='Patients';closePopup();	a.patientDetails.imagesrefresh = false;" stop-event="click">
 			<i class="icon-remove icon-large"></i>
 		</a>
 	</header>
