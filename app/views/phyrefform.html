@@ -3,10 +3,10 @@
 	<a ng-hide="selection==='ConfirmRefferral'" class="button" ng-click="back()" style="margin-left:0px;margin-top: 2px;">
 		<i class="icon-arrow-left icon-large"></i> 
 	</a>
-		<a ng-show="selection==='ConfirmRefferral'" class="button" ng-click="selection='ReferralForm'" stop-event="click">
+		<a ng-show="selection==='ConfirmRefferral'" class="button" ng-click="selection='ReferralForm'" style="margin-left:0px;margin-top: 2px;" stop-event="click">
 			<i class="icon-arrow-left icon-large"></i> 
 		</a>
-	<h1 class="title" ><img src="pedesor.png" class="headerlogo" /> {{title}}</h1>
+	<h1 class="title" style="width:97%" ><img src="pedesor.png" class="headerlogo" /> {{title}}</h1>
 </header>
  <div class="content black slide" ng-switch on="selection">
  
@@ -91,8 +91,10 @@
 <ul class="list inset">
   <li>
     <b>STAT Ordered</b>
+    
     <input type="hidden" ng-model="$parent.statsel"/>
-    <div class="toggle" ng-class='statsel?"active":""' ng-click="statsel=!statsel">
+
+    <div class="toggle" ng-class='statsel?"active":""' ng-click="statsel=!statsel" ng-swipe-right="statsel=true" ng-swipe-left="statsel=false">
       <div class="toggle-handle"></div>
     </div>
   </li>
