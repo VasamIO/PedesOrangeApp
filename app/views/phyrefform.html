@@ -60,8 +60,6 @@
   	<input type="hidden" name ="h"  value="Y" ng-model="$parent.venous" ng-click="$parent.venous = !$parent.venous"/> Venous</li>
 </ul>
  
-
-
 <ul class="list inset">
   <li ng-click= "$parent.bil = !$parent.bil;$parent.left=false;$parent.right=false" ng-class="$parent.bil?'btnselafter':'btnselbefore'" ng-swipe-right= "$parent.bil = !$parent.bil;$parent.left=false;$parent.right=false" ><input type="hidden" name ="h" value="Y" ng-model="$parent.bil" ng-click= "$parent.bil = !$parent.bil" /> Bilateral</li>
   <li ng-show="!$parent.bil" ng-click= "$parent.left = !$parent.left" ng-class="$parent.left?'btnselafter':'btnselbefore'" ng-swipe-right="$parent.left = !$parent.left"><input type="hidden" name ="h" value="Y" ng-model="$parent.left" ng-click= "$parent.left = !$parent.left" /> Left</li>
@@ -172,6 +170,8 @@
 <!-- 
 <a class="button button-block" ng-click="uploadFile('/home/devuser/Pictures/one.png')"><i class="icon-camera icon-large"></i> Upload Photo From Desk</a> -->
 </form>
+ <div notifications="custom" class="ng-isolate-scope ng-scope dr-notification-container custom"><!-- ngRepeat: noti in queue -->
+</div>
 </div>
 
 	<div class="tab" ng-switch-when="ConfirmRefferral">

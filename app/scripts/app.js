@@ -59,7 +59,7 @@ var PhoneGap = {
 PhoneGap.initialize();
 
 
-var app = angular.module('SPAApp', ['ngMobile', 'ngResource', 'infinite-scroll']);
+var app = angular.module('SPAApp', ['ngMobile', 'ngResource', 'infinite-scroll','notifications']);
 app.config(['$provide', function ($provide) {
 	$provide.decorator('$sniffer', ['$delegate', function ($delegate) {
 		if (!$delegate.transitions||!$delegate.animations) {
@@ -131,6 +131,7 @@ app.config(function ($routeProvider) {
 		redirectTo: '/'
 	});
 });
+
 app.factory('RaModel', function($resource) {
 	return $resource(baseUrl + ':dataSource/:operation', {'8888':':8888'}, {
 		query: {
@@ -150,6 +151,39 @@ app.factory('RaModel', function($resource) {
 		}
 	});
 });
+
+app.service('RaNotifications', function($notification) {
+
+/*   $timeout(function(){
+      $notification.info('Notifications Demo', 'The notifications demo is working!');
+    }, 300);
+*/
+    this.gimmeHTML5 = function(){
+      $notification.enableHtml5Mode();
+    }
+
+
+    this.makeInfo = function(title,text){
+        
+        $notification.info(title, text);
+      }
+    
+    this.makeWarning = function(title,text){
+        $notification.warning(title, text);
+    }
+
+    this.makeError = function(title,text){
+        $notification.error(title, text);
+      
+    }
+
+    this.makeSuccess = function(title,text){
+        $notification.success(title, text);
+    }
+});
+
+
+
 app.factory('DropDownFactory', ['RaModel','Logger','Session',function(RaModel,Logger,Session) {
     return {
         loadDropDown: function(ds,valueAttribute,displayAttribute,callback) {

@@ -23,6 +23,7 @@ app.controller('MainCtrl', ['$rootScope','$scope', '$location', 'DropDownFactory
 				});
 	}
 	init();
+
 	setTimeout(function(){
 		$scope.$apply(function(){
 			$scope.showIntro = false;
@@ -56,7 +57,7 @@ app.controller('LoginCtrl', ['$scope', '$location', 'Session', 'Menu', function 
 
 
 
-app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$scope', '$location', 'Menu','Logger','Session','RaModel', function (DropDownFactory,CameraFactory,$rootScope,$scope, $location,  Menu,Logger,Session,RaModel) {
+app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$scope', '$location', 'RaNotifications', '$timeout', 'Menu','Logger','Session','RaModel', function (DropDownFactory,CameraFactory,$rootScope,$scope, $location,   RaNotifications, $timeout,Menu,Logger,Session,RaModel) {
 	 $scope.uploadingimages = false;
 	 $scope.phoneNumberPattern = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/; //.(714) 345-4567
 	 var $this = this;
@@ -76,6 +77,7 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 	   	console.log("***Pattern*******"+$scope.phoneNumberPattern);
   	}
 	init();
+
 
 	$scope.back = function() {
 		Menu.setSubPage(true);
@@ -100,7 +102,7 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 
 	$scope.showCnfMsg = function(statselected) {
 		if(statselected) {
-		Logger.showAlert("Notifications will sent to Crystal, Neil Goldstein and Brianna","Info");	
+			RaNotifications.makeInfo("Notifications will sent to Crystal, Neil Goldstein and Brianna","");	
 		}
 	}
 	$scope.order = function(arcode,prefix,lineumber) {
