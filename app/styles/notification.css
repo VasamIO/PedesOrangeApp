@@ -27,7 +27,7 @@
 
 .dr-notification-container.custom {
   left: 3.5%;
-  top:181%;
+  top:176%;
 }
 .dr-notification-wrapper {
   width: 380px;
@@ -36,7 +36,7 @@
 }
 
 .dr-notification {
-  width: 285px;
+  width: 299px;
   background-color: #959597;
    clear: both; 
   min-height: 60px;
