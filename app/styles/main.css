@@ -109,7 +109,8 @@ a,button,header,nav{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-u
 .thumbnail {
                 border: 1px solid #999;
                 background-color: #fff;
-               
+               height: 90px;
+               width: 90px;
                 padding: 5px;
              
                

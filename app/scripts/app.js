@@ -202,7 +202,6 @@ app.factory('DropDownFactory', ['RaModel','Logger','Session',function(RaModel,Lo
 }]);
 
 
-
 app.service('Logger', function() {
 	var $this = this;
 	this.show = false;
@@ -279,20 +278,22 @@ app.factory('CameraFactory', ['Logger',function(Logger) {
 					Logger.showAlert("Camera API is not supported", "Error");
 			        return;
 			    }
-                var options =   {   quality: 50,
+                var options =   { quality: 25,
                        destinationType: Camera.DestinationType.FILE_URI,
                         sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
                         encodingType: 0     // 0=JPG 1=PNG
+
                  };
                  navigator.camera.getPicture(function(imageData) {
 					    var path = imageData;
 					    var name = imageData;
-					    var uploadServerUrl = fileUploadUrl;
+					    path = imageData.fullPath,
+					 	name = imageData.name;
+            			var uploadServerUrl = fileUploadUrl;
 					    var ft = new FileTransfer();
-					    //alert("ulr options:"+imageoptions);
 					    ft.upload( imageData, uploadServerUrl,
 					        function(r) {
-					      		callback.success(r.response)
+					      		callback.success(r.response,imageData)
 						    }, 
 						    function(error) {
 					  	      callback.failure(error);

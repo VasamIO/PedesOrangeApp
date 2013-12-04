@@ -56,7 +56,6 @@ app.controller('LoginCtrl', ['$scope', '$location', 'Session', 'Menu', function 
 }]);
 
 
-
 app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$scope', '$location', 'RaNotifications', '$timeout', 'Menu','Logger','Session','RaModel', function (DropDownFactory,CameraFactory,$rootScope,$scope, $location,   RaNotifications, $timeout,Menu,Logger,Session,RaModel) {
 	 $scope.uploadingimages = false;
 	 $scope.phoneNumberPattern = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/; //.(714) 345-4567
@@ -66,7 +65,7 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 	 $scope.title = "Referral Form";
 	 $scope.selection = "ReferralForm";
 		$scope.facilityDropDown = [];
-		$scope.fileIds = "";
+		$scope.fileIds = "";   
 	function init() {
 		$scope.date = new Date();
 		$scope.time = '09:30';
@@ -242,7 +241,7 @@ console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 					    options.chunkedMode = false;
 					    //$scope.uploadingimages = true;
 						CameraFactory.openCamera(options,{
-							success: function(r) {
+							success: function(r,fileuri) {
 							 $scope.safeApply(function(){
 									$scope.uploadingimages = false;
 									var _json  = eval(r);
@@ -252,7 +251,7 @@ console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 				    					$scope.fileIds = _json[0].fileId;
 				    				}
 			    					var imgurl = fileUploadUrl+"?rev=1&sid="+Session.get().sessionId+"&ds=PatientReferralFormV&fid="+_json[0].fileId+"&thumb=Y";
-			    					$scope.upimages.push(imgurl);
+			    					$scope.upimages.push(fileuri);
 			    					$scope.uploadingimages = false;
 		    					});
 		    			},failure : function(error) {
@@ -264,7 +263,6 @@ console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 	}
 
 }]);
-
 
 
 app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory','$rootScope','$scope','$http' ,'$location', '$window','RaModel','QCalls', 'Session', 'Cache', 'Menu','Logger', function ($timeout,DropDownFactory,CameraFactory,$rootScope,$scope, $http,$location,$window, RaModel, QCalls,Session, Cache, Menu, Logger) {
@@ -472,7 +470,7 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
 					    options.params = params;
 					    options.chunkedMode = false;
 						CameraFactory.openCamera(options,{
-							success: function(r) {
+							success: function(r,fileurl) {
 								$scope.safeApply(function(){
 									$scope.uploadingimages = false;
 									var _json  = eval(r);
@@ -487,7 +485,7 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
 					    					patientImgs.push(imgurl);		
 					    			} else {
 					    				var _imagedata = [];
-					    				_imagedata.push(imgurl);
+					    				_imagedata.push(fileurl);
 					    				$scope.image_data[a.patients.current.patientId] = _imagedata;
 					    			}
 					    			var fids = $scope.fileIds;
