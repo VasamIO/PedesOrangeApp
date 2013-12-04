@@ -278,9 +278,9 @@ app.factory('CameraFactory', ['Logger',function(Logger) {
 					Logger.showAlert("Camera API is not supported", "Error");
 			        return;
 			    }
-                var options =   { quality: 25,
+                var options =   { quality: 35,
                        destinationType: Camera.DestinationType.FILE_URI,
-						 targetWidth: 300,
+						 targetWidth: 295,
 						  targetHeight: 450,
                         sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
                         encodingType: 0     // 0=JPG 1=PNG
