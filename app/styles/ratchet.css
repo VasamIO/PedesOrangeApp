@@ -1443,7 +1443,7 @@ background-image:-webkit-linear-gradient(top, #e7e7e7 0%, #bebebf 33.33333333333
   z-index: 11;
   width: 94%;
   left:10px;
-  min-height: 70%;
+  min-height: 100%;
   overflow: hidden;
    
   -webkit-transition: -webkit-transform .25s ease-in-out;
