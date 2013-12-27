@@ -661,6 +661,24 @@ app.directive('ngEnter', function() {
         };
     });
 
+app.directive('ngKeyDown', function() {
+	alert("asdfasdfas");
+        return function(scope, element, attrs) {
+        	alert("asdfasdfas");
+            element.bind("keydown keypress", function(event) {
+                /*if(event.which === 13) {
+                    scope.$apply(function(){
+                        scope.$eval(attrs.ngEnter);
+                    });
+
+                    event.preventDefault();
+                }*/
+                alert("***"+element.value);
+            });
+        };
+    });
+
+
   app.directive("ngTap", function() {
   return function($scope, $element, $attributes) {
     var tapped;

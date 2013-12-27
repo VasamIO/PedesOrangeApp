@@ -95,9 +95,11 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 			
 			
 		} else if (newValue === 'ConfirmRefferral') {
-			$scope.title = 'Confirm Refferral';
+			$scope.title = 'Confirm Referral';
 		} 
 	});
+
+
 
 	$scope.showCnfMsg = function(statselected) {
 		if(statselected) {
@@ -200,11 +202,13 @@ console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 					Logger.showAlert(result.errorMessage,result.errorTitle);
 				} else {
 					
-						var d = new Date($scope.date);
+						/*var d = new Date($scope.date);
 						var time = d.getHours()+""+d.getMinutes();
 						d = (d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear();
-						var test = $scope.art?"Arterial":"Venous";
-						Logger.showConfirm('Congratulations Dr.'+$scope.userName+' you have referred '+_pname+' for an '+test+' with Pedes Orange County. Your referral was received '+d+' at '+time+' hours from your Irvine Office facility. We will begin processing your referral immediately. Please let us know if you have any questions', function(){
+						var test = $scope.art?"Arterial":"Venous";*/
+						
+						//'Congratulations Dr.'+$scope.userName+' you have referred '+_pname+' for an '+test+' with Pedes Orange County. Your referral was received '+d+' at '+time+' hours from your Irvine Office facility. We will begin processing your referral immediately. Please let us know if you have any questions'
+						Logger.showConfirm('Thank you. Your referral has been sent', function(){
 							$scope.safeApply (function(){
 								$location.path('/');
 							});

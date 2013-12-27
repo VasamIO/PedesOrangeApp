@@ -6,7 +6,10 @@
 		<a ng-show="selection==='ConfirmRefferral'" class="button" ng-click="selection='ReferralForm'" style="margin-left:0px;margin-top: 2px;" stop-event="click">
 			<i class="icon-arrow-left icon-large"></i> 
 		</a>
-	<h1 class="title" style="width:97%" ><img src="pedesor.png" class="headerlogo" /> {{title}}</h1>
+	<h1 class="title" style="width:97%" > {{title}}</h1>
+	<div ng-hide="selection==='ConfirmRefferral'"  style="margin-left:0px;margin-top: 2px;position: relative;" align="right">
+			<img src="pedesor.png" class="headerlogo2" style="margin-right: -15px;" />
+	</div>
 </header>
  <div class="content black slide" ng-switch on="selection">
  
@@ -45,10 +48,10 @@
 		</div>
 
 		<div class="input-row" >
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<input type="text" style="width:18%;" name="arcode" placeholder="" ng-pattern="/^[0-9]{3}$/" maxlength="3" ng-model="$parent.arcode"/>) 
-			<input type="text" style="width:18%" name="prefix" placeholder="" 
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<input type="number" style="width:18%;" name="arcode" placeholder="" ng-pattern="/^[0-9]{3}$/" maxlength="3" ng-model="$parent.arcode"/>) 
+			<input type="number" style="width:18%" name="prefix" ng-keypress="keyPressEve($event)" placeholder="" 
 			ng-pattern="/^[0-9]{3}$/" maxlength="3" ng-model="$parent.prefix"/> - 
-			<input type="text" style="width:23%" name="linenumber" placeholder="" ng-pattern="/^[0-9]{4}$/" maxlength="4" ng-model="$parent.linenumber"/></div>
+			<input type="number" style="width:23%" name="linenumber" placeholder="" ng-pattern="/^[0-9]{4}$/" maxlength="4" ng-model="$parent.linenumber"/></div>
 
 		</div>
  <ul class="list inset">
@@ -68,10 +71,11 @@
 <ul class="list inset">
 <li class="list-divider">Evaluation/Treatment</li>
 
-  <li ng-click= "$parent.uc = !$parent.uc" ng-swipe-right="$parent.uc = !$parent.uc" ng-class="$parent.uc?'btnselafter':'btnselbefore'" ><input type="hidden" name ="h" value="Y" ng-model="$parent.uc"  ng-click= "$parent.uc = !$parent.uc"/> Ultrasound & Consultation</li>
-  <li ng-click= "$parent.ai = !$parent.ai" ng-swipe-right="$parent.ai = !$parent.ai" ng-class="$parent.ai?'btnselafter':'btnselbefore'"><input type="hidden" name ="h" value="Y" ng-model="$parent.ai"  ng-click= "$parent.ai = !$parent.ai"/> Angiogram with possible intervention</li>
-  <li ng-click= "$parent.veno = !$parent.veno" ng-swipe-right="$parent.veno = !$parent.veno" ng-class="$parent.veno?'btnselafter':'btnselbefore'"><input type="hidden" name ="h" value="Y" ng-model="$parent.veno"  ng-click= "$parent.veno = !$parent.veno"/> Venogram with possible intervention</li>
-  <li ng-click= "$parent.oto = !$parent.oto" ng-swipe-right="$parent.oto = !$parent.oto" ng-class="$parent.oto?'btnselafter':'btnselbefore'"><input type="hidden" name ="h" value="Y" ng-model="$parent.oto"  ng-click= "$parent.oto = !$parent.oto"/> Other</li>
+  <li ng-show="!($parent.ai || $parent.veno)" ng-click= "$parent.uc = !$parent.uc;$parent.ai = false;$parent.veno = false" ng-swipe-right="$parent.uc = !$parent.uc;$parent.ai = false;$parent.veno = false" ng-class="$parent.uc?'btnselafter':'btnselbefore'" ><input type="hidden" name ="h" value="Y" ng-model="$parent.uc"  ng-click= "$parent.uc = !$parent.uc"/> Consultation & Diagnostic Ultrasound</li>
+  <li ng-show="!($parent.uc || $parent.veno)" 
+  ng-click= "$parent.ai = !$parent.ai;$parent.uc=false; $parent.veno=false" ng-swipe-right="$parent.ai = !$parent.ai;$parent.uc=false; $parent.veno=false" ng-class="$parent.ai?'btnselafter':'btnselbefore'"><input type="hidden" name ="h" value="Y" ng-model="$parent.ai"  ng-click= "$parent.ai = !$parent.ai"/> Angiogram with possible intervention</li>
+  <li ng-show="!($parent.uc||$parent.ai)" ng-click= "$parent.veno = !$parent.veno;$parent.ai=false;$parent.uc=false" ng-swipe-right="$parent.veno = !$parent.veno;$parent.ai=false;$parent.uc=false" ng-class="$parent.veno?'btnselafter':'btnselbefore'"><input type="hidden" name ="h" value="Y" ng-model="$parent.veno"  ng-click= "$parent.veno = !$parent.veno"/> Venogram with possible intervention</li>
+  <li ng-click= "$parent.oto = !$parent.oto" ng-swipe-right="$parent.oto = !$parent.oto" ng-class="$parent.oto?'btnselafter':'btnselbefore'"><input type="hidden" name ="h" value="Y" ng-model="$parent.oto"  ng-click= "$parent.oto = !$parent.oto"/> Other/Note</li>
   <li ng-show="$parent.oto"><input type="text" name ="h" value="Y" ng-model="$parent.ot" /> </li>
 </ul>
 
@@ -88,11 +92,12 @@
 </ul> -->
 <ul class="list inset">
   <li>
-    <b>STAT Ordered</b>
+    <b>STAT Order</b>
     
     <input type="hidden" ng-model="$parent.statsel" />
 
-    <div class="toggle" ng-class='$parent.statsel?"active":""' ng-click="$parent.statsel=!$parent.statsel;showCnfMsg(statsel);" ng-swipe-right="$parent.statsel=true;showCnfMsg(statsel);" ng-swipe-left="$parent.statsel=false;showCnfMsg(statsel);">
+    <div class="toggle" ng-class='$parent.statsel?"active":""' ng-click="$parent.statsel=!$parent.statsel;" ng-swipe-right="$parent.statsel=true;showCnfMsg(statsel);" ng-swipe-left="$parent.statsel=false;">
+<!-- showCnfMsg(statsel); -->
       <div class="toggle-handle"></div>
     </div>
   </li>
@@ -114,7 +119,7 @@
   <li ng-show="$parent.venous" ng-click= "$parent.se = !$parent.se" ng-swipe-right="$parent.se = !$parent.se" ng-class="$parent.se?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.se" ng-click= "$parent.se = !$parent.se"/> Swelling/Edema</li>
   <li ng-show="$parent.art" ng-click= "$parent.nhw = !$parent.nhw" ng-class="$parent.nhw?'btnselafter':'btnselbefore'" ng-swipe-right="$parent.nhw = !$parent.nhw"><input type="hidden"  value="Y" ng-model="$parent.nhw" ng-click= "$parent.nhw = !$parent.nhw"/> Ulcer/Non-Healing Wound</li>
   <li ng-show="$parent.venous" ng-click= "$parent.vv = !$parent.vv" ng-swipe-right="$parent.vv = !$parent.vv" ng-class="$parent.vv?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.vv" ng-click= "$parent.vv = !$parent.vv"/> Varicose Veins</li>
-<li ng-click= "$parent.ioto = !$parent.ioto" ng-swipe-right="$parent.ioto = !$parent.ioto" ng-class="$parent.ioto?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.ioto" ng-click= "$parent.ioto = !$parent.ioto"/> Others</li>
+<li ng-click= "$parent.ioto = !$parent.ioto" ng-swipe-right="$parent.ioto = !$parent.ioto" ng-class="$parent.ioto?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.ioto" ng-click= "$parent.ioto = !$parent.ioto"/> Other/Note</li>
   <li ng-show="$parent.ioto"><input type="text" name ="h"  ng-model="$parent.iot" /> </li>
 </ul>
 <div class="input-group inset">
@@ -221,7 +226,7 @@
 							<li class="list-divider">Evaluation/Treatment</li>
 						
 								<li ng-if="$parent.uc">
-										 <strong>Ultrasound & Consultation	</strong>
+										 <strong>Consultation & Diagnostic Ultrasound	</strong>
 								</li>
 								<li ng-if="$parent.veno">
 									 <strong>Venogram with possible intervention</strong>

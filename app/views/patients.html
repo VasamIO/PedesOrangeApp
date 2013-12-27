@@ -10,7 +10,7 @@
 		
 	<a ng-if="a.selection==='PatientDetails'" class="button" style="margin-left:0px;margin-top: 2px;" ng-click="a.selection='Patients';closePopup();	a.patientDetails.imagesrefresh = false;" stop-event="click">
 			<i class="icon-remove icon-large"></i>
-		</a>
+	</a>
 	</header>
 
 	
@@ -21,15 +21,6 @@
 					<li> Find:<input tyzpe = "text" style="margin-bottom:0px;height:35px"  placeholder="Name or Physician or Facility"  ng-model="searchText"></li>	
 					<li ng-repeat="r in a.patients.data | filter:searchText">
 						<a stop-event="click" ng-click="a.patients.current = r; a.selection='PatientDetails';" ng-swipe-right="a.patients.current = r; a.selection='PatientDetails';">
-							<!-- <div>#{{$index + 1}} </div>
-							<div><label class="field-text"><strong>Patient Name:</strong></label>{{r.patientName}}</div>
-							<div><label class="field-text"><strong>Physician Name:</strong></label>{{r.physicianName}} 
-							</div>
-							<div><label class="field-text"><strong>Facility:</strong></label>{{r.facility}} </div>
-					<div><label class="field-text"><strong>Date:</strong></label>{{r.creationDate | timeAgo}} <!-- {{r.uploadDocIds}}  </div>
-							<span class="chevron"></span>
-							 -->
-
 						<div> <strong><i class="icon-user"></i> {{r.patientName}}</strong></div>
 							<div style="margin-left:15px"><label class="field-text">referred by</label> {{r.physicianName}}</div>
 							<div style="margin-left:15px">
@@ -108,7 +99,7 @@
 						<li class="list-divider">Evaluation/Treatment</li>
 									
 								<li ng-if="r.ultraConsult =='Y'">
-										 <strong>Ultrasound & Consultation	</strong>
+										 <strong>Consultation & Diagnostic Ultrasound	</strong>
 								</li>
 								<li ng-if="r.venogram =='Y'">
 									 <strong>Venogram with possible intervention</strong>
@@ -118,7 +109,7 @@
 									<strong>Angiogram with possible intervention</strong>
 								</li>
 								<li ng-if="r.otherVenogram !== 'undefined' && r.otherVenogram.length > 2">
-									 <strong>Others: {{r.otherVenogram}}</strong>
+									 <strong>Other/Note: {{r.otherVenogram}}</strong>
 								</li>
 							
 						</li>

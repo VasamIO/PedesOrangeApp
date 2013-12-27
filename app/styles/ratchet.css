@@ -236,7 +236,12 @@ a {
   -moz-box-shadow:0 0 16px #3b3b3d;-o-box-shadow:0 0 16px #3b3b3d;-ms-box-shadow:0 0 16px #3b3b3d;
   box-shadow:0 0 16px #3b3b3d;
 }
-
+.headerlogo2 {
+height: 75px;
+width: 120px;
+vertical-align: top;
+margin-top: -18px;
+}
 /* Centered text in the .bar-title */
 
 .bar-title .title {
@@ -244,7 +249,7 @@ a {
   top: 0;
   left: 0;
   display: block;
-  width: 85%;
+  width: 95%;
   font-size: 18px;
   font-weight: bold;
   line-height: 44px;
@@ -1739,7 +1744,21 @@ position: relative;
   font-weight: bold !important;
 }    
 
+::-webkit-input-placeholder {
+   text-align:center;
+}
 
+:-moz-placeholder { /* Firefox 18- */
+   text-align:center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align:center;  
+}
+
+:-ms-input-placeholder {  
+   text-align:center; 
+}
 
 /*input[type=button],input[type=submit],input[type=reset],.button,button*/
 /*{width:auto;float:right;clear:left;padding:7px 8px 7px 9px;margin:.85em .2em;
@@ -1763,4 +1782,3 @@ background-image:-webkit-gradient(linear, , left top, color-stop(0, #717173), co
 input[type=button]:disabled,input[type=submit]:disabled,input[type=reset]:disabled,.button:disabled,button:disabled,input[type=button]:disabled:active,input[type=submit]:disabled:active,input[type=reset]:disabled:active,.button:disabled:active,button:disabled:active{-webkit-opacity:.6;-moz-opacity:.6;-o-opacity:.6;-ms-opacity:.6;opacity:.6}
 input,input[type=text],input[type=email],input[type=url],input[type=search],input[type=tel],input[type=number],input[type=password],textarea,display inline-block{float:left;-webkit-border-image:none !important;-moz-border-image:none !important;-o-border-image:none !important;-ms-border-image:none !important;border-image:none !important;border:none;border:1px solid #8d8d90;-webkit-border-radius:3px;-moz-border-radius:3px;-o-border-radius:3px;-ms-border-radius:3px;border-radius:3px;padding:6px;margin:0 0 1em 0;-webkit-appearance:none !important;-moz-appearance:none !important;-o-appearance:none !important;-ms-appearance:none !important;appearance:none !important;outline:none;}
 */input:hover,input[type=text]:hover,input[type=email]:hover,input[type=url]:hover,input[type=search]:hover,input[type=tel]:hover,input[type=number]:hover,input[type=password]:hover,textarea:hover,display inline-block:hover,input:focus,input[type=text]:focus,input[type=email]:focus,input[type=url]:focus,input[type=search]:focus,input[type=tel]:focus,input[type=number]:focus,input[type=password]:focus,textarea:focus,display inline-block:focus{-webkit-box-shadow:0 0 6px 2px #c8c8c9;-moz-box-shadow:0 0 6px 2px #c8c8c9;-o-box-shadow:0 0 6px 2px #c8c8c9;-ms-box-shadow:0 0 6px 2px #c8c8c9;box-shadow:0 0 6px 2px #c8c8c9}
-
