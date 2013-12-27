@@ -41,9 +41,9 @@ app.controller('MainCtrl', ['$rootScope','$scope', '$location', 'DropDownFactory
 
 app.controller('LoginCtrl', ['$scope', '$location', 'Session', 'Menu', function ($scope, $location, Session, Menu) {
 	Menu.setSubPage(true);
-	setTimeout(function(){
+	/*setTimeout(function(){
 		$('input[type="text"]').focus();
-	}, 100);
+	}, 100);*/
 	$scope.signIn = function() {
 		Session.signIn($scope.username, $scope.password, function(){
 			if (Session.isActive()) {

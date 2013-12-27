@@ -237,10 +237,10 @@ a {
   box-shadow:0 0 16px #3b3b3d;
 }
 .headerlogo2 {
-height: 75px;
-width: 120px;
+height: 65px;
+width: 100px;
 vertical-align: top;
-margin-top: -18px;
+margin-top: -15px;
 }
 /* Centered text in the .bar-title */
 
@@ -1744,21 +1744,7 @@ position: relative;
   font-weight: bold !important;
 }    
 
-::-webkit-input-placeholder {
-   text-align:center;
-}
 
-:-moz-placeholder { /* Firefox 18- */
-   text-align:center;  
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   text-align:center;  
-}
-
-:-ms-input-placeholder {  
-   text-align:center; 
-}
 
 /*input[type=button],input[type=submit],input[type=reset],.button,button*/
 /*{width:auto;float:right;clear:left;padding:7px 8px 7px 9px;margin:.85em .2em;

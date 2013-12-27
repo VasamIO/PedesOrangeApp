@@ -96,7 +96,7 @@
     
     <input type="hidden" ng-model="$parent.statsel" />
 
-    <div class="toggle" ng-class='$parent.statsel?"active":""' ng-click="$parent.statsel=!$parent.statsel;" ng-swipe-right="$parent.statsel=true;showCnfMsg(statsel);" ng-swipe-left="$parent.statsel=false;">
+    <div class="toggle" ng-class='$parent.statsel?"active":""' ng-click="$parent.statsel=!$parent.statsel;" ng-swipe-right="$parent.statsel=true;" ng-swipe-left="$parent.statsel=false;">
 <!-- showCnfMsg(statsel); -->
       <div class="toggle-handle"></div>
     </div>
@@ -236,7 +236,7 @@
 									<strong>Angiogram with possible intervention</strong>
 								</li>
 								<li ng-if="$parent.ot !== 'undefined' && $parent.ot.length > 2">
-									 <strong>Others: {{$parent.ot}}</strong>
+									 <strong>Other/Note: {{$parent.ot}}</strong>
 								</li>
 							
 						</li>
