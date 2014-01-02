@@ -746,7 +746,7 @@ app.directive('keyFocus', function($timeout) {
 	       	//alert(elem[0].nextElementSibling);
 	       	$timeout(function() {
             elem[0].nextElementSibling.focus();
-          	},1000);
+          	},100);
 
 	       }
        }
