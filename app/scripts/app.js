@@ -740,10 +740,11 @@ app.directive('keyFocus', function() {
     restrict: 'A',
     link: function(scope, elem, attrs) {
       elem.bind('keydown', function (e) {
+      	alert("Getting here..."+e.keyCode)
       	if(e.keyCode >=48 && e.keyCode <= 57) {
 	       if(elem[0].value.length > 2) {
-	       	console.log(elem[0].value+"*************");
-	       	elem[0].nextElementSibling.focus();
+	       	alert("Getting here...")
+	       	elem[0].nextElementSibling.blue();
 	       }
        }
        /* // up arrow
