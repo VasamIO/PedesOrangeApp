@@ -735,17 +735,19 @@ app.filter('timeAgo', ['timeAgo', 'nowTime', function(timeAgo, nowTime) {
 	};
 }]);
 
-app.directive('keyFocus', function() {
+
+app.directive('keyFocus', function($timeout) {
   return {
     restrict: 'A',
     link: function(scope, elem, attrs) {
       elem.bind('keydown', function (e) {
-      	alert("Getting here..."+e.keyCode)
       	if(e.keyCode >=48 && e.keyCode <= 57) {
-	       if(elem[0].value.length > 2) {
-	       	alert("Getting here...")
-	       	alert(elem[0].nextElementSibling);
-	       	elem[0].nextElementSibling.focus();
+	       if(elem[0].value.length ==2) {
+	       	//alert(elem[0].nextElementSibling);
+	       	$timeout(function() {
+            elem[0].nextElementSibling.focus();
+          	},100);
+
 	       }
        }
        /* // up arrow
