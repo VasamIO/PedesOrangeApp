@@ -742,11 +742,11 @@ app.directive('keyFocus', function($timeout) {
     link: function(scope, elem, attrs) {
       elem.bind('keydown', function (e) {
       	if(e.keyCode >=48 && e.keyCode <= 57) {
-	       if(elem[0].value.length ==2) {
+	       if(elem[0].value.length >=2) {
 	       	//alert(elem[0].nextElementSibling);
 	       	$timeout(function() {
             elem[0].nextElementSibling.focus();
-          	},100);
+          	},1000);
 
 	       }
        }
