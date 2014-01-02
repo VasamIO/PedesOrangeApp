@@ -744,7 +744,8 @@ app.directive('keyFocus', function() {
       	if(e.keyCode >=48 && e.keyCode <= 57) {
 	       if(elem[0].value.length > 2) {
 	       	alert("Getting here...")
-	       	elem[0].nextElementSibling.blue();
+	       	alert(elem[0].nextElementSibling);
+	       	elem[0].nextElementSibling.focus();
 	       }
        }
        /* // up arrow
