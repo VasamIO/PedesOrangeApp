@@ -395,7 +395,7 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
 		/*
 		a.patients.initialized = true;
 		*/if (newValue === 'Patients') {
-			a.pageTitle = 'Patient Referals';
+			a.pageTitle = 'Patient Referrals';
 			
 			//$this.patientsQuery();
 			if (a.patients.initialized) {
