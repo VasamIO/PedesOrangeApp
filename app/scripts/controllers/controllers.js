@@ -366,7 +366,13 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
 
 	this.patientsQuery = function(){
 			a.patients.loading = true;	 
-			RaModel.query({'dataSource':'PatientReferralFormV'}, {'limit':_limit,'offset':a.patients.offset, 'params':{'executeCountSql': 'N'}, 'sessionId':Session.get().sessionId, 'select': ['patientName',	'facility','physicianName','creationDate','lastUpdateDate','patientId','uploadDocIds','referred'],'orderBy': '#creationDate# DESC'}, function(result){
+
+			//alert("*****"+Session.get().userId);
+			//"whereClause": "created_by = ?",
+  			//"whereClauseParams": [
+    		//"hyd"
+    		var whereClauseParams = [Session.get().userId];
+			RaModel.query({'dataSource':'PatientReferralFormV'}, {'whereClause': 'created_by = ?','whereClauseParams':whereClauseParams,'limit':_limit,'offset':a.patients.offset, 'params':{'executeCountSql': 'N'}, 'sessionId':Session.get().sessionId, 'select': ['patientName',	'facility','physicianName','creationDate','lastUpdateDate','patientId','uploadDocIds','referred'],'orderBy': '#creationDate# DESC'}, function(result){
 					if (result.$error) {
 						Logger.showAlert(result.errorMessage, result.errorTitle);
 					} else {
