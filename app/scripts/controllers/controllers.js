@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('SPAApp');
 
-app.controller('MainCtrl', ['$rootScope','$scope', '$location', 'DropDownFactory','alarmService', 'Menu', 'Session', 'Cache',  function ($rootScope,$scope, $location, DropDownFactory,alarmService, Menu, Session, Cache) {
+app.controller('MainCtrl', ['$rootScope','$scope', '$location', 'DropDownFactory','alarmService','Logger', 'Menu', 'Session', 'Cache',  function ($rootScope,$scope, $location, DropDownFactory,alarmService, Logger,Menu, Session, Cache) {
 	Menu.setActiveCode('/');
 	$scope.Menu = Menu;
 //	$scope.Demo = Demo;
@@ -9,8 +9,8 @@ app.controller('MainCtrl', ['$rootScope','$scope', '$location', 'DropDownFactory
 	if ($scope.showIntro === undefined) {
 		$scope.showIntro = true;
 	}
-	function init() {
-		DropDownFactory.loadDropDown("FacilityMaster","facilityCode","facilityName",function(result) {
+	function init() { 
+		DropDownFactory.loadDropDown("PdPhysicianFacilityV","facilityCode","facilityName","RSRC_ID = ?",function(result) {
 
 					if (result.$error) {
 								Logger.showAlert(result.errorMessage, result.errorTitle);

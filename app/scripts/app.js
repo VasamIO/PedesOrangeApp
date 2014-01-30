@@ -186,12 +186,13 @@ app.service('RaNotifications', function($notification) {
 
 app.factory('DropDownFactory', ['RaModel','Logger','Session',function(RaModel,Logger,Session) {
     return {
-        loadDropDown: function(ds,valueAttribute,displayAttribute,callback) {
+        loadDropDown: function(ds,valueAttribute,displayAttribute,whereClause,callback) {
         	//alert(Session.get().userId);
         	var whereClauseParams = [Session.get().userId];
-        	console.log("***In load drop down******");
-        	var dsoptions =	{'dataSource':ds};
-        	var  options =	{'whereClause': 'created_by = ?','whereClauseParams':whereClauseParams,'limit':100,'offset':0, 
+        	//alert(Session.get().userId+"****"+whereClause);
+        	//console.log("***In load drop down******");
+        	var dsoptions =	{'dataSource':ds};  
+        	var  options =	{'whereClause': whereClause,'whereClauseParams':whereClauseParams,'limit':100,'offset':0, 
         	 				 'params':{'executeCountSql': 'N'}, 'sessionId':Session.get().sessionId, 
         	 				 'select': [valueAttribute,displayAttribute],
         	 				 'orderBy': '#creationDate# DESC'};
