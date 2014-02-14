@@ -282,8 +282,8 @@ app.factory('CameraFactory', ['Logger',function(Logger) {
 			    }
                 var options =   { quality: 60,
                        destinationType: Camera.DestinationType.FILE_URI,
-						 targetWidth: 295,
-						  targetHeight: 450,
+						 targetWidth: 595,
+						  targetHeight: 750,
                         sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
                         encodingType: 0     // 0=JPG 1=PNG
 
