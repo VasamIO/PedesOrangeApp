@@ -142,7 +142,7 @@ console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
   	if($scope.validLineNumber.length == 3) {
   		$scope.validLineNumber = "0"+$scope.validLineNumber;
   	}
-  	alert($scope.validLineNumber);
+  	//alert($scope.validLineNumber);
 }
 
 	 $scope.removeImg = function(imagevalue,index) {
