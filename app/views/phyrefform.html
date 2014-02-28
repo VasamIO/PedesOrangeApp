@@ -27,8 +27,7 @@
 			     	<option ng-repeat="item in facilityDropDown" value="{{item.facilityCode}}" ng-selected="{{facility}}">{{item.facilityName}}</option>
 			</select>
 		</div>
-			
-		 <div ng-show ="facilityDropDown.length == 0" >
+		<div ng-show ="facilityDropDown.length == 0" >
 			<select ng-model="$parent.facility" >
 			     	<option ng-repeat="item in facilityDropDown" value="{{item.facilityCode}}">{{item.facilityName}}</option>
 			</select>
@@ -49,9 +48,9 @@
 
 		<div class="input-row" >
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<input type="number" style="width:20%;" name="arcode" placeholder="" ng-pattern="/^[0-9]{3}$/" maxlength="3" ng-model="$parent.arcode" key-focus/>) 
-			<input type="number" style="width:20%" name="prefix" ng-keypress="keyPressEve($event)" placeholder="" 
+		<input type="number" style="width:20%" name="prefix" ng-keypress="keyPressEve($event)" placeholder="" 
 			ng-pattern="/^[0-9]{3}$/" maxlength="3" ng-model="$parent.prefix" key-focus/> - 
-			<input type="number" style="width:25%" name="linenumber" placeholder="" ng-pattern="/^[0-9]{4}$/" maxlength="4" ng-model="$parent.linenumber"/></div>
+		<input type="number" style="width:25%" name="linenumber" placeholder="" ng-pattern="/^[0-9]{4}$/" maxlength="4" ng-model="$parent.linenumber" /></div>
 
 		</div>
  <ul class="list inset">
@@ -187,7 +186,7 @@
 						</li>
 						<li>
 							<label class="field-text" ><strong>Patient Contact Number</strong></label>
-							({{$parent.arcode}}) {{$parent.prefix}}-{{$parent.linenumber}}
+						({{$parent.arcode}}) {{$parent.prefix}}-{{$parent.validLineNumber}}
 						</li>
 						<li style="padding:20px 35px 20px 10px">
 							<label class="field-text"><strong>Facility</strong></label>

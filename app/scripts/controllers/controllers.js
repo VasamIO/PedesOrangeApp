@@ -107,7 +107,7 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		}
 	}
 	$scope.order = function(arcode,prefix,lineumber) {
-	
+$scope.validLineNumber = "";	
 //	Logger.showAlert("****"+$scope.ot);  
 console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 	if(typeof $scope.facility === "undefined" ||$scope.facility === "nofacility" ) {
@@ -138,6 +138,11 @@ console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 	}
 	 $scope.selection  = "ConfirmRefferral";
 	 //$this.confirmreferral();
+	 $scope.validLineNumber = $scope.linenumber+"";
+  	if($scope.validLineNumber.length == 3) {
+  		$scope.validLineNumber = "0"+$scope.validLineNumber;
+  	}
+  	alert($scope.validLineNumber);
 }
 
 	 $scope.removeImg = function(imagevalue,index) {
@@ -155,8 +160,10 @@ console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
   	 }
 
   $scope.confirmreferral = function() {
-  	console.log("**************** In confirm refferrral********");
-	$scope.uploadingimages =  true;
+  	console.log("**************** In confirm refferrral********"+$scope.linenumber);
+
+  	//return;
+ 	$scope.uploadingimages =  true;
 	var _pname = "";
 
 	if(typeof $scope.lname !== "undefined") {
@@ -166,7 +173,7 @@ console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 		_pname += $scope.fname;
 	}
 	RaModel.save({'dataSource':'PatientReferralFormV','operation':'insert'}, { "sessionId":Session.get().sessionId,
-	  'phone':"("+$scope.arcode+") "+$scope.prefix+"-"+$scope.linenumber,
+	  'phone':"("+$scope.arcode+") "+$scope.prefix+"-"+$scope.validLineNumber,
 	  'uploadDocIds':  $scope.fileIds,
 	  "referred":$scope.userId,                             
       "dateref":new Date(),
