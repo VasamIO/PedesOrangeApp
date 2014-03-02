@@ -17,17 +17,17 @@
 			
 			<div class="tab" ng-switch-when="Patients" infinite-scroll="getMorePatients()" infinite-scroll-distance="10">
 				<ul class="list inset">
-					<li> Find:<input tyzpe = "text" style="margin-bottom:0px;height:35px"  placeholder="Name or Physician or Facility"  ng-model="searchText"></li>	
+			<li> Find:<input tyzpe = "text" style="margin-bottom:0px;height:35px"  placeholder="Name or Physician or Facility"  ng-model="searchText"></li>	
 					<li ng-repeat="r in a.patients.data | filter:searchText">
 						<a stop-event="click" ng-click="a.patients.current = r; a.selection='PatientDetails';" ng-swipe-right="a.patients.current = r; a.selection='PatientDetails';">
 						<div> <strong><i class="icon-user"></i> {{r.patientName}}</strong></div>
 							<div style="margin-left:15px"><label class="field-text">referred by</label> {{r.physicianName}}</div>
 							<div style="margin-left:15px">
-									<div ng-repeat="faci in facilityDropDown">
+							<div ng-repeat="faci in facilityDropDown | unique:'facilityCode'">
 										<anytag ng-if="faci.facilityCode == r.facility">
 											@ {{faci.facilityName}}
 										</anytag>
-									</div>
+							</div>
 								
 							</div>
 							
@@ -61,11 +61,11 @@
 						<li style="padding:20px 35px 20px 10px">
 							<label class="field-text"><strong>Facility</strong></label>
 
-								<anytag ng-repeat="faci in facilityDropDown">
+						<anytag ng-repeat="faci in facilityDropDown | unique:'facilityCode'">
 										<anytag ng-if="faci.facilityCode == r.facility">
 										{{faci.facilityName}}
 										</anytag>
-								</anytag>
+						</anytag>
 						</li>
 
 						

@@ -99,17 +99,15 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		} 
 	});
 
-
-
 	$scope.showCnfMsg = function(statselected) {
 		if(statselected) {
 			RaNotifications.makeInfo("Notifications will sent to Crystal, Neil Goldstein and Brianna","");	
 		}
 	}
 	$scope.order = function(arcode,prefix,lineumber) {
-$scope.validLineNumber = "";	
-//	Logger.showAlert("****"+$scope.ot);  
-console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
+	$scope.validLineNumber = "";	
+	//Logger.showAlert("****"+$scope.ot);  
+	console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 	if(typeof $scope.facility === "undefined" ||$scope.facility === "nofacility" ) {
 		Logger.showAlert("Please select facility","Error");
 		return;
@@ -278,7 +276,6 @@ console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 
 app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory','$rootScope','$scope','$http' ,'$location', '$window','RaModel','QCalls', 'Session', 'Cache', 'Menu','Logger', function ($timeout,DropDownFactory,CameraFactory,$rootScope,$scope, $http,$location,$window, RaModel, QCalls,Session, Cache, Menu, Logger) {
 	Logger.log('PatientDetailCtrl');
-
 	//Demo.setScope($scope);
 	//Cache.remove('_a');
 	var currPatient = Cache.get('currPatient'), a = Cache.get('_a'), c, _limit = 20, $this = this;
@@ -305,7 +302,28 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
 		a.selection = 'Patients';
 		$scope.displayName = Session.get().displayName;
 
-		$scope.facilityDropDown = $rootScope.facilitydata;
+		//
+			if(typeof Session.get().roleName !== 'undefined') {
+				if(Session.get().roleName !== 'Physician') {
+					DropDownFactory.loadDropDown("PdPhysicianFacilityV","facilityCode","facilityName",null,function(result) {
+
+								if (result.$error) {
+											Logger.showAlert(result.errorMessage, result.errorTitle);
+										} else {
+											if (result.data.length > 0) {
+												console.log("Loaded... Facility dropdown:"+result.data.length);
+													$scope.facilityDropDown = result.data;
+											} 
+										}
+					});
+					// queryParams.whereClauseParams = [Session.get().userId];
+					 //queryParams.whereClause = 'created_by = ?';
+					 //'whereClause': whereClause,'whereClauseParams':whereClauseParams,
+				} else {
+					$scope.facilityDropDown = $rootScope.facilitydata;
+				}
+			}
+		
 		console.log($scope.facilityDropDown);
 		a.patients = {};
 		a.patients.data = [];
@@ -372,14 +390,17 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
 	};
 
 	this.patientsQuery = function(){
-			a.patients.loading = true;	 
-
-			//alert("*****"+Session.get().userId);
-			//"whereClause": "created_by = ?",
-  			//"whereClauseParams": [
-    		//"hyd"
-    		var whereClauseParams = [Session.get().userId];
-			RaModel.query({'dataSource':'PatientReferralFormV'}, {'whereClause': 'created_by = ?','whereClauseParams':whereClauseParams,'limit':_limit,'offset':a.patients.offset, 'params':{'executeCountSql': 'N'}, 'sessionId':Session.get().sessionId, 'select': ['patientName',	'facility','physicianName','creationDate','lastUpdateDate','patientId','uploadDocIds','referred'],'orderBy': '#creationDate# DESC'}, function(result){
+			a.patients.loading = true;	
+			var queryParams = {'limit':_limit,'offset':a.patients.offset, 'params':{'executeCountSql': 'N'}, 'sessionId':Session.get().sessionId, 'select': ['patientName',	'facility','physicianName','creationDate','lastUpdateDate','patientId','uploadDocIds','referred'],'orderBy': '#creationDate# DESC'};
+			
+			if(typeof Session.get().roleName !== 'undefined') {
+				if(Session.get().roleName==='Physician') {
+					 queryParams.whereClauseParams = [Session.get().userId];
+					 queryParams.whereClause = 'created_by = ?';
+					 //'whereClause': whereClause,'whereClauseParams':whereClauseParams,
+				}
+			}
+			RaModel.query({'dataSource':'PatientReferralFormV'}, queryParams, function(result){
 					if (result.$error) {
 						Logger.showAlert(result.errorMessage, result.errorTitle);
 					} else {

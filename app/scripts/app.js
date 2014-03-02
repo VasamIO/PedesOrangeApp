@@ -182,7 +182,22 @@ app.service('RaNotifications', function($notification) {
     }
 });
 
+app.filter('unique', function() {
+   return function(collection, keyname) {
+      var output = [], 
+          keys = [];
 
+      angular.forEach(collection, function(item) {
+          var key = item[keyname];
+          if(keys.indexOf(key) === -1) {
+              keys.push(key);
+              output.push(item);
+          }
+      });
+
+      return output;
+   };
+});
 
 app.factory('DropDownFactory', ['RaModel','Logger','Session',function(RaModel,Logger,Session) {
     return {
@@ -192,10 +207,14 @@ app.factory('DropDownFactory', ['RaModel','Logger','Session',function(RaModel,Lo
         	//alert(Session.get().userId+"****"+whereClause);
         	//console.log("***In load drop down******");
         	var dsoptions =	{'dataSource':ds};  
-        	var  options =	{'whereClause': whereClause,'whereClauseParams':whereClauseParams,'limit':100,'offset':0, 
+        	var  options =	{'limit':100,'offset':0, 
         	 				 'params':{'executeCountSql': 'N'}, 'sessionId':Session.get().sessionId, 
         	 				 'select': [valueAttribute,displayAttribute],
         	 				 'orderBy': '#creationDate# DESC'};
+        	 if(whereClause !== null || whereClause !== '') {
+        	 	options.whereClause = whereClause;
+        	 	options.whereClauseParams = whereClauseParams;
+        	 }
 			RaModel.query(dsoptions,options ,callback);
 			}
 
@@ -373,6 +392,7 @@ app.service('Session', ['RaModel', '$location', 'Logger', function (RaModel, $lo
 				Logger.log(angular.toJson(result));
 				if (result.valid === 'Y') {
 					callback();
+					$this.getUserRole();
 				} else {
 					if (result.$error) {
 						Logger.showAlert(result.errorMessage, result.errorTitle);
@@ -410,11 +430,32 @@ app.service('Session', ['RaModel', '$location', 'Logger', function (RaModel, $lo
 			} else {
 				$location.path('/');
 				session = result;
+				$this.getUserRole();
 				localStorage.setItem('session', angular.toJson(session));
 				callback();
 			}
 		});
 	};
+
+	this.getUserRole = function() {
+		RaModel.query({'dataSource':'RaUserRoles'}, {'whereClause': 'x.user_id = ?','whereClauseParams':[$this.get().userId],'limit':5,'offset':0, 'params':{'executeCountSql': 'N'}, 'sessionId':$this.get().sessionId, 'select': ['roleId'],'orderBy': '#creationDate# DESC'}, function(result){
+			console.log(result);
+					if (result.$error) {
+						Logger.showAlert(result.errorMessage, result.errorTitle);
+					} else {
+						var _session = $this.get();
+						if (result.data.length > 0) {
+							console.log("In get User role***"+result.data);
+							_session.roleName = result.data[0].rolename;
+						 } else {
+
+						 }
+						
+					}
+				}
+			);
+	}
+
 	this.signOff = function () {
 		Logger.showConfirm('Would you like to log out?', function(button){
 			//Logger.showAlert(button);
