@@ -180,20 +180,20 @@
 
 	<div class="tab" ng-switch-when="ConfirmRefferral">
 			<ul class="list inset form right" >
-					<li>
-						<label class="field-text"><strong>Patient Name</strong></label>
+					<li style="padding: 20px 0px 20px 10px;">
+						<label class="field-text" style="padding-right:0px;"><strong>Patient Name</strong></label>
 						{{$parent.lname}} {{$parent.fname}}
 						</li>
-						<li>
-							<label class="field-text" ><strong>Patient Contact Number</strong></label>
-						({{$parent.arcode}}) {{$parent.prefix}}-{{$parent.validLineNumber}}
+						<li style="padding: 20px 0px 20px 10px;">
+							<label class="field-text" style="padding-right:0px;"><strong>Patient Contact Number</strong></label>
+						<span style="font-size:11px">({{$parent.arcode}}) {{$parent.prefix}}-{{$parent.validLineNumber}}</strong>
 						</li>
-						<li style="padding:20px 35px 20px 10px">
-							<label class="field-text"><strong>Facility</strong></label>
+						<li style="padding:20px 0px 20px 10px">
+							<label class="field-text" style="padding-right:0px;text-align:left;min-width:0px"><strong>Facility</strong></label>
 
 								<anytag ng-repeat="faci in facilityDropDown">
 										<anytag ng-if="faci.facilityCode == $parent.facility">
-										{{faci.facilityName}}
+										<span style="font-size:15px">{{faci.facilityName}}</span>
 										</anytag>
 								</anytag>
 						</li>
