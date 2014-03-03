@@ -50,13 +50,13 @@
 					<div ng-repeat="r in a.patientDetails.data;">
 					<div  ng-if="r.patientId == a.patients.current.patientId">	
 
-						<li>
+						<li style="padding: 20px 0px 20px 10px;">
 							<label class="field-text"><strong>Patient Name</strong></label>{{r.patientName}}
 						</li>
 						<li style="padding: 20px 0px 20px 10px;">
 							<label class="field-text" style="padding-right:0px;"><strong>Patient Contact Number</strong>
 							</label>
-							<span >{{r.phone}}</span>
+							<span style="font-size:11px"><strong>{{r.phone}}</strong></span>
 						</li>
 						<li style="padding: 20px 0px 20px 10px;">
 							<label class="field-text" style="padding-right:0px;text-align:left;min-width:0px"><strong>Facility</strong></label>
