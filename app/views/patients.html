@@ -53,13 +53,13 @@
 						<li>
 							<label class="field-text"><strong>Patient Name</strong></label>{{r.patientName}}
 						</li>
-						<li>
-							<label class="field-text"><strong>Patient Contact Number</strong>
+						<li style="padding: 20px 0px 20px 10px;">
+							<label class="field-text" style="padding-right:0px;"><strong>Patient Contact Number</strong>
 							</label>
-							{{r.phone}}
+							<span >{{r.phone}}</span>
 						</li>
-						<li style="padding:20px 35px 20px 10px">
-							<label class="field-text"><strong>Facility</strong></label>
+						<li style="padding: 20px 0px 20px 10px;">
+							<label class="field-text" style="padding-right:0px;text-align:left;min-width:0px"><strong>Facility</strong></label>
 
 						<anytag ng-repeat="faci in facilityDropDown | unique:'facilityCode'">
 										<anytag ng-if="faci.facilityCode == r.facility">
