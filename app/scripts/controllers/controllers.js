@@ -107,6 +107,13 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 	$scope.order = function(arcode,prefix,lineumber) {
 	$scope.validLineNumber = "";	
 	//Logger.showAlert("****"+$scope.ot);  
+	var _arcode = document.getElementById("ph_arcode").value;
+ 	var _prefix = document.getElementById("ph_prefix").value;
+    var _linenumber = document.getElementById("ph_linenumber").value;
+
+   	$scope.arcode =_arcode;
+   	$scope.prefix =_prefix;
+    $scope.linenumber =_linenumber;
 	console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 	if(typeof $scope.facility === "undefined" ||$scope.facility === "nofacility" ) {
 		Logger.showAlert("Please select facility","Error");
