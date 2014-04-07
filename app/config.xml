@@ -69,7 +69,6 @@
 <icon src="57.png"    gap:platform="ios"        width="57" height="57" />
 <icon src="72.png"    gap:platform="ios"        width="72" height="72" />
 <icon src="114.png"    gap:platform="ios"        width="114" height="114" />
-  <icon src="icon.png" />
     
 
     <icon src="res/icon/android/icon.png"   gap:platform="android"    gap:density="ldpi" />
