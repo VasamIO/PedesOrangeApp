@@ -47,10 +47,11 @@
 		</div>
 
 		<div class="input-row" >
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<input type="number" style="width:20%;" name="arcode" placeholder="" ng-pattern="/^[0-9]{3}$/" maxlength="3" ng-model="$parent.arcode" key-focus/>) 
-		<input type="number" style="width:20%" name="prefix" ng-keypress="keyPressEve($event)" placeholder="" 
-			ng-pattern="/^[0-9]{3}$/" maxlength="3" ng-model="$parent.prefix" key-focus/> - 
-		<input type="number" style="width:25%" name="linenumber" placeholder="" ng-pattern="/^[0-9]{4}$/" maxlength="4" ng-model="$parent.linenumber" /></div>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<input type="number" id="ph_arcode" style="width:20%;" name="arcode" placeholder="" ng-pattern="/^[0-9]{3}$/" ng-maxlength="3" min="0" max="999" ng-model="$parent.arcode" key-focus/>) 
+		<input type="number" style="width:20%" id="ph_prefix" name="prefix" ng-keypress="keyPressEve($event)" placeholder="" 
+			ng-pattern="/^[0-9]{3}$/" ng-maxlength="3" min="0" max="999" ng-model="$parent.prefix" key-focus/> - 
+		<input type="number" style="width:25%" id="ph_linenumber" name="linenumber" placeholder="" ng-pattern="/^[0-9]{4}$/" 
+		ng-maxlength="4" min="0" max="9999" ng-model="$parent.linenumber" /></div>
 
 		</div>
  <ul class="list inset">
