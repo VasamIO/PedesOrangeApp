@@ -11,8 +11,7 @@ app.controller('MainCtrl', ['$rootScope','$scope', '$location', 'DropDownFactory
 	}
 	function init() { 
 		DropDownFactory.loadDropDown("PdPhysicianFacilityV","facilityCode","facilityName","RSRC_ID = ?",function(result) {
-
-					if (result.$error) {
+				if (result.$error) {
 								Logger.showAlert(result.errorMessage, result.errorTitle);
 							} else {
 								if (result.data.length > 0) {
