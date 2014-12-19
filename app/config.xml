@@ -35,7 +35,7 @@
     <!-- Customize your app and platform with the preference element. -->
     
  
-    <preference name="phonegap-version"           value="2.9.0" />  
+    <preference name="phonegap-version"           value="3.6.3" />  
 <!-- <preference name="phonegap-version"           value="2.9.0" />     -->      <!-- all: current 
     version of PhoneGap -->
     <preference name="orientation"       value="default" />      
