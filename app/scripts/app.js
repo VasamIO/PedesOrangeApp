@@ -294,11 +294,11 @@ app.factory('QCalls', ['$http','$q',function($http,$q) {
 app.factory('CameraFactory', ['Logger',function(Logger) {
     return {
         openCamera: function(imageoptions,callback) {
-        		
-				if (!navigator.camera) {
+        		  
+				/*if (!navigator.camera) {
 					Logger.showAlert("Camera API is not supported", "Error");
 			        return;
-			    }
+			    }*/
                 var options =   { quality: 60,
                        destinationType: Camera.DestinationType.FILE_URI,
 						 targetWidth: 595,
