@@ -302,12 +302,13 @@ app.factory('CameraFactory', ['Logger',function(Logger) {
                 var options =   { 
 						quality: 50,
                        destinationType: Camera.DestinationType.FILE_URI,
-						 targetWidth: 595,
-						  targetHeight: 750,
+						/* targetWidth: 595,
+						  targetHeight: 750,*/
                         sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
                         encodingType: 0     // 0=JPG 1=PNG
 
                  };
+				Logger.showAlert("At the camera to start", "Error");
                  navigator.camera.getPicture(function(imageData) {
 					    var path = imageData;
 					    var name = imageData;
