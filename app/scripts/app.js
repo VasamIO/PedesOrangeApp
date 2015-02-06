@@ -295,11 +295,12 @@ app.factory('CameraFactory', ['Logger',function(Logger) {
     return {
         openCamera: function(imageoptions,callback) {
         		  
-				if (!navigator.camera) {
+				/*if (!navigator.camera) {
 					Logger.showAlert("Camera feature is not supporting yet", "Error");
 			        return;
-			    }
-                var options =   { quality: 60,
+			    }*/
+                var options =   { 
+						quality: 50,
                        destinationType: Camera.DestinationType.FILE_URI,
 						 targetWidth: 595,
 						  targetHeight: 750,
