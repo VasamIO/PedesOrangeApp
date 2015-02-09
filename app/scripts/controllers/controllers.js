@@ -546,7 +546,7 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
 
 	$scope.testCamera = function(){
 
-		Logger.showAlert("Testng camera", "Error");
+		Logger.showAlert("Testng camera" + navigator, "Error");
 	};
 
 	$scope.safeApply = function(fn) {
