@@ -45,6 +45,7 @@ var PhoneGap = {
 	deviceready: function() {
 		// note that this is an event handler so the scope is that of the event
 		// so we need to call app.report(), and not this.report()
+		alert(navigator.camera);
 		PhoneGap.report('deviceready');
 		FastClick.attach(document.body);
 	},

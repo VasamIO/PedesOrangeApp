@@ -278,6 +278,8 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 	}
 
 	$scope.testCamera = function(){
+		
+		alert(navigator);
 		alert(navigator.camera);
 		//navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,destinationType: navigator.camera.DestinationType; });
 		Logger.showAlert("Testng camera", "Error");
