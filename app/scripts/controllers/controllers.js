@@ -564,16 +564,16 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
 	$scope.testCamera = function(){
 		 
 		 navigator.camera.getPicture( function( imageURI ) {
-        alert( imageURI );
-      },
-      function( message ) {
-        alert( message );
-      },
+        		alert( imageURI );
+      		},
+      		function( message ) {
+        		alert( message );
+      		},
       {
         quality: 50,
         destinationType: Camera.DestinationType.FILE_URI
       });
-		 
+
 	};
 
 	$scope.safeApply = function(fn) {
