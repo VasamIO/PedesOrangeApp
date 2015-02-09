@@ -563,6 +563,7 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
 
 	$scope.testCamera = function(){
 		 
+		 alert("Camera has to open");
 		 navigator.camera.getPicture( function( imageURI ) {
         		alert( imageURI );
       		},
