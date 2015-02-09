@@ -277,6 +277,11 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 						
 	}
 
+	$scope.testCamera = function(){
+		alert(navigator);
+		Logger.showAlert("Testng camera", "Error");
+	};
+
 }]);
 
 
@@ -545,7 +550,7 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
 	}
 
 	$scope.testCamera = function(){
-		alert(navigator);
+		//alert(navigator);
 		Logger.showAlert("Testng camera", "Error");
 	};
 
