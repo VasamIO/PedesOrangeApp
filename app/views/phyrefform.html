@@ -1,0 +1,323 @@
+<div class="page">
+<header class="bar-title">
+	<a ng-hide="selection==='ConfirmRefferral'" class="button" ng-click="back()" style="margin-left:0px;margin-top: 2px;">
+		<i class="icon-arrow-left icon-large"></i> 
+	</a>
+		<a ng-show="selection==='ConfirmRefferral'" class="button" ng-click="selection='ReferralForm'" style="margin-left:0px;margin-top: 2px;" stop-event="click">
+			<i class="icon-arrow-left icon-large"></i> 
+		</a>
+	<h1 class="title" style="width:97%" > {{title}}</h1>
+	<div ng-hide="selection==='ConfirmRefferral'"  style="margin-left:0px;margin-top: 2px;position: relative;" align="right">
+			<img src="pedesor.png" class="headerlogo2" style="margin-right: -15px;" />
+	</div>
+</header>
+ <div class="content black slide" ng-switch on="selection">
+ 
+ <space></space>
+ <space></space>	
+
+<div  class="tab" ng-switch-when="ReferralForm"  infinite-scroll-distance="10"> 
+   <form name="phyForm">
+	<div class="input-group inset">
+		<div class="input-row">
+			<label>Facility</label>
+		 <div ng-show ="facilityDropDown.length >= 0" >
+			<select ng-model="$parent.facility" >
+			   	    <option value="nofacility" ng-selected="1==1" >Please select one</option>
+			     	<option ng-repeat="item in facilityDropDown" value="{{item.facilityCode}}" ng-selected="{{facility}}">{{item.facilityName}}</option>
+			</select>
+		</div>
+		<div ng-show ="facilityDropDown.length == 0" >
+			<select ng-model="$parent.facility" >
+			     <option ng-repeat="item in facilityDropDown" value="{{item.facilityCode}}">{{item.facilityName}}</option>
+			</select>
+		</div>
+		</div>
+		<div class="input-row">
+			<label nowrap >Patient <font color="red">*</font></label>
+		<input type = "text"  style="padding-left:4px" placeholder="Last name" ng-model="$parent.lname" required >
+	  </div>
+	  	<div class="input-row">
+			<label nowrap></label>
+		<input type = "text" style="padding-left:4px" placeholder="First name" ng-model="$parent.fname" required >
+	  </div>
+	
+		<div class="input-row" >
+			<label style="width:100%;float: left;">Patient Contact Number</label>
+		</div>
+
+		<div class="input-row" >
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<input type="number" id="ph_arcode" style="width:20%;" name="arcode" placeholder="" ng-pattern="/^[0-9]{3}$/" ng-maxlength="3" min="0" max="999" ng-model="$parent.arcode" key-focus/>) 
+		<input type="number" style="width:20%" id="ph_prefix" name="prefix" ng-keypress="keyPressEve($event)" placeholder="" 
+			ng-pattern="/^[0-9]{3}$/" ng-maxlength="3" min="0" max="999" ng-model="$parent.prefix" key-focus/> - 
+		<input type="number" style="width:25%" id="ph_linenumber" name="linenumber" placeholder="" ng-pattern="/^[0-9]{4}$/" 
+		ng-maxlength="4" min="0" max="9999" ng-model="$parent.linenumber" /></div>
+
+		</div>
+ <ul class="list inset">
+
+<li ng-click="$parent.art = !$parent.art" ng-swipe-right= "$parent.art = !$parent.art" ng-class="$parent.art?'btnselafter':'btnselbefore'">
+  	<input type="hidden" name ="h"  value="Y" ng-model="$parent.art" ng-click="$parent.art = !$parent.art"/> Arterial
+  </li>
+  <li ng-click="$parent.venous = !$parent.venous" ng-swipe-right= "$parent.venous = !$parent.venous" ng-class="$parent.venous?'btnselafter':'btnselbefore'">
+  	<input type="hidden" name ="h"  value="Y" ng-model="$parent.venous" ng-click="$parent.venous = !$parent.venous"/> Venous</li>
+</ul>
+ 
+<ul class="list inset">
+  <li ng-click= "$parent.bil = !$parent.bil;$parent.left=false;$parent.right=false" ng-class="$parent.bil?'btnselafter':'btnselbefore'" ng-swipe-right= "$parent.bil = !$parent.bil;$parent.left=false;$parent.right=false" ><input type="hidden" name ="h" value="Y" ng-model="$parent.bil" ng-click= "$parent.bil = !$parent.bil" /> Bilateral</li>
+  <li ng-show="!$parent.bil" ng-click= "$parent.left = !$parent.left" ng-class="$parent.left?'btnselafter':'btnselbefore'" ng-swipe-right="$parent.left = !$parent.left"><input type="hidden" name ="h" value="Y" ng-model="$parent.left" ng-click= "$parent.left = !$parent.left" /> Left</li>
+  <li ng-show="!$parent.bil" ng-click= "$parent.right = !$parent.right" ng-class="$parent.right?'btnselafter':'btnselbefore'" ng-swipe-right="$parent.right = !$parent.right"><input type="hidden" name ="h" value="Y" ng-model="$parent.right" ng-click= "$parent.right = !$parent.right" /> Right</li>
+</ul>
+<ul class="list inset">
+<li class="list-divider">Evaluation/Treatment</li>
+
+  <li ng-show="!($parent.ai || $parent.veno)" ng-click= "$parent.uc = !$parent.uc;$parent.ai = false;$parent.veno = false" ng-swipe-right="$parent.uc = !$parent.uc;$parent.ai = false;$parent.veno = false" ng-class="$parent.uc?'btnselafter':'btnselbefore'" ><input type="hidden" name ="h" value="Y" ng-model="$parent.uc"  ng-click= "$parent.uc = !$parent.uc"/> Consultation & Diagnostic Ultrasound</li>
+  <li ng-show="!($parent.uc || $parent.veno)" 
+  ng-click= "$parent.ai = !$parent.ai;$parent.uc=false; $parent.veno=false" ng-swipe-right="$parent.ai = !$parent.ai;$parent.uc=false; $parent.veno=false" ng-class="$parent.ai?'btnselafter':'btnselbefore'"><input type="hidden" name ="h" value="Y" ng-model="$parent.ai"  ng-click= "$parent.ai = !$parent.ai"/> Angiogram with possible intervention</li>
+  <li ng-show="!($parent.uc||$parent.ai)" ng-click= "$parent.veno = !$parent.veno;$parent.ai=false;$parent.uc=false" ng-swipe-right="$parent.veno = !$parent.veno;$parent.ai=false;$parent.uc=false" ng-class="$parent.veno?'btnselafter':'btnselbefore'"><input type="hidden" name ="h" value="Y" ng-model="$parent.veno"  ng-click= "$parent.veno = !$parent.veno"/> Venogram with possible intervention</li>
+  <li ng-click= "$parent.oto = !$parent.oto" ng-swipe-right="$parent.oto = !$parent.oto" ng-class="$parent.oto?'btnselafter':'btnselbefore'"><input type="hidden" name ="h" value="Y" ng-model="$parent.oto"  ng-click= "$parent.oto = !$parent.oto"/> Other/Note</li>
+  <li ng-show="$parent.oto"><input type="text" name ="h" value="Y" ng-model="$parent.ot" /> </li>
+</ul>
+
+<div style="align:center">
+<!-- 
+<ul class="segmented-controller" style="width:150px;margin:10px">
+
+	
+	
+  <li  >
+   <a ng-click="statsel=!statsel" ng-class="statsel?'activecust':''">STAT</a>
+  </li>
+
+</ul> -->
+<ul class="list inset">
+  <li>
+    <b>STAT Order</b>
+    
+    <input type="hidden" ng-model="$parent.statsel" />
+
+    <div class="toggle" ng-class='$parent.statsel?"active":""' ng-click="$parent.statsel=!$parent.statsel;" ng-swipe-right="$parent.statsel=true;" ng-swipe-left="$parent.statsel=false;">
+<!-- showCnfMsg(statsel); -->
+      <div class="toggle-handle"></div>
+    </div>
+  </li>
+  </ul>
+<!-- ng-class="Demo.isEnabled()?'active':''" -->
+      
+</div>
+<ul class="list inset">
+  <li class="list-divider">Indications</li>
+  
+  <li ng-show="$parent.art" ng-click= "$parent.cl = !$parent.cl"  ng-swipe-right="$parent.cl = !$parent.cl" ng-class="$parent.cl?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.cl" ng-click= "$parent.cl = !$parent.cl"/> Claudication</li>
+  
+  <li ng-show="$parent.art" ng-click= "$parent.dap = !$parent.dap" ng-swipe-right="$parent.dap = !$parent.dap" ng-class="$parent.dap?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.dap" ng-click= "$parent.dap = !$parent.dap"/> Decreased/Absent Pulses</li>
+  <li ng-show="$parent.venous" ng-click= "$parent.dvt = !$parent.dvt" ng-swipe-right="$parent.dvt = !$parent.dvt" ng-class="$parent.dvt?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.dvt" ng-click= "$parent.dvt = !$parent.dvt"/> DVT</li>
+  <li ng-click= "$parent.pain = !$parent.pain"  ng-swipe-right="$parent.pain = !$parent.pain"ng-class="$parent.pain?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.pain" ng-click= "$parent.pain = !$parent.pain"/> Pain</li>
+  <li ng-click= "$parent.piv = !$parent.piv" ng-swipe-right="$parent.piv = !$parent.piv" ng-class="$parent.piv?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.piv" ng-click= "$parent.piv = !$parent.piv"/> Post-Intervention Evaluation</li>
+  <li ng-click= "$parent.pse = !$parent.pse"  ng-swipe-right="$parent.pse = !$parent.pse" ng-class="$parent.pse?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.pse" ng-click= "$parent.pse = !$parent.pse"/> Pre-Surgical Evaluation</li>
+  <li ng-click= "$parent.pvd = !$parent.pvd" ng-swipe-right="$parent.pvd = !$parent.pvd" ng-class="$parent.pvd?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.pvd" ng-click= "$parent.pvd = !$parent.pvd"/> PVD</li>
+  <li ng-show="$parent.venous" ng-click= "$parent.se = !$parent.se" ng-swipe-right="$parent.se = !$parent.se" ng-class="$parent.se?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.se" ng-click= "$parent.se = !$parent.se"/> Swelling/Edema</li>
+  <li ng-show="$parent.art" ng-click= "$parent.nhw = !$parent.nhw" ng-class="$parent.nhw?'btnselafter':'btnselbefore'" ng-swipe-right="$parent.nhw = !$parent.nhw"><input type="hidden"  value="Y" ng-model="$parent.nhw" ng-click= "$parent.nhw = !$parent.nhw"/> Ulcer/Non-Healing Wound</li>
+  <li ng-show="$parent.venous" ng-click= "$parent.vv = !$parent.vv" ng-swipe-right="$parent.vv = !$parent.vv" ng-class="$parent.vv?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.vv" ng-click= "$parent.vv = !$parent.vv"/> Varicose Veins</li>
+<li ng-click= "$parent.ioto = !$parent.ioto" ng-swipe-right="$parent.ioto = !$parent.ioto" ng-class="$parent.ioto?'btnselafter':'btnselbefore'"><input type="hidden"  value="Y" ng-model="$parent.ioto" ng-click= "$parent.ioto = !$parent.ioto"/> Other/Note</li>
+  <li ng-show="$parent.ioto"><input type="text" name ="h"  ng-model="$parent.iot" /> </li>
+</ul>
+<div class="input-group inset">
+		<div class="input-row">
+			<label> Physician</label>
+			<input type = "text"  value="{{userName}}">
+		</div>
+		<div class="input-row">
+			<label>Date</label>
+			 <div style="margin-top:10px">{{date | date:'MM/dd/yyyy HH:mm'}}</div>
+		</div>
+	</div>
+
+<ul class="list inset">
+ <li class="list-divider">Upload images</li>
+  <!-- <li ng-repeat="imgurl in upimages">
+    <img src="{{ imgurl }}" height="100" width="100"/>
+</li> -->
+<li>
+    <span  ng-repeat="imgurl in upimages">
+		<div class="img-wrap">
+    				<span class="close" >
+    					<a class="button" ng-click="removeImg(imgurl,$index)">
+    						<i class="icon-trash"></i>
+    					</a>
+    				</span>
+					<img src="{{ imgurl }}" class="thumbnail"/>
+    	</div>
+
+      </span>
+
+    </span>
+
+</li>
+<!-- <li ng-show="imagesrefresh" style="text-align: center; display: none;">
+	<a class="button " ng-click="refreshView()"><i class="icon-refresh"></i> Refresh </a>
+</li> -->
+	<li ng-show="!uploadingimages" style="text-align: center;visibility: hidden; "><i class="icon-camera icon-white icon-large"></i></li>
+	<li ng-show="uploadingimages" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
+</ul>  
+
+  <input type="hidden" ng-model="fileIds" value="">
+	<a class="button button-block" ng-click="openCamera('fileIds','upImgbar')"><i class="icon-camera icon-large"></i> Upload images </a>
+
+	 			<!-- <div  ng-show="uploadingimages || pname == null   || !(art || venous) || !(uc || ai || veno || oto) || !(cl || dap || dvt || pain || piv || pvd || pse || se || nhw || vv || ioto)">
+                 <div  class=" button-block button-disabled" ><i class="icon-hospital icon-large"></i> Initiate Referral  </div>
+                </div>
+
+                <div ng-show="pname != null && (art || venous) && (uc || ai || veno || oto) && (cl || dap || dvt || pain || piv || pvd || pse || se || nhw || vv || ioto) && !uploadingimages">
+                 
+                </div> -->
+		<a  class="button-block " ng-click="order(phyForm.arcode.$valid,phyForm.prefix.$valid,phyForm.linenumber.$valid)" ><i class="icon-hospital icon-large"></i> Initiate Referral  </a>
+<!-- 
+<a class="button button-block" ng-click="uploadFile('/home/devuser/Pictures/one.png')"><i class="icon-camera icon-large"></i> Upload Photo From Desk</a> -->
+</form>
+ <div notifications="custom" class="ng-isolate-scope ng-scope dr-notification-container custom"><!-- ngRepeat: noti in queue -->
+</div>
+</div>
+
+	<div class="tab" ng-switch-when="ConfirmRefferral">
+			<ul class="list inset form right" >
+					<li style="padding: 20px 0px 20px 10px;">
+						<label class="field-text" style="padding-right:0px;"><strong>Patient Name</strong></label>
+						{{$parent.lname}} {{$parent.fname}}
+						</li>
+						<li style="padding: 20px 0px 20px 10px;">
+							<label class="field-text" style="padding-right:0px;"><strong>Patient Contact Number</strong></label>
+						<span style="font-size:11px">({{$parent.arcode}}) {{$parent.prefix}}-{{$parent.validLineNumber}}</strong>
+						</li>
+						<li style="padding:20px 0px 20px 10px">
+							<label class="field-text" style="padding-right:0px;text-align:left;min-width:0px"><strong>Facility</strong></label>
+
+								<anytag ng-repeat="faci in facilityDropDown">
+										<anytag ng-if="faci.facilityCode == $parent.facility">
+										<span style="font-size:15px">{{faci.facilityName}}</span>
+										</anytag>
+								</anytag>
+						</li>
+
+						
+						<li class="list-divider"></li>
+
+								<li ng-if="$parent.art">
+										<strong>Arterial</strong>
+  								</li>
+						
+								<li ng-if="$parent.venous">
+								 <strong>Venous</strong>
+								</li>
+
+							<li class="list-divider"></li>
+						
+						
+								<li ng-if="$parent.bil">
+								 <strong>Bilateral</strong>
+								</li>	
+								<li ng-if="$parent.left">
+								 <strong>Left</strong>
+								</li>	
+
+								<li ng-if="$parent.right">
+										 <strong>Right</strong>
+								</li>	
+							<li class="list-divider">Evaluation/Treatment</li>
+						
+								<li ng-if="$parent.uc">
+										 <strong>Consultation & Diagnostic Ultrasound	</strong>
+								</li>
+								<li ng-if="$parent.veno">
+									 <strong>Venogram with possible intervention</strong>
+								</li>
+								
+								<li ng-if="$parent.ai"> 
+									<strong>Angiogram with possible intervention</strong>
+								</li>
+								<li ng-if="$parent.ot !== 'undefined' && $parent.ot.length > 2">
+									 <strong>Other/Note: {{$parent.ot}}</strong>
+								</li>
+							
+						</li>
+
+						  <li>
+						    <b>STAT Ordered</b>
+						    {{parent.statsel}}
+						    <div class="toggle" ng-class='$parent.statsel?"active":""'>
+						      <div class="toggle-handle"></div>
+						    </div>
+						  </li>
+							<li class="list-divider">Inidications</li>
+								<li ng-if="$parent.cl">
+									<strong>Claudication</strong>
+								</li>
+									
+								<li ng-if="$parent.dap">
+										<strong>Decreased/Absent Pulses</strong>
+								</li>
+								
+								<li ng-if="$parent.dvt">
+									<strong>DVT</strong>
+								</li>
+								
+								<li ng-if="$parent.pain"> 
+									<strong>Pain</strong>
+								</li>
+								<li ng-if="$parent.piv">
+										<strong>Post-Intervention Evaluation</strong>
+								</li>
+								
+								<li ng-if="$parent.pse">
+										<strong>Pre-Surgical Evaluation</strong>
+								</li>
+								
+								<li ng-if="$parent.pvd">
+									<strong>PVD</strong>
+								</li>
+								
+								<li ng-if="$parent.se"> 
+									<strong>Swelling</strong>
+								</li>
+								
+								<li ng-if="$parent.vv">
+									<strong>Varicose Veins</strong>
+								</li>
+								
+								<li ng-if="$parent.nhw">
+									<strong>Ulcer/Non-Healing Wound</strong>
+								</li>
+									
+		
+								<li ng-if="$parent.iot !== 'undefined' && $parent.iot.length > 2">
+									<strong>Other/Note: {{$parent.iot}}</strong>
+								</li>
+
+								 <li class="list-divider">Upload images</li>
+								<li>
+								    <span  ng-repeat="imgurl in upimages">
+										<img src="{{ imgurl }}" class="thumbnail"/>
+								    </span>
+								    <span ng-if="upimages.length == 0">
+								    	No images uploaded.
+								    </span>
+								</li>
+
+
+								<li>
+									<label> Physician</label>
+									{{userName}}
+								</li>
+								<li style="padding:20px 35px 20px 10px">
+									<label>Date</label>
+									 {{date | date:'MM/dd/yyyy HH:mm'}}
+								</li>
+							</ul>	
+			<a  class="button-block " ng-click="confirmreferral()" ><i class="icon-hospital icon-large"></i> Confirm Referral  </a>
+
+	</div>		
+
+</div>
+ 
+</div>
+</div>

@@ -1,0 +1,19 @@
+<div class="page">
+<header class="bar-title">
+	<a class="button" ng-click="back()">
+		<i class="icon-arrow-left icon-large"></i> Back
+	</a>
+	<h1 class="title" ng-swipe-right="back()"> Referrals List</h1>
+</header>
+<div class="content  slide">
+ <space></space>
+ <space></space>	
+ <div class="tab"  infinite-scroll="getMore()" infinite-scroll-distance="50">
+<ul class="list inset">
+  <li ng-repeat="r in s.data">
+  	<div >#{{$index}}</div><div> Patient Name: {{r.patientName}}</div> <div>Facility: {{r.facility}} </div> <div> Attachements :{{r.uploadDocId}}</div>
+  </li>
+</ul>
+</div>
+</div>
+</div>

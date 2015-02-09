@@ -1,0 +1,243 @@
+<div id="patientPage" class="page">
+	<header class="bar-title">
+		<a ng-hide="a.selection==='PatientDetails'" class="button" ng-click="back()"  stop-event="click" style="margin-left:0px;margin-top: 2px;">
+			<i class="icon-arrow-left icon-large"></i>
+		</a>
+		<h1 class="title" ng-swipe-right="back()" style="width:92%"> 
+
+		<i ng-show="a.loading || a.patients.loading || a.patientDetails.loading " class="icon-spinner icon-spin icon-large" style="display: none;"></i> 	
+		<img src="pedesor.png" class="headerlogo"/> {{a.pageTitle}}</h1>
+		
+	<a ng-if="a.selection==='PatientDetails'" class="button" style="margin-left:0px;margin-top: 2px;" ng-click="a.selection='Patients';closePopup();	a.patientDetails.imagesrefresh = false;" stop-event="click">
+			<i class="icon-remove icon-large"></i>
+	</a>
+	</header>
+	
+	<div class="content  black slide" ng-switch on="a.selection">
+			
+			<div class="tab" ng-switch-when="Patients" infinite-scroll="getMorePatients()" infinite-scroll-distance="10">
+				<ul class="list inset">
+			<li> Find:<input tyzpe = "text" style="margin-bottom:0px;height:35px"  placeholder="Name or Physician or Facility"  ng-model="searchText"></li>	
+					<li ng-repeat="r in a.patients.data | filter:searchText">
+						<a stop-event="click" ng-click="a.patients.current = r; a.selection='PatientDetails';" ng-swipe-right="a.patients.current = r; a.selection='PatientDetails';">
+						<div> <strong><i class="icon-user"></i> {{r.patientName}}</strong></div>
+							<div style="margin-left:15px"><label class="field-text">referred by</label> {{r.physicianName}}</div>
+							<div style="margin-left:15px">
+							<div ng-repeat="faci in facilityDropDown | unique:'facilityCode'">
+										<anytag ng-if="faci.facilityCode == r.facility">
+											@ {{faci.facilityName}}
+										</anytag>
+							</div>
+								
+							</div>
+							
+							
+					<div class = "rightaligndate" style="color:gray"><small>{{r.lastUpdateDate | date:'MM-dd-yyyy HH:mm'}}</small> <!-- {{r.uploadDocIds}} --> </div>
+							<span class="chevron"></span>
+							
+
+						</a>
+					</li>
+					<li ng-show="a.patients.loading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
+				</ul>
+				<!--a ng-show="a.patients.hasMore" class="button-main button-block" ng-click="getMorepatients()">More</a-->
+			</div>	
+
+
+				<div class="tab" ng-switch-when="PatientDetails">
+				<ul class="list inset form right" >
+
+					<div ng-repeat="r in a.patientDetails.data;">
+					<div  ng-if="r.patientId == a.patients.current.patientId">	
+
+						<li style="padding: 20px 0px 20px 10px;">
+							<label class="field-text"><strong>Patient Name</strong></label>{{r.patientName}}
+						</li>
+						<li style="padding: 20px 0px 20px 10px;">
+							<label class="field-text" style="padding-right:0px;"><strong>Patient Contact Number</strong>
+							</label>
+							<span style="font-size:11px"><strong>{{r.phone}}</strong></span>
+						</li>
+						<li style="padding: 20px 0px 20px 10px;">
+							<label class="field-text" style="padding-right:0px;text-align:left;min-width:0px"><strong>Facility</strong></label>
+
+						<anytag ng-repeat="faci in facilityDropDown | unique:'facilityCode'">
+										<anytag ng-if="faci.facilityCode == r.facility">
+										<span style="font-size:15px">{{faci.facilityName}}</span>
+										</anytag>
+						</anytag>
+						</li>
+
+						
+						<li class="list-divider"></li>
+							
+
+								<li ng-if="r.arterialDuplex =='Y'">
+									 <strong> Arterial</strong>
+  
+								</li>
+						
+								<li ng-if="r.venousDuplex =='Y'">
+										 <strong>Venous</strong>
+								</li>
+
+						<li class="list-divider"></li>
+								<li ng-if="r.bilUltra =='Y'">
+									 <strong>Bilateral</strong>
+  
+								</li>
+						
+								<li ng-if="r.rightUltra =='Y'">
+									<strong>Right</strong>
+								</li>						
+						
+								<li ng-if="r.leftUltra =='Y'">
+										 <strong>Left</strong>
+								</li>						
+						
+						<li class="list-divider">Evaluation/Treatment</li>
+									
+								<li ng-if="r.ultraConsult =='Y'">
+										 <strong>Consultation & Diagnostic Ultrasound	</strong>
+								</li>
+								<li ng-if="r.venogram =='Y'">
+									 <strong>Venogram with possible intervention</strong>
+								</li>
+								
+								<li ng-if="r.angiogram =='Y'"> 
+									<strong>Angiogram with possible intervention</strong>
+								</li>
+								<li ng-if="r.otherVenogram !== 'undefined' && r.otherVenogram.length > 2">
+									 <strong>Other/Note: {{r.otherVenogram}}</strong>
+								</li>
+							
+						</li>
+							<li class="list-divider">Inidications</li>
+						
+						
+
+								<li ng-if="r.claudication =='Y'">
+									<strong>Claudication</strong>
+								</li>
+									
+								<li ng-if="r.absentPulses =='Y'">
+									<strong>Decreased/Absent Pulses</strong>
+								</li>
+								
+								<li ng-if="r.dvt =='Y'">
+									<input type="checkbox" name ="h" value="Y" checked="true" disabled / ><strong>DVT</strong>
+								</li>
+								
+								<li ng-if="r.pain =='Y'"> 
+									<strong>Pain</strong>
+								</li>
+								
+								<li ng-if="r.interEvaluation =='Y'">
+									<strong>Post Intervention Evaluation</strong>
+								</li>
+								
+								<li ng-if="r.pvd =='Y'">
+									<strong>PVD</strong>
+								</li>
+								
+								<li ng-if="r.swelling =='Y'"> 
+									<strong>Swelling</strong>
+								</li>
+								
+								<li ng-if="r.varicoseVeins =='Y'">
+									<strong>Varicose Veins</strong>
+								</li>
+								
+								<li ng-if="r.ulcer =='Y'">
+									<strong>Ulcer</strong>
+								</li>
+								<li ng-if="r.otherIndication !== 'undefined' && r.otherIndication.length > 2">
+									 <strong>Others: {{r.otherIndication}}</strong>
+								</li>
+
+						
+					</div>
+					</div>
+
+					<li ng-show="a.patientDetails.loading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
+				</ul>	
+					<ul class="list inset form right" >
+
+						
+						<li class="list-divider">Upload images</li>
+						
+							<li ng-hide="a.patients.current.uploadDocIds.length > 3">No images uploaded.</li>
+					
+					<li >
+						<div ng-repeat="(key, value) in image_data">  
+						<div ng-if="key == a.patients.current.patientId">
+							<span ng-repeat="im in value" >
+							
+								<div class="img-wrap">
+    								<span class="close" ><a class="button" ng-click="removeImg(key,im,$index)"><i class="icon-trash"></i> </a></span>
+    									<a ng-click="openPopup('{{$index}}')" ><img ng-src = "{{im}}+&thumb=Y" class="thumbnail"></a>
+								</div>
+									
+							</span>
+				  
+						</div>
+						</div>
+					</li>
+					
+<li ng-show="a.patientDetails.imagesrefresh" style="text-align: center; display: none;">
+	<i class="icon-spinner icon-spin icon-large"></i>
+</li>
+		</ul>			
+					
+					<div ng-show="imageselected"> 
+					<div id="modal1"   class="modal " >
+					 <nav class="bar-tab" >
+						<ul class="tab-inner">
+							<li class="tab-item"  ng-click="closePopup()" class="active">
+									<strong>Close</strong>
+							</li>
+							
+						</ul>
+					</nav>
+				  
+				  <div class="content content-padded" style="border:3px solid gray;border-radius:5px 5px 0px 0px;">
+				 				<img ng-src = "{{image_data[a.patients.current.patientId][urlIndex]}}" />
+					</div>
+				</div>
+			 </div> 
+					</li>   
+				</ul>
+				<input type="hidden" ng-model="fileIds" value="">
+				
+<!-- 
+				  <a class="button button-block" ng-click="openCamera()"><i class="icon-camera icon-large"></i> Upload Images </a>
+				  --><!--    
+				<ul class="list inset form right">
+					<li class="list-divider">Texting</li>
+					<any ng-repeat="r in a.patientComments.data | reverse">
+					
+					<div class="commentli" ng-if="r.patientId == a.patients.current.patientId">		
+						<div>
+						<strong>{{displayName}}: </strong>
+						 {{r.comments}}	</div>
+						<div  style="color:gray"><small>{{r.creationDate | date:'MM-dd-yyyy HH:mm'}}</small>  </div>
+						
+					</div>
+
+					</any>
+			<li ng-show="a.patientComments.loading" style="text-align: center; display: none;"><i class="icon-spinner icon-spin icon-large"></i></li>
+					<li>
+						<div><input type = "text" style="margin-bottom:0px;height:35px"  placeholder="Type something" ng-model="newcomment"
+						 ng-enter="insertComments(a.patients.current.patientId,a.patients.current.referred,newcomment);newcomment=''" /></div>
+						<div>
+							<a class="button" style="top:37px" ng-click="insertComments(a.patients.current.patientId,a.patients.current.referred,newcomment);newcomment=''"><i class="icon-meh"></i></a>
+						</div>
+						
+					</li>
+
+				</ul> -->
+			</div>
+			
+		</div>
+	</div>
+</div>

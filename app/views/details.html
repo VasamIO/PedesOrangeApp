@@ -1,0 +1,17 @@
+<div class="page">
+<header class="bar-title">
+	<a class="button" ng-click="back()" stop-event="click">
+		<i class="icon-arrow-left icon-large"></i> Back
+	</a>
+	<h1 class="title" ng-swipe-right="back()">Task Details</h1>
+</header>
+<div class="content">
+	<space></space>
+	<ul class="list inset">
+		<li><strong>Date</strong> {{alarm.date}}</li>
+		<li><strong>Time</strong> {{alarm.time}}</li>
+		<li class="list-divider"><strong>Message</strong></li>
+		<li>{{alarm.msg}}</li>
+	</ul>  
+</div>
+</div>
