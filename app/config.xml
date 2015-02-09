@@ -17,13 +17,16 @@
         Telidos Team
     </author>
 
+
+     <preference name="phonegap-version" value="3.6.3" /> 
+    <gap:plugin name="org.apache.cordova.core.camera" />
     <!--
         Enable individual API permissions here.
         The "device" permission is required for the 'deviceready' event.
     -->
-    <feature name="http://api.phonegap.com/1.0/device" />
+  <!--   <feature name="http://api.phonegap.com/1.0/device" />
 <feature name="http://api.phonegap.com/1.0/camera"/>
-<feature name="http://api.phonegap.com/1.0/file"/>
+<feature name="http://api.phonegap.com/1.0/file"/> -->
     <!--
         If you do not want any permissions to be added to your app, add the
         following tag to your config.xml; you will still have the INTERNET
@@ -35,7 +38,7 @@
     <!-- Customize your app and platform with the preference element. -->
     
  
-    <preference name="phonegap-version"           value="3.6.3" />  
+  
 <!-- <preference name="phonegap-version"           value="2.9.0" />     -->      <!-- all: current 
     version of PhoneGap -->
     <preference name="orientation"       value="default" />      
@@ -111,11 +114,7 @@
     
     <gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
 
-    <gap:plugin name="org.apache.cordova.camera" version="0.3.2" />
-    <gap:plugin name="org.apache.cordova.file" version="1.3.1" />
-    <gap:plugin name="org.apache.cordova.file-transfer" version="0.4.6" />
-    <gap:plugin name="org.apache.cordova.media-capture" version="0.3.3" />
-    <plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
+   
     <!--
         Define access to external domains.
 
