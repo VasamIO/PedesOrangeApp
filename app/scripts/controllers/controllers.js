@@ -278,11 +278,18 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 	}
 
 	$scope.testCamera = function(){
+
+		  navigator.camera.getPicture( function( imageURI ) {
+        alert( imageURI );
+      },
+      function( message ) {
+        alert( message );
+      },
+      {
+        quality: 50,
+        destinationType: Camera.DestinationType.FILE_URI
+      });
 		
-		alert(navigator);
-		alert(navigator.camera);
-		//navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,destinationType: navigator.camera.DestinationType; });
-		Logger.showAlert("Testng camera", "Error");
 	};
 
 
@@ -555,8 +562,18 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
 	}
 
 	$scope.testCamera = function(){
-		//alert(navigator);
-		Logger.showAlert("Testng camera", "Error");
+		 
+		 navigator.camera.getPicture( function( imageURI ) {
+        alert( imageURI );
+      },
+      function( message ) {
+        alert( message );
+      },
+      {
+        quality: 50,
+        destinationType: Camera.DestinationType.FILE_URI
+      });
+		 
 	};
 
 	$scope.safeApply = function(fn) {
