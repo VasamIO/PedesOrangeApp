@@ -20,6 +20,7 @@
 
      <preference name="phonegap-version" value="3.6.3" /> 
     <gap:plugin name="org.apache.cordova.core.camera" />
+    <preference name="permissions" value="none"/>
     <!--
         Enable individual API permissions here.
         The "device" permission is required for the 'deviceready' event.
