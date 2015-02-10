@@ -48,7 +48,7 @@ var PhoneGap = {
 
 		PhoneGap.report('deviceready');
 		FastClick.attach(document.body);
-		alert("Camera:"+navigator.camera);
+		//alert("Camera:"+navigator.camera);
 	},
 	report: function(id) {
 		// hide the .pending <p> and show the .complete <p>
@@ -309,14 +309,10 @@ app.factory('CameraFactory', ['Logger',function(Logger) {
                  };
 				
                  navigator.camera.getPicture(function(imageData) {
-					    var path = imageData;
-					    var name = imageData;
-					    path = imageData.fullPath,
-					 	name = imageData.name;
+					        var path = imageData.fullPath,
+					 	var name = imageData.name;
 					 	var uploadServerUrl = fileUploadUrl;
-            					alert("**3**"+uploadServerUrl);
-					       var ft = new FileTransfer();
-					       alert("**4**"+ft);
+            					var ft = new FileTransfer();
 					     ft.upload( imageData, uploadServerUrl,
 					        function(r) {
 					      		callback.success(r.response,imageData)
