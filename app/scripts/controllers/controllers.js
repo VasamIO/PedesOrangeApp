@@ -279,7 +279,7 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 
 	$scope.testCamera = function(){
 
-		  navigator.camera.getPicture( function( imageURI ) {
+	navigator.camera.getPicture( function( imageURI ) {
         alert( imageURI );
       },
       function( message ) {

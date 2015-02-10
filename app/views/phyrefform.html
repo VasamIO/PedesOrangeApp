@@ -164,7 +164,7 @@
   <input type="hidden" ng-model="fileIds" value="">
 	<a class="button button-block" ng-click="openCamera('fileIds','upImgbar')"><i class="icon-camera icon-large"></i> Upload images </a>
 
-	 <a class="button button-block" ng-click="testCamera()"><i class="icon-camera icon-large"></i>
+	 <a class="button button-block" onclick="testCameraTest()"><i class="icon-camera icon-large"></i>
 	Open Camera </a>
 
 	 			<!-- <div  ng-show="uploadingimages || pname == null   || !(art || venous) || !(uc || ai || veno || oto) || !(cl || dap || dvt || pain || piv || pvd || pse || se || nhw || vv || ioto)">
@@ -324,3 +324,22 @@
  
 </div>
 </div>
+
+   <script type="text/javascript">
+        function testCameraTest(){
+
+        		alert( "Camera testing ..." );
+				 navigator.camera.getPicture( function( imageURI ) {
+				        alert( imageURI );
+				      },
+				      function( message ) {
+				        alert( message );
+				      },
+				      {
+				        quality: 50,
+				        destinationType: Camera.DestinationType.FILE_URI
+				      });
+		};
+
+
+    </script>
