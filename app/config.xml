@@ -18,6 +18,8 @@
     </author>
 	<preference name="phonegap-version" value="3.6.3" /> 
    <gap:plugin name="org.apache.cordova.core.camera" />
+   <gap:plugin name="org.apache.cordova.file-transfer" />
+   
     <!--
         Enable individual API permissions here.
         The "device" permission is required for the 'deviceready' event.
