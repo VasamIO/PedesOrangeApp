@@ -16,7 +16,8 @@
     <author href="http://telidos.com" email="support@telidos.com">
         Telidos Team
     </author>
-
+	<preference name="phonegap-version" value="3.6.3" /> 
+   <gap:plugin name="org.apache.cordova.core.camera" />
     <!--
         Enable individual API permissions here.
         The "device" permission is required for the 'deviceready' event.
