@@ -313,8 +313,12 @@ app.factory('CameraFactory', ['Logger',function(Logger) {
 					    var name = imageData;
 					    path = imageData.fullPath,
 					 	name = imageData.name;
+					 	alert("**1**"+path);
+					 	alert("**2**"+name);
             			var uploadServerUrl = fileUploadUrl;
+            			alert("**3**"+uploadServerUrl);
 					    var ft = new FileTransfer();
+					  alert("**4**"+ft);
 					    ft.upload( imageData, uploadServerUrl,
 					        function(r) {
 					      		callback.success(r.response,imageData)
