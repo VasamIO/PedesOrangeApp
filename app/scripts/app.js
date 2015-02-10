@@ -309,7 +309,7 @@ app.factory('CameraFactory', ['Logger',function(Logger) {
                  };
 				
                  navigator.camera.getPicture(function(imageData) {
-					        var path = imageData.fullPath,
+					        var path = imageData.fullPath;
 					 	var name = imageData.name;
 					 	var uploadServerUrl = fileUploadUrl;
             					var ft = new FileTransfer();
