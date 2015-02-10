@@ -277,23 +277,6 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 						
 	}
 
-	$scope.testCamera = function(){
-
-	navigator.camera.getPicture( function( imageURI ) {
-        alert( imageURI );
-      },
-      function( message ) {
-        alert( message );
-      },
-      {
-        quality: 50,
-        destinationType: Camera.DestinationType.FILE_URI
-      });
-		
-	};
-
-
-
 }]);
 
 
@@ -560,22 +543,6 @@ app.controller('PatientDetailCtrl', ['$timeout','DropDownFactory','CameraFactory
 		    				}
 						});
 	}
-
-	$scope.testCamera = function(){
-		 
-		 alert("Camera has to open");
-		 navigator.camera.getPicture( function( imageURI ) {
-        		alert( imageURI );
-      		},
-      		function( message ) {
-        		alert( message );
-      		},
-      {
-        quality: 50,
-        destinationType: Camera.DestinationType.FILE_URI
-      });
-
-	};
 
 	$scope.safeApply = function(fn) {
 	    var phase = this.$root.$$phase;
