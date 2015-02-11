@@ -135,7 +135,7 @@ app.config(function ($routeProvider) {
 });
 
 app.factory('RaModel', function($resource) {
-	return $resource(baseUrl + ':dataSource/:operation', {'8888':':8888'}, {
+	return $resource(baseUrl + ':dataSource/:operation', {'8080':':8080'}, {
 		query: {
 			method: 'POST',
 			params: {},
