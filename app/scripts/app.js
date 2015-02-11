@@ -1,6 +1,6 @@
 'use strict';
-var baseUrl = 'http://pedesorange.rapapp.com/api/', isDebugEnabled = true;
-var fileUploadUrl = 'http://pedesorange.rapapp.com/service/aservice';
+var baseUrl = 'http://telidos.pedesorangecounty.com:8080/', isDebugEnabled = true;
+var fileUploadUrl = 'http://telidos.pedesorangecounty.com:8080/service/aservice';
 //var baseUrl = 'http://localhost:8888/api/', isDebugEnabled = true;
 (function (w) {
 	var d = w.document,
