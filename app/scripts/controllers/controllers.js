@@ -230,7 +230,7 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 							$scope.safeApply (function(){
 								$location.path('/');
 							});
-					},"Update",'Ok');
+					},"sucessful",'Ok');
 					
 				}
 			});
