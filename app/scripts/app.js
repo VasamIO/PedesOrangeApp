@@ -782,30 +782,29 @@ app.directive('keyFocus', function($timeout) {
   return {
     restrict: 'A',
     link: function(scope, elem, attrs) {
-      elem.bind('keydown', function (e) {
-      	if(e.keyCode >=48 && e.keyCode <= 57) {
-	       if(elem[0].value.length >=2) {
-	       	//alert(elem[0].nextElementSibling);
-	       	$timeout(function() {
-            elem[0].nextElementSibling.focus();
-          	},100);
+    	
+     elem.bind('keyup', function (e) {
 
-	       }
+      	 var allowedLength = scope.$eval(attrs.allowedLength);
+
+      	if(((e.keyCode >=48 && e.keyCode <= 57) || e.keyCode == 8) ) {
+
+	       if(elem[0].value.length >= allowedLength) {
+			      elem[0].value =  elem[0].value.slice(0,allowedLength);			  
+			     if(elem[0].value.length === allowedLength) {
+			     	 if(elem[0].nextElementSibling != null){       	
+	        		 elem[0].nextElementSibling.focus();	
+	        		 }        		
+	       		 }
+      		 }
+	       
+       }else{
+       		  elem[0].value = "";
        }
-       /* // up arrow
-
-        if (e.keyCode == 38) {
-          if(!scope.$first) {
-            elem[0].previousElementSibling.focus();
-          }
-        }
-        // down arrow
-        else if (e.keyCode == 40) {
-          if(!scope.$last) {
-            elem[0].nextElementSibling.focus();
-          }
-        }*/
+     
       });
+    	
+      
     }
   };
 });
