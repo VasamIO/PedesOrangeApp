@@ -778,7 +778,7 @@ app.filter('timeAgo', ['timeAgo', 'nowTime', function(timeAgo, nowTime) {
 }]);
 
 
-app.directive('keyFocus', function($timeout) {
+app.directive('validateNumber', function($timeout) {
   return {
     restrict: 'A',
     link: function(scope, elem, attrs) {
