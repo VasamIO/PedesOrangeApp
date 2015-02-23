@@ -72,7 +72,8 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		$scope.userName = Session.get().displayName;
 		$scope.userId = Session.get().userId;
 	   	$scope.facilityDropDown = $rootScope.facilitydata;
-	   	console.log("***Pattern*******"+$scope.phoneNumberPattern);
+	   	$scope.isRefferalSent = false;
+
   	}
 	init();
 
@@ -125,7 +126,7 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		Logger.showAlert("Please select facility","Error");
 		return;
 	}
-	console.log("****"+$scope.art+"**********"+$scope.venous);
+
 	if($scope.fname == null && $scope.lname == null) {
 		Logger.showAlert("Please enter patient name","Error");
 		return;
@@ -171,8 +172,8 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
   	 }
 
   $scope.confirmreferral = function() {
-  	console.log("**************** In confirm refferrral********"+$scope.linenumber);
 
+	$scope.isRefferalSent = true;
   	//return;
  	$scope.uploadingimages =  true;
 	var _pname = "";
