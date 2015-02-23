@@ -321,8 +321,9 @@
 									 {{date | date:'MM/dd/yyyy HH:mm'}}
 								</li>
 							</ul>	
-			<a  class="button-block " ng-click="confirmreferral()" ><i class="icon-hospital icon-large"></i> Confirm Referral  </a>
-
+		<!--	<a  class="button-block " ng-click="confirmreferral()" ><i class="icon-hospital icon-large"></i> Confirm Referral  </a> -->
+<button  class="button-block " ng-click="confirmreferral()" 
+			ng-disabled="isRefferalSent" style="width:99%"><i class="icon-hospital icon-large"></i> Confirm Referral  </button>
 	</div>		
 
 </div>
