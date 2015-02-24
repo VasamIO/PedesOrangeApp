@@ -195,7 +195,7 @@
 						</li>
 						<li style="padding: 20px 0px 20px 10px;">
 							<label class="field-text" style="padding-right:0px;"><strong>Patient Contact Number</strong></label>
-						<span style="font-size:11px">({{$parent.arcode}}) {{$parent.prefix}}-{{$parent.validLineNumber}}</strong>
+						<span style="font-size:11px" ng-show="isUndefined($parent.validLineNumber)">({{$parent.arcode}}) {{$parent.prefix}}-{{$parent.validLineNumber}}</strong>
 						</li>
 						<li style="padding:20px 0px 20px 10px">
 							<label class="field-text" style="padding-right:0px;text-align:left;min-width:0px"><strong>Facility</strong></label>
