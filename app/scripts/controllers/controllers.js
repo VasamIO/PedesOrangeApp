@@ -175,6 +175,20 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		  	 });
 	 	});
   	 }
+  	 
+  $scope.isUndefined = function (variable) {
+			  
+		    	 if(($scope.arcode === null || typeof $scope.arcode === 'undefined') ||
+		    	 	($scope.prefix === null || typeof $scope.prefix === 'undefined') ||
+		    	 	($scope.linenumber === null || typeof $scope.linenumber === 'undefined')){
+		
+		    	 	return false;
+		    	 }else
+		    	 {
+		    	 	return true;
+		    	 }
+
+		}
 
   $scope.confirmreferral = function() {
 
