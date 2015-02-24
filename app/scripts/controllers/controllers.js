@@ -132,9 +132,14 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 		return;
 	} else if((!arcode || !prefix || !lineumber ) 
 		|| ($scope.arcode == null || $scope.prefix == null || $scope.linenumber == null  )){
+		Logger.showAlert("You have not entered patient contact number", "Information");
+		
+		//return;
+	}else if(!(($scope.arcode> 99 && $scope.arcode <1000) && ($scope.prefix> 99 && $scope.prefix <1000) && ($scope.linenumber > 999 && $scope.linenumber <10000 ) ) ){
 		Logger.showAlert("Please enter valid phone number. Ex (xxx) xxx-xxxx","Error");
-		return;
-	} else if (($scope.venous == null || !$scope.venous)&& ($scope.art == null ||!$scope.art)) {
+			return;
+		}
+	else if (($scope.venous == null || !$scope.venous)&& ($scope.art == null ||!$scope.art)) {
 		Logger.showAlert("Please select atleast one from Arterial or Venous","Error");
 		return;
 	} else if($scope.uc == null && $scope.ai == null  
