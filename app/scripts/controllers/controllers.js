@@ -120,6 +120,22 @@ app.controller('PhyFormCtrl', ['DropDownFactory','CameraFactory','$rootScope','$
 	$scope.arcode;
 	$scope.prefix;
 	$scope.linenumber;
+	
+	
+	    if($scope.arcode > 999){
+
+	    	$scope.arcode = Math.floor(($scope.arcode/10));
+	    }
+	     if($scope.prefix > 999){
+
+	    	$scope.prefix = Math.floor(($scope.prefix/10));
+	    }
+	     if($scope.linenumber > 9999){
+
+	    	$scope.linenumber = Math.floor(($scope.linenumber/10));
+	    }
+
+
    
 	console.log("Phone vlaidation:"+arcode+"-->"+prefix+"-->"+lineumber);
 	if(typeof $scope.facility === "undefined" ||$scope.facility === "nofacility" ) {
